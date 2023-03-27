@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
+import 'package:minijeux/memory_game.dart';
 
 class StartScreen extends StatelessWidget {
   @override
@@ -42,7 +43,26 @@ class StartScreen extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(width: 1.0, color: Colors.white),
                   ),
-                  child: Text('Flappy Game',
+                  child: Text('Flappy bird',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold)),
+                ),
+                SizedBox(height: 10),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const MemoryScreen(),
+                        ));
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(width: 1.0, color: Colors.white),
+                  ),
+                  child: Text('Memory',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 48,
