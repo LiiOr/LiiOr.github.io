@@ -11,34 +11,39 @@ class MemoryScreen extends StatefulWidget {
 }
 
 class _MemoryScreenState extends State<MemoryScreen> {
+  int tries  = 0;
   int score = 0;
   int highScore = 0;
-  final List<IconData> icons = [
-        Icons.anchor,
-        Icons.door_back_door,
-        Icons.favorite,
-        Icons.airplanemode_on,
-        Icons.alarm,
-        Icons.person,
-        Icons.light_mode_outlined,
-        Icons.star,
-        Icons.headset_rounded,
-        Icons.delete,
-        Icons.audiotrack_rounded,
-        Icons.visibility,
-        Icons.beach_access_rounded,
-        Icons.downhill_skiing_rounded,
-        Icons.directions_bike_rounded,
-        Icons.directions_boat_rounded,
-        Icons.lunch_dining_rounded,
-        Icons.restaurant,
-        Icons.shopping_cart_rounded,
-        Icons.sports_esports_rounded,
+  List<Icon>? listImg;
+  final List<Icon> icons = [
+        //Icons.anchor,
+        const Icon(Icons.restaurant, color: Colors.white),
+        const Icon(Icons.favorite, color: Colors.white),
+        const Icon(Icons.airplanemode_on, color: Colors.white),
+        const Icon(Icons.alarm, color: Colors.white),
+        const Icon(Icons.person, color: Colors.white),
+        const Icon(Icons.light_mode_outlined, color: Colors.white),
+        const Icon(Icons.star, color: Colors.white),
+        const Icon(Icons.headset_rounded, color: Colors.white),
+        const Icon(Icons.directions_bike_rounded,color: Colors.white),
+        const Icon(Icons.anchor, color: Colors.white),
+        const Icon(Icons.anchor, color: Colors.white),
+        const Icon(Icons.restaurant, color: Colors.white),
+        const Icon(Icons.favorite, color: Colors.white),
+        const Icon(Icons.airplanemode_on, color: Colors.white),
+        const Icon(Icons.alarm, color: Colors.white),
+        const Icon(Icons.person, color: Colors.white),
+        const Icon(Icons.light_mode_outlined, color: Colors.white),
+        const Icon(Icons.star, color: Colors.white),
+        const Icon(Icons.headset_rounded, color: Colors.white),
+        const Icon(Icons.directions_bike_rounded,color: Colors.white),   
       ];
-  
+  List<Map<int, Icon>> matchingPairs = [];
+
   @override
   void initState() {
     super.initState();
+    listImg = List.generate(icons.length, (index) => const Icon(Icons.question_mark, color: Colors.white));
   }
 
   
@@ -83,9 +88,8 @@ class _MemoryScreenState extends State<MemoryScreen> {
       },
     );
   }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
         appBar: AppBar(
           title: const Text('Memory'),
@@ -97,17 +101,47 @@ class _MemoryScreenState extends State<MemoryScreen> {
               flex:2,
               child: GridView(
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 5,
                     crossAxisSpacing: 2.0,
                     mainAxisSpacing: 2.0,
                   ),
-              children: List.generate(icons.length, (index) {
-                return Card(
-                  color: Colors.pink,
-                  child: Icon(Icons.question_mark, color: Colors.white)
-                  //child: Icon(icons[index], color: Colors.white),
-                  
+              children: List.generate(listImg!.length, (index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      tries ++;
+                      listImg![index] = icons[index];
+                      matchingPairs.add({index: icons[index]});
+                    });
+                    if (matchingPairs.length == 2) {
+                      print(matchingPairs[0].values.first);
+                      print(matchingPairs[1].values.first);
+                      if (matchingPairs[0].values.first.toString() == matchingPairs[1].values.first.toString()) {
+                        score += 2;
+                        matchingPairs.clear();
+                      } else {
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          setState(() {
+                            listImg![matchingPairs[0].keys.first] = const Icon(Icons.question_mark, color: Colors.white);
+                            listImg![matchingPairs[1].keys.first] = const Icon(Icons.question_mark, color: Colors.white);
+                            matchingPairs.clear();
+                          });
+                        });
+                      }
+                    }
+
+                  },
+                  child: LayoutBuilder(builder: (context, constraint) {
+                    return Card(
+                      color: Colors.pink,
+                      child: listImg![index]);
+                      //child: Icon(listImg![index] as IconData?, size: constraint.biggest.height));
+                  }),
+                  /*child: Card(
+                    color: Colors.pink,
+                    child: listImg![index],                   
+                  ),*/
                 );
               })),
             ),
@@ -128,8 +162,8 @@ class _MemoryScreenState extends State<MemoryScreen> {
                                   Stack(
                             alignment: Alignment.center,
                             children: [
-                              Icon(Icons.favorite, color: Colors.pink, size: 90),
-                              Text(score.toString(), style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
+                              const Icon(Icons.favorite, color: Colors.pink, size: 90),
+                              Text(score.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
                             ],
                           )
                         ],
@@ -145,8 +179,8 @@ class _MemoryScreenState extends State<MemoryScreen> {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              Icon(Icons.favorite, color: Colors.amber, size: 90),
-                              Text(highScore.toString(), style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
+                              const Icon(Icons.favorite, color: Colors.amber, size: 90),
+                              Text(highScore.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
                             ],
                           )
                         ],
