@@ -1,4 +1,4 @@
-# flappypatrol
+# minijeux
 
 A new Flutter project.
 

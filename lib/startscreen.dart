@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flappypatrol/flappy_game.dart';
+import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatelessWidget {

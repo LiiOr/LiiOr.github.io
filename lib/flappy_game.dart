@@ -1,9 +1,6 @@
 import 'dart:async';
-//import 'dart:ffi';
-import 'dart:math';
-
-import 'package:flappypatrol/character.dart';
-import 'package:flappypatrol/obstacle.dart';
+import 'package:minijeux/character.dart';
+import 'package:minijeux/barrier.dart';
 import 'package:flutter/material.dart';
 
 class FlappyScreen extends StatefulWidget {
@@ -14,23 +11,25 @@ class FlappyScreen extends StatefulWidget {
 }
 
 class _FlappyScreenState extends State<FlappyScreen> {
-  static double yPosCharacter = 0;
+  static double characterY = 0;
   double time = 0;
   double height = 0;
-  double initialHeight = yPosCharacter;
+  double initialPos = characterY;
   bool gameHasStarted = false;
+
   int score = 0;
   int highScore = 0;
   late Timer scoreTimer;
-  Random randomNumber = new Random();
-  /* Obstacles */
-  //double upperbarrierOneHeight = 0.0;
-  double lowerBarrierOneHeight = 0.0;
-  //double upperbarrierTwoHeight = 0.0;
-  double lowerBarrierTwoHeight = 0.0;
-  static double xPosObstacle = 0;
-  double obstacle2 = xPosObstacle + 2;
-  late double rand;
+
+  double characterWidth = 0.3;
+  double characterHeight = 0.3;
+
+  static List<double> barrierX = [2, 2 + 1.5];
+  static double barrierWidth = 0.4;
+  List<List<double>> barrierHeight = [
+    [0.5, 0.4],
+    [0.3, 0.6],
+  ];
 
   @override
   void initState() {
@@ -41,21 +40,44 @@ class _FlappyScreenState extends State<FlappyScreen> {
   void jump() {
     setState(() {
       time = 0;
-      initialHeight = yPosCharacter;
+      initialPos = characterY;
     });
   }
 
   void setInitialValues() {
     setState(() {
-      yPosCharacter = 0;
+      characterY = 0;
       time = 0;
       height = 0;
-      initialHeight = yPosCharacter;
+      initialPos = characterY;
       score = 0;
-      xPosObstacle = -2.5;
-      obstacle2 = xPosObstacle + 2;
-      rand = randomNumber.nextDouble() * 7;
     });
+  }
+
+  void moveMap() {
+    for (int i = 0; i < barrierX.length; i++) {
+      setState(() {
+        barrierX[i] += 0.005;
+      });
+      if (barrierX[i] > 1.5) {
+        barrierX[i] -= 3;
+      }
+    }
+  }
+
+  bool isDead() {
+    if (characterY > 1) {
+      return true;
+    }
+    for (int i = 0; i < barrierX.length; i++) {
+      if (barrierX[i] <= characterWidth &&
+          barrierX[i] + barrierWidth >= -characterWidth &&
+          (characterY <= -1 + barrierHeight[i][0] ||
+          characterY + characterHeight >= 1 - barrierHeight[i][1])) {
+        return true;
+      }
+    }
+    return false;
   }
 
   void startGame() {
@@ -71,50 +93,25 @@ class _FlappyScreenState extends State<FlappyScreen> {
         }
       },
     );
-    Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      time += 0.05;
+    Timer.periodic(const Duration(milliseconds: 10), (timer) {
       height = -4.9 * time * time + 2.0 * time;
       //height = gravity * time * time + velocity * time
       setState(() {
-        yPosCharacter = initialHeight - height;
-
-        if (xPosObstacle > 2) {
-          xPosObstacle -= 3.5;
-        } else {
-          xPosObstacle += 0.05;
-        }
-        if (obstacle2 > 2) {
-          obstacle2 -= 3.5;
-        } else {
-          obstacle2 += 0.05;
-        }
+        characterY = initialPos - height;
       });
-      if (yPosCharacter > 1.1) {
-        // si le personnage a touché le sol
-        gameHasStarted = false;
+
+      if (isDead()) {
         timer.cancel();
         scoreTimer.cancel();
+        gameHasStarted = false;
         if (score > highScore) {
           highScore = score;
         }
         setState(() {});
         showLoseDialog();
       }
-      // si l'axe X est au centre comme le personnage
-
-      if (xPosObstacle >= -0.20 && xPosObstacle <= 0.20) {
-        // si le personnage est sur le l'axe Y de l'obstacle
-        if (yPosCharacter >= 0.8) {
-          timer.cancel();
-          scoreTimer.cancel();
-          gameHasStarted = false;
-          if (score > highScore) {
-            highScore = score;
-          }
-          setState(() {});
-          showLoseDialog();
-        }
-      }
+      moveMap();
+      time += 0.01;
     });
   }
 
@@ -160,14 +157,8 @@ class _FlappyScreenState extends State<FlappyScreen> {
     );
   }
 
-  //double random = Random(10) as double;
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    lowerBarrierOneHeight = screenHeight / 2.5;
-    lowerBarrierTwoHeight = screenHeight / 5;
     return GestureDetector(
       onTap: () {
         if (gameHasStarted) {
@@ -182,7 +173,6 @@ class _FlappyScreenState extends State<FlappyScreen> {
           backgroundColor: Colors.black,
         ),
         body: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
               flex: 2,
@@ -198,9 +188,13 @@ class _FlappyScreenState extends State<FlappyScreen> {
                     ],
                   )),
                   duration: const Duration(milliseconds: 0),
-                  alignment: Alignment(0, yPosCharacter),
+                  alignment: Alignment(0, characterY),
                   //color: Colors.blue,
-                  child: myCharacter(),
+                  child: myCharacter(
+                    characterY: characterY,
+                    characterWidth: characterWidth,
+                    characterHeight: characterHeight,
+                  ),
                 ),
                 Container(
                   alignment: const Alignment(0, 0.3),
@@ -211,16 +205,30 @@ class _FlappyScreenState extends State<FlappyScreen> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                 ),
-                AnimatedContainer(
-                  duration: const Duration(seconds: 0),
-                  alignment: Alignment(xPosObstacle, rand),
-                  child: myObstacle(size: lowerBarrierOneHeight),
+                myBarrier(
+                  barrierX: barrierX[0],
+                  barrierWidth: barrierWidth,
+                  barrierHeight: barrierHeight[0][0],
+                  isThisBottomBarrier: false,
                 ),
-                AnimatedContainer(
-                  duration: const Duration(seconds: 0),
-                  alignment: Alignment(obstacle2, rand),
-                  child: myObstacle(size: lowerBarrierTwoHeight),
+                myBarrier(
+                  barrierX: barrierX[0],
+                  barrierWidth: barrierWidth,
+                  barrierHeight: barrierHeight[0][1],
+                  isThisBottomBarrier: true,
                 ),
+                myBarrier(
+                  barrierX: barrierX[1],
+                  barrierWidth: barrierWidth,
+                  barrierHeight: barrierHeight[1][0],
+                  isThisBottomBarrier: false,
+                ),
+                myBarrier(
+                  barrierX: barrierX[1],
+                  barrierWidth: barrierWidth,
+                  barrierHeight: barrierHeight[1][1],
+                  isThisBottomBarrier: true,
+                )
               ]),
             ),
             Container(height: 15, color: Colors.green),

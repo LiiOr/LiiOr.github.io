@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flappypatrol/startscreen.dart';
+import 'package:minijeux/startscreen.dart';
 
 void main() {
   runApp(const MyApp());

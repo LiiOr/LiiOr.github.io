@@ -1,4 +1,4 @@
-package com.example.flappypatrol
+package com.example.minijeux
 
 import io.flutter.embedding.android.FlutterActivity
 
