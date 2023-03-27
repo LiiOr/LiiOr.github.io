@@ -235,7 +235,16 @@ class _FlappyScreenState extends State<FlappyScreen> {
             Expanded(
                 flex: 1,
                 child: Container(
-                  color: Colors.brown,
+                  //color: Colors.brown,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.black,
+                      Colors.brown,
+                    ],
+                  )),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -246,26 +255,40 @@ class _FlappyScreenState extends State<FlappyScreen> {
                               style:
                                   TextStyle(fontSize: 25, color: Colors.white)),
                           const SizedBox(height: 10),
-                          Text(score.toString(),
+                         /* Text(score.toString(),
                               style: const TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
+                                  color: Colors.white)),*/
+                                  Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Icon(Icons.favorite, color: Colors.pink, size: 90),
+                              Text(score.toString(), style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
+                            ],
+                          )
                         ],
                       ),
                       const SizedBox(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('BEST',
+                          const Text('RECORD',
                               style:
                                   TextStyle(fontSize: 25, color: Colors.white)),
                           const SizedBox(height: 10),
-                          Text(highScore.toString(),
+                          /*Text(highScore.toString(),
                               style: const TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
+                                  color: Colors.white)),*/
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Icon(Icons.favorite, color: Colors.amber, size: 90),
+                              Text(highScore.toString(), style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
+                            ],
+                          )
                         ],
                       ),
                     ],
