@@ -1,0 +1,47 @@
+{
+   "checksum": "a3daf3501b99cf6d1c3a061c01d4256b",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13324819321385296",
+            "date_last_used": "0",
+            "guid": "81848446-951a-497c-bdf0-b08f910e166c",
+            "id": "5",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Simple Way to deploy a Flutter Web Application on GitHub",
+            "type": "url",
+            "url": "https://flutterawesome.com/simple-way-to-deploy-a-flutter-web-application-on-github/"
+         } ],
+         "date_added": "13324816375132161",
+         "date_last_used": "0",
+         "date_modified": "13324819321385296",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Barre de favoris",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13324816375132163",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Autres favoris",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13324816375132164",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Favoris sur mobile",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}
