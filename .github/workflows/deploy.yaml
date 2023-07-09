@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions :
+      contents: read
+      packages : write
+      id-token : write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter build web
+        working-directory: build/web
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: main
+          folder: build/web
+          token: ${{ secrets.ACCESS_TOKEN }}
+    
