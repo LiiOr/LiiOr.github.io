@@ -22,7 +22,7 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter build web
-        working-directory: build/web
+       # working-directory: build/web
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
