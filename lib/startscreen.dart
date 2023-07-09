@@ -11,14 +11,14 @@ class StartScreen extends StatelessWidget {
     final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.gamepad),
-        title: Text('Mini jeux pour bébé Lilou'),
+        leading: const Icon(Icons.gamepad),
+        title: const Text('Mini jeux pour bébé'),
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,
       ),
       body: Center(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
@@ -41,15 +41,15 @@ class StartScreen extends StatelessWidget {
                         ));
                   },
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(width: 1.0, color: Colors.white),
+                    side: const BorderSide(width: 1.0, color: Colors.white),
                   ),
-                  child: Text('Flappy bird',
+                  child: const Text('Flappy Stella',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 48,
                           fontWeight: FontWeight.bold)),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.push(
@@ -60,9 +60,9 @@ class StartScreen extends StatelessWidget {
                         ));
                   },
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(width: 1.0, color: Colors.white),
+                    side: const BorderSide(width: 1.0, color: Colors.white),
                   ),
-                  child: Text('Memory',
+                  child: const Text('Memory',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 48,
@@ -73,7 +73,7 @@ class StartScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: const BottomAppBar(
           color: Colors.black,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(Icons.favorite, color: Colors.white, size: 10),

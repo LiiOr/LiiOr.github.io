@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:html';
-import 'package:minijeux/character.dart';
 import 'package:flutter/material.dart';
 
 class MemoryScreen extends StatefulWidget {
@@ -89,107 +87,122 @@ class _MemoryScreenState extends State<MemoryScreen> {
     );
   }
   @override
-  Widget build(BuildContext context) { 
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Memory'),
-          backgroundColor: Colors.black,
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              flex:2,
-              child: GridView(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    crossAxisSpacing: 2.0,
-                    mainAxisSpacing: 2.0,
-                  ),
-              children: List.generate(listImg!.length, (index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      tries ++;
-                      listImg![index] = icons[index];
-                      matchingPairs.add({index: icons[index]});
-                    });
-                    if (matchingPairs.length == 2) {
-                      print(matchingPairs[0].values.first);
-                      print(matchingPairs[1].values.first);
-                      if (matchingPairs[0].values.first.toString() == matchingPairs[1].values.first.toString()) {
-                        score += 2;
-                        matchingPairs.clear();
-                      } else {
-                        Future.delayed(const Duration(milliseconds: 500), () {
-                          setState(() {
-                            listImg![matchingPairs[0].keys.first] = const Icon(Icons.question_mark, color: Colors.white);
-                            listImg![matchingPairs[1].keys.first] = const Icon(Icons.question_mark, color: Colors.white);
-                            matchingPairs.clear();
-                          });
-                        });
-                      }
-                    }
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text('Memory'),
+      backgroundColor: Colors.black,
+    ),
+    body: Column(
+      children: <Widget>[
+        Expanded(
+          flex: 2,
+          child: LayoutBuilder(
+            builder: (context, constraint) {
+              final double cardSize = constraint.maxWidth / 5 - 4;
 
-                  },
-                  child: LayoutBuilder(builder: (context, constraint) {
-                    return Card(
+              return GridView.count(
+                crossAxisCount: 4,
+                crossAxisSpacing: 2.0,
+                mainAxisSpacing: 2.0,
+                childAspectRatio: 1.2,
+                children: List.generate(listImg!.length, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        tries++;
+                        listImg![index] = icons[index];
+                        matchingPairs.add({index: icons[index]});
+                      });
+                      if (matchingPairs.length == 2) {
+                        if (matchingPairs[0].values.first.toString() ==
+                            matchingPairs[1].values.first.toString()) {
+                          score += 2;
+                          matchingPairs.clear();
+                        } else {
+                          Future.delayed(const Duration(milliseconds: 500), () {
+                            setState(() {
+                              listImg![matchingPairs[0].keys.first] =
+                                  const Icon(Icons.question_mark,
+                                      color: Colors.white);
+                              listImg![matchingPairs[1].keys.first] =
+                                  const Icon(Icons.question_mark,
+                                      color: Colors.white);
+                              matchingPairs.clear();
+                            });
+                          });
+                        }
+                      }
+                    },
+                    child: Card(
                       color: Colors.pink,
-                      child: listImg![index]);
-                      //child: Icon(listImg![index] as IconData?, size: constraint.biggest.height));
-                  }),
-                  /*child: Card(
-                    color: Colors.pink,
-                    child: listImg![index],                   
-                  ),*/
-                );
-              })),
-            ),
-            Expanded(
-              flex: 1,
-                child: Container(
-                  color: Colors.black,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('SCORE',
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.white)),
-                          const SizedBox(height: 10),
-                                  Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Icon(Icons.favorite, color: Colors.pink, size: 90),
-                              Text(score.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
-                            ],
-                          )
-                        ],
+                      child: SizedBox(
+                        width: cardSize,
+                        height: cardSize * 1.2,
+                        child: listImg![index],
                       ),
-                      const SizedBox(),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('RECORD',
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.white)),
-                          const SizedBox(height: 10),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Icon(Icons.favorite, color: Colors.amber, size: 90),
-                              Text(highScore.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ))
-          ]
+                    ),
+                  );
+                }),
+              );
+            },
+          ),
         ),
-    );
-  }
+        Expanded(
+          flex: 1,
+          child: Container(
+            color: Colors.black,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('SCORE',
+                        style: TextStyle(fontSize: 25, color: Colors.white)),
+                    const SizedBox(height: 10),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const Icon(Icons.favorite,
+                            color: Colors.pink, size: 90),
+                        Text(score.toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('RECORD',
+                        style: TextStyle(fontSize: 25, color: Colors.white)),
+                    const SizedBox(height: 10),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const Icon(Icons.favorite,
+                            color: Colors.amber, size: 90),
+                        Text(highScore.toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 }

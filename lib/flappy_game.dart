@@ -209,26 +209,26 @@ class _FlappyScreenState extends State<FlappyScreen> {
                   barrierX: barrierX[0],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[0][0],
-                  isThisBottomBarrier: false,
+                  isThisBottomBarrier: true,
                 ),
-                myBarrier(
+                /*myBarrier(
                   barrierX: barrierX[0],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[0][1],
                   isThisBottomBarrier: true,
-                ),
+                ),*/
                 myBarrier(
                   barrierX: barrierX[1],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[1][0],
-                  isThisBottomBarrier: false,
+                  isThisBottomBarrier: true,
                 ),
-                myBarrier(
+                /*myBarrier(
                   barrierX: barrierX[1],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[1][1],
                   isThisBottomBarrier: true,
-                )
+                )*/
               ]),
             ),
             Container(height: 15, color: Colors.green),
