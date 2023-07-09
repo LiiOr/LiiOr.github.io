@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class myCharacter extends StatelessWidget {
-  final characterY;
+class MyCharacter extends StatelessWidget {
+  final dynamic characterY;
   final double characterWidth;
   final double characterHeight;
 
-  myCharacter({
+  const MyCharacter({super.key, 
     this.characterY,
     required this.characterWidth,
     required this.characterHeight

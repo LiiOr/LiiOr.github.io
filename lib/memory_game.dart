@@ -56,7 +56,7 @@ class _MemoryScreenState extends State<MemoryScreen> {
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           content: Text(
-              'Bravo, tu as marqué ${score} points ! Veux tu rejouer?',
+              'Bravo, tu as marqué $score points ! Veux tu rejouer?',
               style: const TextStyle(color: Colors.white)),
           actions: <Widget>[
             Row(

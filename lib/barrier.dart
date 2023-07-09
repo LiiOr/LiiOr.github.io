@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class myBarrier extends StatelessWidget {
-  final barrierWidth;
-  final barrierHeight;
-  final barrierX;
+class MyBarrier extends StatelessWidget {
+  final dynamic barrierWidth;
+  final dynamic barrierHeight;
+  final dynamic barrierX;
   final bool isThisBottomBarrier;
   
-  myBarrier({
+  const MyBarrier({super.key, 
     this.barrierHeight,
     this.barrierWidth,
     required this.isThisBottomBarrier,

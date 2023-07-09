@@ -1,14 +1,15 @@
-import 'dart:math';
 
 import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
 import 'package:minijeux/memory_game.dart';
 
 class StartScreen extends StatelessWidget {
+  const StartScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
+    //final deviceHeight = MediaQuery.of(context).size.height;
+   // final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.gamepad),

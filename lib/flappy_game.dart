@@ -126,7 +126,7 @@ class _FlappyScreenState extends State<FlappyScreen> {
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           content: Text(
-              'Bravo, tu as marqué ${score} points ! Veux tu rejouer?',
+              'Bravo, tu as marqué $score points ! Veux tu rejouer?',
               style: const TextStyle(color: Colors.white)),
           actions: <Widget>[
             Row(
@@ -190,7 +190,7 @@ class _FlappyScreenState extends State<FlappyScreen> {
                   duration: const Duration(milliseconds: 0),
                   alignment: Alignment(0, characterY),
                   //color: Colors.blue,
-                  child: myCharacter(
+                  child: MyCharacter(
                     characterY: characterY,
                     characterWidth: characterWidth,
                     characterHeight: characterHeight,
@@ -205,25 +205,25 @@ class _FlappyScreenState extends State<FlappyScreen> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                 ),
-                myBarrier(
+                MyBarrier(
                   barrierX: barrierX[0],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[0][0],
                   isThisBottomBarrier: true,
                 ),
-                /*myBarrier(
+                /*MyBarrier(
                   barrierX: barrierX[0],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[0][1],
                   isThisBottomBarrier: true,
                 ),*/
-                myBarrier(
+                MyBarrier(
                   barrierX: barrierX[1],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[1][0],
                   isThisBottomBarrier: true,
                 ),
-                /*myBarrier(
+                /*MyBarrier(
                   barrierX: barrierX[1],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[1][1],
@@ -263,8 +263,8 @@ class _FlappyScreenState extends State<FlappyScreen> {
                                   Stack(
                             alignment: Alignment.center,
                             children: [
-                              Icon(Icons.favorite, color: Colors.pink, size: 90),
-                              Text(score.toString(), style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
+                              const Icon(Icons.favorite, color: Colors.pink, size: 90),
+                              Text(score.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
                             ],
                           )
                         ],
@@ -285,8 +285,8 @@ class _FlappyScreenState extends State<FlappyScreen> {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              Icon(Icons.favorite, color: Colors.amber, size: 90),
-                              Text(highScore.toString(), style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
+                              const Icon(Icons.favorite, color: Colors.amber, size: 90),
+                              Text(highScore.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
                             ],
                           )
                         ],
