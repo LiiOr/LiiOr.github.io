@@ -3,14 +3,14 @@ import 'package:minijeux/character.dart';
 import 'package:minijeux/barrier.dart';
 import 'package:flutter/material.dart';
 
-class FlappyScreen extends StatefulWidget {
-  const FlappyScreen({super.key});
+class FlappyGame extends StatefulWidget {
+  const FlappyGame({super.key});
 
   @override
-  State<FlappyScreen> createState() => _FlappyScreenState();
+  State<FlappyGame> createState() => _FlappyGameState();
 }
 
-class _FlappyScreenState extends State<FlappyScreen> {
+class _FlappyGameState extends State<FlappyGame> {
   static double characterY = 0;
   double time = 0;
   double height = 0;
@@ -93,7 +93,7 @@ class _FlappyScreenState extends State<FlappyScreen> {
         }
       },
     );
-    Timer.periodic(const Duration(milliseconds: 10), (timer) {
+    Timer.periodic(const Duration(milliseconds: 10), (timer) async {
       height = -4.9 * time * time + 2.0 * time;
       //height = gravity * time * time + velocity * time
       setState(() {
@@ -108,6 +108,7 @@ class _FlappyScreenState extends State<FlappyScreen> {
           highScore = score;
         }
         setState(() {});
+        //await Future.delayed(const Duration(seconds: 2));
         showLoseDialog();
       }
       moveMap();

@@ -38,7 +38,7 @@ class StartScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const FlappyScreen(),
+                              const FlappyGame(),
                         ));
                   },
                   style: OutlinedButton.styleFrom(
@@ -57,7 +57,7 @@ class StartScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const MemoryScreen(),
+                              MemoryGame(),
                         ));
                   },
                   style: OutlinedButton.styleFrom(
@@ -78,7 +78,7 @@ class StartScreen extends StatelessWidget {
           color: Colors.black,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(Icons.favorite, color: Colors.white, size: 10),
-            Text(' Made with love by LD ', style: TextStyle(color: Colors.white)),
+            Text(' Chantier en cours par LD ', style: TextStyle(color: Colors.white)),
             Icon(Icons.favorite, color: Colors.white, size: 10),
           ]) //&#10084;
           ),
