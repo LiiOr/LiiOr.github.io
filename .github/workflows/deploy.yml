@@ -28,4 +28,5 @@ jobs:
         with:
           branch: main
           folder: build/web
+          token: ${{ secrets.ACCESS_TOKEN }}
     
