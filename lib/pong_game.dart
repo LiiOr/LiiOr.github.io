@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:minijeux/globals.dart';
 
 class PongGame extends StatefulWidget {
   const PongGame({super.key});
@@ -38,11 +39,11 @@ class _PongGameState extends State<PongGame> {
       ballX += ballSpeedX;
       ballY += ballSpeedY;
 
-      if (ballX <= 0 || ballX >= 400) {
+      if (ballX <= 0 || ballX >= screenWidth) {
         ballSpeedX = -ballSpeedX;
       }
 
-      if (ballY <= 0 || ballY >= 600) {
+      if (ballY <= 0 || ballY >= screenHeight-50) {
         ballSpeedY = -ballSpeedY;
       }
 
@@ -57,8 +58,8 @@ class _PongGameState extends State<PongGame> {
       paddleX += details.delta.dx;
       if (paddleX < 0) {
         paddleX = 0;
-      } else if (paddleX > 400 - paddleWidth) {
-        paddleX = 400 - paddleWidth;
+      } else if (paddleX > screenWidth - paddleWidth) {
+        paddleX = screenWidth - paddleWidth;
       }
     });
   }
@@ -79,6 +80,7 @@ class _PongGameState extends State<PongGame> {
       body: GestureDetector(
         onHorizontalDragUpdate: onDragUpdate,
         child: Container(
+        //  width: MediaQuery.of(context).size.width,
           child: Stack(
             children: [
               Positioned(

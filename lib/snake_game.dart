@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:minijeux/globals.dart';
 
 class SnakeGame extends StatefulWidget {
   const SnakeGame({super.key});
@@ -71,9 +72,9 @@ class _SnakeGameState extends State<SnakeGame> {
 
   void checkCollisions() {
     if (snake.first.dx < 0 ||
-        snake.first.dx >= 400 ||
+        snake.first.dx >= screenWidth ||
         snake.first.dy < 0 ||
-        snake.first.dy >= 600 ||
+        snake.first.dy >= screenHeight ||
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];

@@ -264,7 +264,7 @@ class _MemoryGameState extends State<MemoryGame> {
 
   void initializeGame() {
     final random = Random();
-    List<int> allItems = List.generate(10, (index) => index % 5);
+    List<int> allItems = List.generate(20, (index) => index % 10);
     allItems.shuffle(random);
 
     setState(() {
@@ -322,7 +322,7 @@ class _MemoryGameState extends State<MemoryGame> {
           return GestureDetector(
             onTap: () => onItemClick(index),
             child: Container(
-              color: itemsOpened[index] ? Colors.blue : Colors.grey,
+              color: itemsOpened[index] ? Colors.pink : Colors.grey,
               child: Center(
                 child: itemsOpened[index]
                     ? Text(
@@ -330,7 +330,7 @@ class _MemoryGameState extends State<MemoryGame> {
                         style: const TextStyle(fontSize: 24.0),
                       )
                     : const Icon(
-                        Icons.question_answer,
+                        Icons.question_mark,
                         size: 32.0,
                       ),
               ),

@@ -1,3 +1,4 @@
+import 'package:minijeux/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:minijeux/splash.dart';
@@ -44,6 +45,8 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       title: 'Mini jeux',
       theme: ThemeData(
