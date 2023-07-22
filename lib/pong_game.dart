@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class PongGame extends StatefulWidget {
@@ -17,19 +19,17 @@ class _PongGameState extends State<PongGame> {
   double paddleY = 500;
   double paddleWidth = 100;
 
+  Timer? gameLoopTimer;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
       startGameLoop();
-    });
   }
 
   void startGameLoop() {
-    Future.doWhile(() async {
-      await Future.delayed(const Duration(milliseconds: 10));
+    gameLoopTimer = Timer.periodic(const Duration(milliseconds: 10), (_) {
       updateGame();
-      return true;
     });
   }
 
@@ -61,6 +61,12 @@ class _PongGameState extends State<PongGame> {
         paddleX = 400 - paddleWidth;
       }
     });
+  }
+
+  @override
+  void dispose() {
+    gameLoopTimer?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    super.dispose();
   }
 
   @override

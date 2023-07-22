@@ -56,21 +56,23 @@ class StartScreen extends StatelessWidget {
                ListView.separated(
                 shrinkWrap: true,
                   itemBuilder: (context, index) {
-                  return ListTile(
-                  title: Text(games[index].toString(), style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              games[index],
-                        ));
-                  },
-                );
+                  return Card(
+                    child: ListTile(
+                    title: Text(games[index].toString(), style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold)),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                games[index],
+                          ));
+                    },
+                                  ),
+                  );
                 }, itemCount: games.length, separatorBuilder: (BuildContext context, int index) { return const Divider(); },)
             ],
           ),

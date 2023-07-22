@@ -14,13 +14,26 @@ class _SnakeGameState extends State<SnakeGame> {
   Offset food = const Offset(200, 200);
   Direction direction = Direction.right;
 
+  Timer? gameLoopTimer;
+
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(milliseconds: 200), (timer) {
+    startGameLoop();
+  }
+
+  void startGameLoop() {
+    gameLoopTimer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
       moveSnake();
       checkCollisions();
     });
+  }
+
+  @override
+  void dispose() {
+    gameLoopTimer
+        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    super.dispose();
   }
 
   void moveSnake() {
