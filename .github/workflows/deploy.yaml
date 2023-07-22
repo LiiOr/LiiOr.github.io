@@ -21,7 +21,7 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter build web
+      - run: flutter build web --dart-define=APP_VERSION=${{github.ref_name}}
        # working-directory: build/web
 
       - name: Deploy to GitHub Pages

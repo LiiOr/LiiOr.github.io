@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/startscreen.dart';
 
+String numVersion =
+    const String.fromEnvironment('APP_VERSION', defaultValue: 'DEV');
+
 void main() {
   runApp(const MyApp());
 }

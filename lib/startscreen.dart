@@ -1,6 +1,7 @@
 
 import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
+import 'package:minijeux/main.dart';
 import 'package:minijeux/memory_game.dart';
 
 class StartScreen extends StatelessWidget {
@@ -57,7 +58,7 @@ class StartScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              MemoryGame(),
+                              const MemoryGame(),
                         ));
                   },
                   style: OutlinedButton.styleFrom(
@@ -74,12 +75,12 @@ class StartScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
           color: Colors.black,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(Icons.favorite, color: Colors.white, size: 10),
-            Text(' Chantier en cours par LD ', style: TextStyle(color: Colors.white)),
-            Icon(Icons.favorite, color: Colors.white, size: 10),
+            const Icon(Icons.favorite, color: Colors.white, size: 10),
+            Text(' Version $numVersion ', style: const TextStyle(color: Colors.white)),
+            const Icon(Icons.favorite, color: Colors.white, size: 10),
           ]) //&#10084;
           ),
     );
