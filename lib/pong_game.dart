@@ -74,11 +74,11 @@ class _PongGameState extends State<PongGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pong Game'),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: GestureDetector(
         onHorizontalDragUpdate: onDragUpdate,
         child: Container(
-          color: Colors.black,
           child: Stack(
             children: [
               Positioned(
@@ -87,7 +87,7 @@ class _PongGameState extends State<PongGame> {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: Colors.white,
+                  color: Colors.yellow,
                 ),
               ),
               Positioned(
@@ -96,7 +96,7 @@ class _PongGameState extends State<PongGame> {
                 child: Container(
                   width: paddleWidth,
                   height: 10,
-                  color: Colors.pink,
+                  color: Colors.pink[700],
                 ),
               ),
             ],

@@ -105,7 +105,6 @@ class _SnakeGameState extends State<SnakeGame> {
           }
         },
         child: Container(
-          color: Colors.black,
           child: Stack(
             children: [
               Positioned(
@@ -114,7 +113,7 @@ class _SnakeGameState extends State<SnakeGame> {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: Colors.white,
+                  color: Colors.yellow,
                 ),
               ),
               ...snake.map(
@@ -124,7 +123,7 @@ class _SnakeGameState extends State<SnakeGame> {
                   child: Container(
                     width: 20,
                     height: 20,
-                    color: Colors.green,
+                    color: Colors.pink,
                   ),
                 ),
               ),
