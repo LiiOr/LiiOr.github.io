@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class MemoryGame extends StatefulWidget {
+/*class MemoryGame extends StatefulWidget {
   const MemoryGame({super.key});
 
   @override
@@ -241,11 +241,13 @@ class _MemoryGameState extends State<MemoryGame> {
       ),
     );
   }
-}
+}*/
 
-/*class MemoryGame extends StatefulWidget {
+class MemoryGame extends StatefulWidget {
+  const MemoryGame({super.key});
+
   @override
-  _MemoryGameState createState() => _MemoryGameState();
+  State<MemoryGame> createState() => _MemoryGameState();
 }
 
 class _MemoryGameState extends State<MemoryGame> {
@@ -267,12 +269,12 @@ class _MemoryGameState extends State<MemoryGame> {
 
     setState(() {
       items = allItems;
-      itemsOpened = List<bool>.filled(allItems.length, false);
+      itemsOpened = List<bool>.filled(allItems.length, true);
     });
 
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       setState(() {
-        itemsOpened = List<bool>.filled(allItems.length, true);
+        itemsOpened = List<bool>.filled(allItems.length, false);
       });
     });
   }
@@ -287,7 +289,7 @@ class _MemoryGameState extends State<MemoryGame> {
         previousIndex = index;
       } else {
         isProcessing = true;
-        Timer(Duration(seconds: 1), () {
+        Timer(const Duration(seconds: 1), () {
           if (items[previousIndex] != items[index]) {
             setState(() {
               itemsOpened[previousIndex] = false;
@@ -305,11 +307,12 @@ class _MemoryGameState extends State<MemoryGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Memory Game'),
+        title: const Text('Memory Game'),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: GridView.builder(
-        padding: EdgeInsets.all(16.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.all(16.0),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 5,
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
@@ -324,9 +327,9 @@ class _MemoryGameState extends State<MemoryGame> {
                 child: itemsOpened[index]
                     ? Text(
                         '${items[index]}',
-                        style: TextStyle(fontSize: 24.0),
+                        style: const TextStyle(fontSize: 24.0),
                       )
-                    : Icon(
+                    : const Icon(
                         Icons.question_answer,
                         size: 32.0,
                       ),
@@ -337,4 +340,4 @@ class _MemoryGameState extends State<MemoryGame> {
       ),
     );
   }
-}*/
+}

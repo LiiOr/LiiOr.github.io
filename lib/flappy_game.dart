@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:minijeux/character.dart';
-import 'package:minijeux/barrier.dart';
 import 'package:flutter/material.dart';
 
 class FlappyGame extends StatefulWidget {
@@ -95,7 +93,6 @@ class _FlappyGameState extends State<FlappyGame> {
     );
     Timer.periodic(const Duration(milliseconds: 10), (timer) async {
       height = -4.9 * time * time + 2.0 * time;
-      //height = gravity * time * time + velocity * time
       setState(() {
         characterY = initialPos - height;
       });
@@ -171,7 +168,7 @@ class _FlappyGameState extends State<FlappyGame> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Flappy Game'),
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Column(
           children: <Widget>[
@@ -212,24 +209,24 @@ class _FlappyGameState extends State<FlappyGame> {
                   barrierHeight: barrierHeight[0][0],
                   isThisBottomBarrier: true,
                 ),
-                /*MyBarrier(
+                MyBarrier(
                   barrierX: barrierX[0],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[0][1],
-                  isThisBottomBarrier: true,
-                ),*/
+                  isThisBottomBarrier: false,
+                ),
                 MyBarrier(
                   barrierX: barrierX[1],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[1][0],
                   isThisBottomBarrier: true,
                 ),
-                /*MyBarrier(
+                MyBarrier(
                   barrierX: barrierX[1],
                   barrierWidth: barrierWidth,
                   barrierHeight: barrierHeight[1][1],
-                  isThisBottomBarrier: true,
-                )*/
+                  isThisBottomBarrier: false,
+                )
               ]),
             ),
             Container(height: 15, color: Colors.green),
@@ -256,11 +253,6 @@ class _FlappyGameState extends State<FlappyGame> {
                               style:
                                   TextStyle(fontSize: 25, color: Colors.white)),
                           const SizedBox(height: 10),
-                         /* Text(score.toString(),
-                              style: const TextStyle(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),*/
                                   Stack(
                             alignment: Alignment.center,
                             children: [
@@ -278,11 +270,6 @@ class _FlappyGameState extends State<FlappyGame> {
                               style:
                                   TextStyle(fontSize: 25, color: Colors.white)),
                           const SizedBox(height: 10),
-                          /*Text(highScore.toString(),
-                              style: const TextStyle(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),*/
                           Stack(
                             alignment: Alignment.center,
                             children: [
@@ -298,6 +285,58 @@ class _FlappyGameState extends State<FlappyGame> {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class MyBarrier extends StatelessWidget {
+  final dynamic barrierWidth;
+  final dynamic barrierHeight;
+  final dynamic barrierX;
+  final bool isThisBottomBarrier;
+  
+  const MyBarrier({super.key, 
+    this.barrierHeight,
+    this.barrierWidth,
+    required this.isThisBottomBarrier,
+    this.barrierX
+  });
+
+  @override
+  Widget build(BuildContext context) {
+   return Container(
+    alignment: Alignment((2 * barrierX + barrierWidth) / (2 - barrierWidth), isThisBottomBarrier? 1 : -1),
+    child: Container(
+      color: Colors.green,
+      width: MediaQuery.of(context).size.width * barrierWidth / 2,
+      height: MediaQuery.of(context).size.height * 3 / 4 * barrierHeight / 2)
+    );
+  }
+
+}
+
+class MyCharacter extends StatelessWidget {
+  final dynamic characterY;
+  final double characterWidth;
+  final double characterHeight;
+
+  const MyCharacter({super.key, 
+    this.characterY,
+    required this.characterWidth,
+    required this.characterHeight
+  });
+
+  //final characterpos = GlobalKey();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment(0, (2 * characterY + characterHeight) / ( 2 - characterHeight)),
+      child: Image.asset('assets/skye.png',
+      width: MediaQuery.of(context).size.height * characterWidth / 2,
+      height: MediaQuery.of(context).size.height * 3 / 4 * characterHeight / 2,
+      fit: BoxFit.fill
+      )
     );
   }
 }

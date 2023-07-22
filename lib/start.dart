@@ -3,13 +3,15 @@ import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
 import 'package:minijeux/main.dart';
 import 'package:minijeux/memory_game.dart';
+import 'package:minijeux/snake_game.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
 
-  static const List<Widget> games = [
-    FlappyGame(),
-    MemoryGame()
+  static List<Widget> games = [
+    const FlappyGame(),
+    const MemoryGame(),
+    const SnakeGame()
   ];
 
   @override
@@ -17,7 +19,7 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.gamepad),
-        title: const Text('Mini jeux pour bébé'),
+        title: const Text('Mini games for babies'),
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,
         actions: const [
@@ -30,9 +32,7 @@ class StartScreen extends StatelessWidget {
         bottomNavigationBar: BottomAppBar(
           color: Colors.black,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Icon(Icons.favorite, color: Colors.white, size: 10),
             Text(' Version $numVersion ', style: const TextStyle(color: Colors.white)),
-            const Icon(Icons.favorite, color: Colors.white, size: 10),
           ]) //&#10084;
           ),
       body: Center(
