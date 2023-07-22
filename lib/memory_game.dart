@@ -51,7 +51,7 @@ class _MemoryGameState extends State<MemoryGame> {
     icons.shuffle();
     var list = List.generate((icons).length,
         (index) => const Icon(Icons.question_mark, color: Colors.white));
-    list?.shuffle(Random());
+    list.shuffle(Random());
 
     setState(() {
       // on commence la partie en affichant les cards pdt 5 secondes
@@ -78,7 +78,7 @@ class _MemoryGameState extends State<MemoryGame> {
           title: const Text('G A M E  O V E R',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          content: Text('Bravo, tu as marqué $score points ! Veux tu rejouer?',
+          content: Text('Tu as marqué $score points ! Veux tu rejouer?',
               style: const TextStyle(color: Colors.white)),
           actions: <Widget>[
             Row(

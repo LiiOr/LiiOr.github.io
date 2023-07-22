@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/startscreen.dart';
+import 'package:minijeux/splash.dart';
 
 String numVersion =
     const String.fromEnvironment('APP_VERSION', defaultValue: 'DEV');
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
         ),
         themeMode: ThemeMode.dark,
-      home: const StartScreen(),
+      home: const SplashScreen(),
     );
   }
 }
