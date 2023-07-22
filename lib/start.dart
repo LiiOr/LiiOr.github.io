@@ -3,6 +3,7 @@ import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
 import 'package:minijeux/main.dart';
 import 'package:minijeux/memory_game.dart';
+import 'package:minijeux/pong_game.dart';
 import 'package:minijeux/snake_game.dart';
 
 class StartScreen extends StatelessWidget {
@@ -11,7 +12,8 @@ class StartScreen extends StatelessWidget {
   static List<Widget> games = [
     const FlappyGame(),
     const MemoryGame(),
-    const SnakeGame()
+    const SnakeGame(),
+    const PongGame()
   ];
 
   @override
