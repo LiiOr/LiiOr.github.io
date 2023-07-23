@@ -24,7 +24,7 @@ class _SnakeGameState extends State<SnakeGame> {
   }
 
   void startGameLoop() {
-    gameLoopTimer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
+    gameLoopTimer = Timer.periodic(const Duration(milliseconds: 150), (timer) {
       moveSnake();
       checkCollisions();
     });
@@ -106,6 +106,7 @@ class _SnakeGameState extends State<SnakeGame> {
           }
         },
         child: Container(
+          height: screenHeight - AppBar().preferredSize.height,
           child: Stack(
             children: [
               Positioned(

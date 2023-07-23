@@ -97,7 +97,7 @@ class _PongGameState extends State<PongGame> {
                 top: paddleY,
                 child: Container(
                   width: paddleWidth,
-                  height: 10,
+                  height: 20,
                   color: Colors.pink[700],
                 ),
               ),

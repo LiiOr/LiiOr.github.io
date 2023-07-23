@@ -33,7 +33,7 @@ class StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.gamepad),
+        leading: const Icon(Icons.games),
         title: const Text('Mini games for babies'),
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
@@ -90,7 +90,7 @@ class StartScreenState extends State<StartScreen> {
                                   color: Colors.white,
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold)),
-                          trailing: const Icon(Icons.chevron_right),
+                          trailing: const Icon(Icons.chevron_right, color: Colors.white),
                           onTap: () {
                             Navigator.push(
                                 context,
