@@ -1,9 +1,12 @@
 name: Deploy to GitHub Pages
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - main
+  #release:
+    #types:
+      #- created
 
 jobs:
   build:
@@ -20,6 +23,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true # improving perfs by enabling caching for the flutter SDK
       - run: flutter pub get
       - run: flutter build web --dart-define=APP_VERSION=${{github.ref_name}}
        # working-directory: build/web
@@ -27,7 +31,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          branch: main
+          branch: gh-pages
           folder: build/web
           token: ${{ secrets.ACCESS_TOKEN }}
     
