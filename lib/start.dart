@@ -2,6 +2,7 @@ import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
 import 'package:minijeux/main.dart';
 import 'package:minijeux/memory_game.dart';
+import 'package:minijeux/navbar.dart';
 import 'package:minijeux/pong_game.dart';
 import 'package:minijeux/snake_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +16,7 @@ class StartScreen extends StatefulWidget {
 
 class StartScreenState extends State<StartScreen> {
   bool dkSwitchVal = isDark;
- /* Icon darkIcon =
+  /* Icon darkIcon =
       isDark ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode);*/
 
   setTheme(val) async {
@@ -31,87 +32,46 @@ class StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.games),
-        title: const Text('Mini games for babies'),
-        backgroundColor: Theme.of(context).primaryColor,
-        actions: [
-          SizedBox(
-            height: 100,
-            child: Switch(
-              value: dkSwitchVal,
-              onChanged: (bool value) {
-                setState(() {
-                  dkSwitchVal = value;
-                  setTheme(value);
-                 /* if (value == true) {
-                    darkIcon = const Icon(Icons.dark_mode);
-                  } else {
-                    darkIcon = const Icon(Icons.light_mode);
-                  }*/
-                });
-              },
-            ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomAppBar(
-          color: Theme.of(context).primaryColor,
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(' Version $numVersion ',
-                style: const TextStyle(color: Colors.white)),
-          ])
-          ),
-      body: Center(
+    return Center(
         child: Container(
-            /*decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.purple,
-                Colors.pink,
-              ],
-            )),*/
             child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Card(
-                          color: Theme.of(context).primaryColor,
-                        child: ListTile(
-                          title: Text(games[index].title.toString(),
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold)),
-                          trailing: const Icon(Icons.chevron_right, color: Colors.white),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      games[index].gameWidget,
-                                ));
-                          },
-                        ),
-                      );
-                    },
-                    itemCount: games.length,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider();
-                    },
-                  )
-                ],
-              ),
-            )),
-      ),
-    );
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Theme.of(context).primaryColor,
+                    child: ListTile(
+                      title: Text(games[index].title.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold)),
+                      trailing:
+                          const Icon(Icons.chevron_right, color: Colors.white),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  games[index].gameWidget,
+                            ));
+                      },
+                    ),
+                  );
+                },
+                itemCount: games.length,
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider();
+                },
+              )
+            ],
+          ),
+        )),
+      );
   }
 }
 

@@ -8,7 +8,7 @@ String numVersion =
 bool isDark = false;
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
