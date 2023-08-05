@@ -33,44 +33,44 @@ class StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-            child: Center(
+        child: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Theme.of(context).primaryColor,
-                    child: ListTile(
-                      title: Text(games[index].title.toString(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold)),
-                      trailing:
-                          const Icon(Icons.chevron_right, color: Colors.white),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  games[index].gameWidget,
-                            ));
-                      },
-                    ),
-                  );
-                },
-                itemCount: games.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider();
-                },
-              )
-            ],
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Card(
+                color: Theme.of(context).primaryColor,
+                child: ListTile(
+                  leading: games[index].icon,
+                  title: Text(games[index].title.toString(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold)),
+                  trailing:
+                      const Icon(Icons.chevron_right, color: Colors.white),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              games[index].gameWidget,
+                        ));
+                  },
+                ),
+              );
+            },
+            itemCount: games.length,
+            separatorBuilder: (BuildContext context, int index) {
+              return const Divider();
+            },
+          )
+        ],
           ),
-        )),
+        ),
       );
   }
 }
@@ -78,13 +78,14 @@ class StartScreenState extends State<StartScreen> {
 class MiniGame {
   final String title;
   final Widget gameWidget;
+  final Icon? icon;
 
-  MiniGame({required this.title, required this.gameWidget});
+  MiniGame({required this.title, required this.gameWidget, this.icon});
 }
 
 List<MiniGame> games = [
-  MiniGame(title: "Flappy Bird", gameWidget: const FlappyGame()),
-  MiniGame(title: "Memory Game", gameWidget: const MemoryGame()),
-  MiniGame(title: "Snake Game", gameWidget: const SnakeGame()),
-  MiniGame(title: "Pong Game", gameWidget: const PongGame()),
+  MiniGame(title: "Flappy Bird", gameWidget: const FlappyGame(), icon: Icon(Icons.flight)),
+  MiniGame(title: "Memory Game", gameWidget: const MemoryGame(), icon: Icon(Icons.memory)),
+  MiniGame(title: "Snake Game", gameWidget: const SnakeGame(), icon: Icon(Icons.turn_right)),
+  MiniGame(title: "Pong Game", gameWidget: const PongGame(), icon: Icon(Icons.sports_tennis)),
 ];

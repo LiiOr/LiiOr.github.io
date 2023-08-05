@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minijeux/main.dart';
 import 'package:minijeux/scores.dart';
 import 'package:minijeux/settings.dart';
 import 'package:minijeux/start.dart';
@@ -54,7 +55,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.pink[300],
+        selectedItemColor: isDark? Colors.pink[300] : Colors.white,
         onTap: _onItemTapped,
       ),
     );

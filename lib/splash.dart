@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             const Icon(Icons.gamepad, size: 40),
             const SizedBox(height: 30),
-            const Text('Mini Games for babies', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            const Text('Mini Games', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             const SizedBox(height: 10),
             Text('Version $numVersion', style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 45),

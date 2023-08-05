@@ -10,7 +10,8 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - et quelques algo de game dev au passage...
 
 # Note to myself :
+- Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
 - Fix pb collisions sur flappygame et snake
-- Ajouter venir : Casse briques, spaceinvaders ? .. 
-- Page Settings, Scores, ..
+- Ajouter controles clavier
+- Casse briques, spaceinvaders, tetris, drawsomething ? .. 
 - BloC Pattern ?

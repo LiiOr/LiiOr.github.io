@@ -37,7 +37,7 @@ class _SnakeGameState extends State<SnakeGame> {
     super.dispose();
   }
 
-  void moveSnake() {
+ void moveSnake() {
     setState(() {
       switch (direction) {
         case Direction.up:
@@ -63,8 +63,13 @@ class _SnakeGameState extends State<SnakeGame> {
 
   void generateFood() {
     final random = Random();
-    int x = random.nextInt(20) * 20;
+    int x = random.nextInt(18) * 20;
     int y = random.nextInt(30) * 20;
+    /*int x = random.nextInt(screenWidth as int);
+    int y = random.nextInt(screenHeight - AppBar().preferredSize.height as int);
+    print('screenWidth : $screenWidth');
+    print('screenHeigth: $screenHeight');
+    print(x.toString() +','+ y.toString());*/
     setState(() {
       food = Offset(x.toDouble(), y.toDouble());
     });
@@ -74,7 +79,7 @@ class _SnakeGameState extends State<SnakeGame> {
     if (snake.first.dx < 0 ||
         snake.first.dx >= screenWidth ||
         snake.first.dy < 0 ||
-        snake.first.dy >= screenHeight ||
+        snake.first.dy >= (screenHeight-AppBar().preferredSize.height as int) ||
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];

@@ -5,7 +5,7 @@ import 'package:minijeux/splash.dart';
 
 String numVersion =
     const String.fromEnvironment('APP_VERSION', defaultValue: 'DEV');
-bool isDark = false;
+bool isDark = true;
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyAppState extends State<MyApp> {
 
   Future<void> checkThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
-    isDark = prefs.getBool('darkmode') ?? false;
+    isDark = prefs.getBool('darkmode') ?? true;
     setState(() {
       _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
     });
@@ -48,7 +48,7 @@ class MyAppState extends State<MyApp> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
-      title: 'Mini jeux',
+      title: 'Mini games',
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.pink,
