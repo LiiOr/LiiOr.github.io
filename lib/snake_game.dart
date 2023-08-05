@@ -106,6 +106,15 @@ class _SnakeGameState extends State<SnakeGame> {
           }
         },
         child: Container(
+         /* decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Color.fromARGB(255, 1, 31, 2),
+                      Color.fromARGB(255, 14, 87, 16),
+                    ],
+                  )),*/
           height: screenHeight - AppBar().preferredSize.height,
           child: Stack(
             children: [
@@ -115,7 +124,7 @@ class _SnakeGameState extends State<SnakeGame> {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: Colors.yellow,
+                  color: Colors.red,
                 ),
               ),
               ...snake.map(
@@ -125,7 +134,7 @@ class _SnakeGameState extends State<SnakeGame> {
                   child: Container(
                     width: 20,
                     height: 20,
-                    color: Colors.pink,
+                    color: Colors.brown,
                   ),
                 ),
               ),
