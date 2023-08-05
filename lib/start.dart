@@ -1,10 +1,13 @@
+import 'dart:math';
+
 import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
 import 'package:minijeux/main.dart';
 import 'package:minijeux/memory_game.dart';
-import 'package:minijeux/navbar.dart';
 import 'package:minijeux/pong_game.dart';
 import 'package:minijeux/snake_game.dart';
+import 'package:minijeux/tetris_game.dart';
+import 'package:minijeux/tictactoe_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StartScreen extends StatefulWidget {
@@ -15,9 +18,6 @@ class StartScreen extends StatefulWidget {
 }
 
 class StartScreenState extends State<StartScreen> {
-  bool dkSwitchVal = isDark;
-  /* Icon darkIcon =
-      isDark ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode);*/
 
   setTheme(val) async {
     final prefs = await SharedPreferences.getInstance();
@@ -41,8 +41,9 @@ class StartScreenState extends State<StartScreen> {
           ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) {
+               Color randomColor = generateCardColor(index);
               return Card(
-                color: Theme.of(context).primaryColor,
+                color: randomColor,
                 child: ListTile(
                   leading: games[index].icon,
                   title: Text(games[index].title.toString(),
@@ -84,8 +85,24 @@ class MiniGame {
 }
 
 List<MiniGame> games = [
-  MiniGame(title: "Flappy Bird", gameWidget: const FlappyGame(), icon: Icon(Icons.flight)),
-  MiniGame(title: "Memory Game", gameWidget: const MemoryGame(), icon: Icon(Icons.memory)),
-  MiniGame(title: "Snake Game", gameWidget: const SnakeGame(), icon: Icon(Icons.turn_right)),
-  MiniGame(title: "Pong Game", gameWidget: const PongGame(), icon: Icon(Icons.sports_tennis)),
+  MiniGame(title: "M E M O R Y", gameWidget: const MemoryGame(), icon: Icon(Icons.memory, color: Colors.white)),
+  MiniGame(title: "S N A K E", gameWidget: const SnakeGame(), icon: Icon(Icons.turn_right, color: Colors.white)),
+  MiniGame(title: "P O N G", gameWidget: const PongGame(), icon: Icon(Icons.sports_tennis, color: Colors.white)),
+  MiniGame(title: "F L A P P Y", gameWidget: const FlappyGame(), icon: Icon(Icons.flight, color: Colors.white)),
+  MiniGame(title: "T I C  T A C  T O E", gameWidget: TicTacToeGame(), icon: Icon(Icons.close, color: Colors.white)),
+  MiniGame(title: "T E T R I S", gameWidget: const TetrisGame(), icon: Icon(Icons.sort, color: Colors.white)),
 ];
+
+
+Color generateCardColor(index) {
+  final List<Color> customColors = [
+    Colors.red,
+    Colors.orange,
+    Colors.lime,
+    Colors.green,
+    Colors.blue,
+    Colors.pink,
+    Colors.purple,
+  ];
+  return customColors[index].withOpacity(0.5);
+}

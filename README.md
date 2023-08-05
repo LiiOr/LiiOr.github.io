@@ -1,5 +1,4 @@
 # minijeux
-
 Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances sur quelques trucs, notamment :
 - [Flutter](https://docs.flutter.dev/) en mode Offline-first (PWA),
 - l'intégration continue avec les workflows et pages github, 
@@ -11,7 +10,10 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 
 # Note to myself :
 - Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
-- Fix pb collisions sur flappygame et snake
 - Ajouter controles clavier
-- Casse briques, spaceinvaders, tetris, drawsomething ? .. 
+- Casse briques, spaceinvaders, tetris, drawsomething, tictactoe ? .. 
 - BloC Pattern ?
+
+# Stuff to fix
+- Fix pb collisions sur flappygame et snake
+- Error: setState() called after dispose(): _MemoryGameState ?
