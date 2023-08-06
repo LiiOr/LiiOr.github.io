@@ -12,6 +12,8 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
 - Ajouter controles clavier
 - Casse briques, spaceinvaders, tetris, drawsomething, tictactoe ? .. 
+- Tamagotchi
+- Chatbot ?
 - BloC Pattern ?
 
 # Stuff to fix

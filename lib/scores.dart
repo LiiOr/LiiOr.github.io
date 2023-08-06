@@ -30,7 +30,7 @@ class ScoresScreen extends StatelessWidget {
         rows: List.generate(games.length, (index) => DataRow(
             cells: <DataCell>[
               DataCell(Text(games[index].title)),
-              DataCell(Text('19')),
+              DataCell(Text('-')),
             ],
           ),)
       ),

@@ -251,6 +251,8 @@ class MemoryGame extends StatefulWidget {
 }
 
 class _MemoryGameState extends State<MemoryGame> {
+  Timer? gameLoopTimer;
+
   List<int> items = [];
   List<bool> itemsOpened = [];
   int previousIndex = -1;
@@ -272,7 +274,7 @@ class _MemoryGameState extends State<MemoryGame> {
       itemsOpened = List<bool>.filled(allItems.length, true);
     });
 
-    Timer(const Duration(seconds: 5), () {
+    gameLoopTimer = Timer(const Duration(seconds: 5), () {
       setState(() {
         itemsOpened = List<bool>.filled(allItems.length, false);
       });
@@ -303,8 +305,10 @@ class _MemoryGameState extends State<MemoryGame> {
     }
   }
 
- @override
+  @override
   void dispose() {
+    gameLoopTimer
+        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
     super.dispose();
   }
 
@@ -312,7 +316,7 @@ class _MemoryGameState extends State<MemoryGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Memory Game'),
+        title: const Text('M E M O R Y'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: GridView.builder(

@@ -167,7 +167,7 @@ class _FlappyGameState extends State<FlappyGame> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Flappy Game'),
+          title: const Text('F L A P P Y'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Column(

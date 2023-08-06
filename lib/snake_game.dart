@@ -91,7 +91,7 @@ class _SnakeGameState extends State<SnakeGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Snake Game'),
+        title: const Text('S N A K E'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: GestureDetector(
