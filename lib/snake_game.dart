@@ -110,7 +110,7 @@ class _SnakeGameState extends State<SnakeGame> {
             direction = Direction.left;
           }
         },
-        child: Container(
+        child: SizedBox(
          /* decoration: const BoxDecoration(
                       gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
@@ -129,7 +129,7 @@ class _SnakeGameState extends State<SnakeGame> {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: Colors.red,
+                  color: Colors.brown,
                 ),
               ),
               ...snake.map(
@@ -139,7 +139,7 @@ class _SnakeGameState extends State<SnakeGame> {
                   child: Container(
                     width: 20,
                     height: 20,
-                    color: Colors.brown,
+                    color: Colors.green,
                   ),
                 ),
               ),

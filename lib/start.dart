@@ -1,13 +1,7 @@
-import 'dart:math';
 
-import 'package:minijeux/flappy_game.dart';
 import 'package:flutter/material.dart';
+import 'package:minijeux/globals.dart';
 import 'package:minijeux/main.dart';
-import 'package:minijeux/memory_game.dart';
-import 'package:minijeux/pong_game.dart';
-import 'package:minijeux/snake_game.dart';
-import 'package:minijeux/tetris_game.dart';
-import 'package:minijeux/tictactoe_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StartScreen extends StatefulWidget {
@@ -83,16 +77,6 @@ class MiniGame {
 
   MiniGame({required this.title, required this.gameWidget, this.icon});
 }
-
-List<MiniGame> games = [
-  MiniGame(title: "M E M O R Y", gameWidget: const MemoryGame(), icon: Icon(Icons.memory, color: Colors.white)),
-  MiniGame(title: "S N A K E", gameWidget: const SnakeGame(), icon: Icon(Icons.turn_right, color: Colors.white)),
-  MiniGame(title: "P O N G", gameWidget: const PongGame(), icon: Icon(Icons.sports_tennis, color: Colors.white)),
-  MiniGame(title: "F L A P P Y", gameWidget: const FlappyGame(), icon: Icon(Icons.flight, color: Colors.white)),
-  MiniGame(title: "T I C  T A C  T O E", gameWidget: TicTacToeGame(), icon: Icon(Icons.close, color: Colors.white)),
-  MiniGame(title: "T E T R I S", gameWidget: const TetrisGame(), icon: Icon(Icons.sort, color: Colors.white)),
-];
-
 
 Color generateCardColor(index) {
   final List<Color> customColors = [

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class TicTacToeGame extends StatefulWidget {
+  const TicTacToeGame({super.key});
+
   @override
   _TicTacToeGameState createState() => _TicTacToeGameState();
 }
@@ -89,7 +91,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         alignment: Alignment.center,
         child: Text(
           board[row][col],
-          style: TextStyle(fontSize: 40.0),
+          style: const TextStyle(fontSize: 40.0),
         ),
       ),
     );
@@ -133,6 +135,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
           title: const Text('T I C  T A C  T O E'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-    body: Center(child: Text('Coming soon.. :)')));
+    body: const Center(child: Text('Coming soon.. :)')));
   }
 }
