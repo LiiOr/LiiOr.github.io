@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class TamagotchiGame extends StatefulWidget {
+  const TamagotchiGame({super.key});
+
   @override
-  _TamagotchiGameState createState() => _TamagotchiGameState();
+  State<TamagotchiGame> createState() => _TamagotchiGameState();
 }
 
 class _TamagotchiGameState extends State<TamagotchiGame> {

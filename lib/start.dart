@@ -84,6 +84,7 @@ Color generateCardColor(index) {
     Colors.orange,
     Colors.lime,
     Colors.green,
+    Colors.cyan,
     Colors.blue,
     Colors.pink,
     Colors.purple,

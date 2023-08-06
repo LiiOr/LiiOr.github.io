@@ -17,8 +17,8 @@ List<MiniGame> games = [
   MiniGame(title: "F L A P P Y", gameWidget: const FlappyGame(), icon: const Icon(Icons.flight, color: Colors.white)),
   MiniGame(title: "T I C  T A C  T O E", gameWidget: const TicTacToeGame(), icon: const Icon(Icons.close, color: Colors.white)),
   MiniGame(title: "T E T R I S", gameWidget: const TetrisGame(), icon: const Icon(Icons.sort, color: Colors.white)),
-  MiniGame(title: "T A M A G O T C H I", gameWidget: TamagotchiGame(), icon: const Icon(Icons.pets, color: Colors.white)),
-  MiniGame(title: "C H A T B O T", gameWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white))
+  MiniGame(title: "T A M A G O T C H I", gameWidget: const TamagotchiGame(), icon: const Icon(Icons.pets, color: Colors.white)),
+  MiniGame(title: "Q U I Z Z", gameWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white))
 ];
 
 

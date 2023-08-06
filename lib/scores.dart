@@ -7,8 +7,9 @@ class ScoresScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //return Container(child: const Text('Coming soon...'),);
-    return Center(
+    return SingleChildScrollView(
       child: DataTable(
+        horizontalMargin: 0.0,
         columns: const <DataColumn>[
           DataColumn(
             label: Expanded(
@@ -21,7 +22,7 @@ class ScoresScreen extends StatelessWidget {
           DataColumn(
             label: Expanded(
               child: Text(
-                'B E S T  S C O R E',
+                'B E S T',
                 style: headingStyle,
               ),
             ),
