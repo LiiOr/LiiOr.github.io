@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
 
@@ -21,25 +23,31 @@ class StartScreenState extends State<StartScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           /* Text('S T U F F', style: headingStyle),
-            const Divider(),*/
-            const Text('B R O K E N  G A M E S', style: headingStyle),
+            const Text('M Y  B R O K E N  G A M E S', style: headingStyle),
             const Divider(),
             ListView.separated(
-              //scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                 Color randomColor = generateCardColor(index);
-                return Card(
-                  color: randomColor,
+                // Color randomColor = generateCardColor(index);
+                return Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      generateCardColor(index),
+                      generateCardColor(index+1),
+                    ],
+                  )),
+                 // color: randomColor,
                   child: ListTile(
                     leading: games[index].icon,
                     title: Text(games[index].title.toString(),
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
-                            /*fontWeight: FontWeight.bold*/)),
+                            fontWeight: FontWeight.bold)),
                     trailing:
                         const Icon(Icons.chevron_right, color: Colors.white),
                     onTap: () {
@@ -58,6 +66,22 @@ class StartScreenState extends State<StartScreen> {
                 return const Divider();
               },
             ),
+           /* Expanded(
+              child: GridView.count(
+              // Create a grid with 2 columns. If you change the scrollDirection to
+              // horizontal, this produces 2 rows.
+              crossAxisCount: 2,
+              // Generate 100 widgets that display their index in the List.
+              children: List.generate(8, (index) {
+                return Center(
+                  child: Text(
+                    games[index].title.toString(),
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                );
+              }),
+            ),
+            ),*/
             /* ListView.separated(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -113,6 +137,7 @@ Color generateCardColor(index) {
     Colors.green,
     Colors.cyan,
     Colors.blue,
+    Colors.indigo,
     Colors.pink,
     Colors.purple,
   ];

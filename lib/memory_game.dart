@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:minijeux/scores.dart';
 
 /*class MemoryGame extends StatefulWidget {
   const MemoryGame({super.key});
@@ -252,6 +253,8 @@ class MemoryGame extends StatefulWidget {
 
 class _MemoryGameState extends State<MemoryGame> {
   Timer? gameLoopTimer;
+  int score = 0;
+  int highScore = 0;
 
   List<int> items = [];
   List<bool> itemsOpened = [];
@@ -319,33 +322,40 @@ class _MemoryGameState extends State<MemoryGame> {
         title: const Text('M E M O R Y'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 5,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
-        ),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => onItemClick(index),
-            child: Container(
-              color: itemsOpened[index] ? Colors.pink : Colors.grey,
-              child: Center(
-                child: itemsOpened[index]
-                    ? Text(
-                        '${items[index]}',
-                        style: const TextStyle(fontSize: 24.0),
-                      )
-                    : const Icon(
-                        Icons.question_mark,
-                        size: 32.0,
-                      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(16.0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
               ),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => onItemClick(index),
+                  child: Container(
+                    color: itemsOpened[index] ? Colors.pink : Colors.grey,
+                    child: Center(
+                      child: itemsOpened[index]
+                          ? Text(
+                              '${items[index]}',
+                              style: const TextStyle(fontSize: 24.0),
+                            )
+                          : const Icon(
+                              Icons.question_mark,
+                              size: 32.0,
+                            ),
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+          BottomAppBar(child: Scoreboard(score: score, highScore: score))
+        ],
       ),
     );
   }

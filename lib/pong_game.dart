@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
-import 'package:minijeux/start.dart';
+import 'package:minijeux/scores.dart';
 
 class PongGame extends StatefulWidget {
   const PongGame({super.key});
@@ -21,12 +20,15 @@ class _PongGameState extends State<PongGame> {
   double paddleY = 500;
   double paddleWidth = 100;
 
+  int score = 0;
+  int highScore = 0;
+
   Timer? gameLoopTimer;
 
   @override
   void initState() {
     super.initState();
-      startGameLoop();
+    startGameLoop();
   }
 
   void startGameLoop() {
@@ -44,11 +46,13 @@ class _PongGameState extends State<PongGame> {
         ballSpeedX = -ballSpeedX;
       }
 
-      if (ballY <= 0 || ballY >= screenHeight-50) {
+      if (ballY <= 0 || ballY >= screenHeight - 50) {
         ballSpeedY = -ballSpeedY;
       }
 
-      if (ballY >= paddleY - 10 && ballX >= paddleX && ballX <= paddleX + paddleWidth) {
+      if (ballY >= paddleY - 10 &&
+          ballX >= paddleX &&
+          ballX <= paddleX + paddleWidth) {
         ballSpeedY = -ballSpeedY;
       }
     });
@@ -67,7 +71,8 @@ class _PongGameState extends State<PongGame> {
 
   @override
   void dispose() {
-    gameLoopTimer?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    gameLoopTimer
+        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
     super.dispose();
   }
 
@@ -78,33 +83,40 @@ class _PongGameState extends State<PongGame> {
         title: const Text('Pong Game'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: GestureDetector(
-        onHorizontalDragUpdate: onDragUpdate,
-        child: Container(
-        //  width: MediaQuery.of(context).size.width,
-          child: Stack(
-            children: [
-              Positioned(
-                left: ballX,
-                top: ballY,
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  color: Colors.yellow,
+      body: Column(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onHorizontalDragUpdate: onDragUpdate,
+              child: Container(
+                //  width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: ballX,
+                      top: ballY,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.yellow,
+                      ),
+                    ),
+                    Positioned(
+                      left: paddleX,
+                      top: paddleY,
+                      child: Container(
+                        width: paddleWidth,
+                        height: 20,
+                        color: Colors.pink[700],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Positioned(
-                left: paddleX,
-                top: paddleY,
-                child: Container(
-                  width: paddleWidth,
-                  height: 20,
-                  color: Colors.pink[700],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          BottomAppBar(child: Scoreboard(score: score, highScore: score))
+        ],
       ),
     );
   }

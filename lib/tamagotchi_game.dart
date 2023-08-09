@@ -60,6 +60,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('T A M A G O T C H I'),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
         child: Column(
