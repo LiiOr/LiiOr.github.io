@@ -56,6 +56,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: isDark? Colors.pink[300] : Colors.white,
+        unselectedItemColor: isDark? Colors.grey[300] : Colors.grey[300],
         onTap: _onItemTapped,
       ),
     );

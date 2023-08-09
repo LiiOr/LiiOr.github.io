@@ -43,6 +43,17 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+  setTheme(val) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setBool('darkmode', val);
+      isDark = val;
+      isDark
+          ? MyApp.of(context).changeTheme(ThemeMode.dark)
+          : MyApp.of(context).changeTheme(ThemeMode.light);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -50,15 +61,13 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Mini games',
       theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.pink,
-        primaryColor: Colors.pink
-      ),
+          brightness: Brightness.light,
+          primarySwatch: Colors.pink,
+          primaryColor: Colors.pink[800]),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.grey,
-        primaryColor: Colors.black
-      ),
+          brightness: Brightness.dark,
+          primarySwatch: Colors.grey,
+          primaryColor: Colors.black),
       themeMode: _themeMode,
       home: const SplashScreen(),
     );

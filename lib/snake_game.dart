@@ -153,7 +153,7 @@ class _SnakeGameState extends State<SnakeGame> {
             ),
           ),
           BottomAppBar(
-              child: Scoreboard(score: score)),
+              child: Scoreboard(score: score, highScore: score,)),
         ],
       ),
     );

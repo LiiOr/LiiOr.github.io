@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:minijeux/scores.dart';
 
 class FlappyGame extends StatefulWidget {
   const FlappyGame({super.key});
@@ -230,9 +231,8 @@ class _FlappyGameState extends State<FlappyGame> {
               ]),
             ),
             Container(height: 15, color: Colors.green),
-            Expanded(
-                flex: 1,
-                child: Container(
+            Container(
+              height:30,
                   //color: Colors.brown,
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -242,46 +242,9 @@ class _FlappyGameState extends State<FlappyGame> {
                       Colors.black,
                       Colors.brown,
                     ],
-                  )),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('SCORE',
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.white)),
-                          const SizedBox(height: 10),
-                                  Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Icon(Icons.favorite, color: Colors.pink, size: 90),
-                              Text(score.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('RECORD',
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.white)),
-                          const SizedBox(height: 10),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Icon(Icons.favorite, color: Colors.amber, size: 90),
-                              Text(highScore.toString(), style: const TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold))
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ))
+                  ))),
+                BottomAppBar(
+              child: Scoreboard(score: score, highScore: highScore)),
           ],
         ),
       ),

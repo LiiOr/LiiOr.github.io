@@ -42,8 +42,9 @@ class ScoresScreen extends StatelessWidget {
 }
 
 class Scoreboard extends StatelessWidget {
-  Scoreboard({super.key, required this.score});
+  Scoreboard({super.key, required this.score, required this.highScore});
   int score;
+  int highScore;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class Scoreboard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text('S C O R E : ${score.toString()}', textAlign: TextAlign.center, style: headingStyle),
-            //Text('B E S T : ${score.toString()}', textAlign: TextAlign.center, style: headingStyle),
+            Text('B E S T : ${highScore.toString()}', textAlign: TextAlign.center, style: headingStyle),
           ],
         ));
   }

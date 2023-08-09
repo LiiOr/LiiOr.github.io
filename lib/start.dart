@@ -1,9 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:minijeux/globals.dart';
-import 'package:minijeux/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -13,17 +10,6 @@ class StartScreen extends StatefulWidget {
 }
 
 class StartScreenState extends State<StartScreen> {
-
-  setTheme(val) async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      prefs.setBool('darkmode', val);
-      isDark = val;
-      isDark
-          ? MyApp.of(context).changeTheme(ThemeMode.dark)
-          : MyApp.of(context).changeTheme(ThemeMode.light);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +21,9 @@ class StartScreenState extends State<StartScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('B R O K E N  G A M E S', style: headingStyle),
+           /* Text('S T U F F', style: headingStyle),
+            const Divider(),*/
+            const Text('B R O K E N  G A M E S', style: headingStyle),
             const Divider(),
             ListView.separated(
               //scrollDirection: Axis.horizontal,

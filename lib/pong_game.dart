@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
+import 'package:minijeux/start.dart';
 
 class PongGame extends StatefulWidget {
   const PongGame({super.key});
