@@ -35,6 +35,8 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void dispose() {
+    var scoreboard = Scoreboard(score: score, highScore: score);
+    scoreboard.setScore();
     //score = snake.length;
     gameLoopTimer
         ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé

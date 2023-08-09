@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScoresScreen extends StatelessWidget {
   const ScoresScreen({super.key});
@@ -45,6 +46,11 @@ class Scoreboard extends StatelessWidget {
   Scoreboard({super.key, required this.score, required this.highScore});
   int score;
   int highScore;
+
+  setScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('scores', <String>['SNAKE', score.toString(), highScore.toString()]);
+  }
 
   @override
   Widget build(BuildContext context) {
