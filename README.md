@@ -9,12 +9,12 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - et quelques algo de game dev au passage...
 
 # Note to myself :
-- Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
 - Ajouter controles clavier
 - Casse briques, spaceinvaders, drawsomething? .. 
 - Chatbot ?
 - BloC Pattern ?
 
 # Stuff to fix
+- Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
 - Fix pb collisions sur flappygame et snake
 - Error: setState() called after dispose(): _MemoryGameState ?

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
+import 'package:minijeux/scores.dart';
 
 class SnakeGame extends StatefulWidget {
   const SnakeGame({super.key});
@@ -14,6 +15,8 @@ class _SnakeGameState extends State<SnakeGame> {
   List<Offset> snake = [const Offset(100, 100)];
   Offset food = const Offset(200, 200);
   Direction direction = Direction.right;
+  double gestureDetectorHeight = 0.0;
+  int score = 0;
 
   Timer? gameLoopTimer;
 
@@ -32,12 +35,13 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void dispose() {
+    //score = snake.length;
     gameLoopTimer
         ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
     super.dispose();
   }
 
- void moveSnake() {
+  void moveSnake() {
     setState(() {
       switch (direction) {
         case Direction.up:
@@ -56,6 +60,7 @@ class _SnakeGameState extends State<SnakeGame> {
       if (snake.first != food) {
         snake.removeLast();
       } else {
+        score++;
         generateFood();
       }
     });
@@ -79,7 +84,7 @@ class _SnakeGameState extends State<SnakeGame> {
     if (snake.first.dx < 0 ||
         snake.first.dx >= screenWidth ||
         snake.first.dy < 0 ||
-        snake.first.dy >= (screenHeight-AppBar().preferredSize.height as int) ||
+        snake.first.dy >= (gestureDetectorHeight) ||
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];
@@ -92,60 +97,64 @@ class _SnakeGameState extends State<SnakeGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('S N A K E'),
-        backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onVerticalDragUpdate: (details) {
-          if (direction != Direction.up && details.delta.dy > 0) {
-            direction = Direction.down;
-          } else if (direction != Direction.down && details.delta.dy < 0) {
-            direction = Direction.up;
-          }
-        },
-        onHorizontalDragUpdate: (details) {
-          if (direction != Direction.left && details.delta.dx > 0) {
-            direction = Direction.right;
-          } else if (direction != Direction.right && details.delta.dx < 0) {
-            direction = Direction.left;
-          }
-        },
-        child: SizedBox(
-         /* decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Color.fromARGB(255, 1, 31, 2),
-                      Color.fromARGB(255, 14, 87, 16),
-                    ],
-                  )),*/
-          height: screenHeight - AppBar().preferredSize.height,
-          child: Stack(
-            children: [
-              Positioned(
-                left: food.dx,
-                top: food.dy,
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  color: Colors.brown,
-                ),
-              ),
-              ...snake.map(
-                (pos) => Positioned(
-                  left: pos.dx,
-                  top: pos.dy,
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    color: Colors.green,
+      body: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                gestureDetectorHeight = constraints.maxHeight;
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onVerticalDragUpdate: (details) {
+                    if (direction != Direction.up && details.delta.dy > 0) {
+                      direction = Direction.down;
+                    } else if (direction != Direction.down &&
+                        details.delta.dy < 0) {
+                      direction = Direction.up;
+                    }
+                  },
+                  onHorizontalDragUpdate: (details) {
+                    if (direction != Direction.left && details.delta.dx > 0) {
+                      direction = Direction.right;
+                    } else if (direction != Direction.right &&
+                        details.delta.dx < 0) {
+                      direction = Direction.left;
+                    }
+                  },
+                  child: SizedBox(
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: food.dx,
+                          top: food.dy,
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            color: Colors.brown,
+                          ),
+                        ),
+                        ...snake.map(
+                          (pos) => Positioned(
+                            left: pos.dx,
+                            top: pos.dy,
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            ],
+                );
+              },
+            ),
           ),
-        ),
+          BottomAppBar(
+              child: Scoreboard(score: score)),
+        ],
       ),
     );
   }

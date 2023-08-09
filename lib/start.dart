@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:minijeux/globals.dart';
 import 'package:minijeux/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,44 +28,82 @@ class StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Center(
-          child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-               Color randomColor = generateCardColor(index);
-              return Card(
-                color: randomColor,
-                child: ListTile(
-                  leading: games[index].icon,
-                  title: Text(games[index].title.toString(),
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
-                  trailing:
-                      const Icon(Icons.chevron_right, color: Colors.white),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              games[index].gameWidget,
-                        ));
-                  },
-                ),
-              );
-            },
-            itemCount: games.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider();
-            },
-          )
-        ],
-          ),
+        child: SingleChildScrollView(
+        child: 
+        Column(
+        //mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('B R O K E N  G A M E S', style: headingStyle),
+            const Divider(),
+            ListView.separated(
+              //scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                 Color randomColor = generateCardColor(index);
+                return Card(
+                  color: randomColor,
+                  child: ListTile(
+                    leading: games[index].icon,
+                    title: Text(games[index].title.toString(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            /*fontWeight: FontWeight.bold*/)),
+                    trailing:
+                        const Icon(Icons.chevron_right, color: Colors.white),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                games[index].gameWidget,
+                          ));
+                    },
+                  ),
+                );
+              },
+              itemCount: games.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider();
+              },
+            ),
+            /* ListView.separated(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              //physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                 Color randomColor = generateCardColor(index);
+                return Container(
+                  height: 160,
+                  color: randomColor,
+                  child: ListTile(
+                    leading: games[index].icon,
+                    title: Text(games[index].title.toString(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,)),
+
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                games[index].gameWidget,
+                          ));
+                    },
+                  ),
+                );
+              },
+              itemCount: games.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider();
+              },
+            ),*/
+          ],
+        )
         ),
       );
   }
