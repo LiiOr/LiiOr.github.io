@@ -10,7 +10,7 @@ class ScoresScreen extends StatelessWidget {
     //return Container(child: const Text('Coming soon...'),);
     return SingleChildScrollView(
       child: DataTable(
-          horizontalMargin: 0.0,
+         // horizontalMargin: 0.0,
           columns: const <DataColumn>[
             DataColumn(
               label: Expanded(
@@ -47,9 +47,22 @@ class Scoreboard extends StatelessWidget {
   int score;
   int highScore;
 
+ /* @override
+  String toString() {
+    return '{"game":"SNAKE","score":"$score","highScore":"$highScore"}';
+  }*/
+
   setScore() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('scores', <String>['SNAKE', score.toString(), highScore.toString()]);
+    List<String> mergedData = [];
+      List<String>? existingData = prefs.getStringList('scores');
+      if (existingData != null) {
+        mergedData.addAll(existingData);
+      }
+      mergedData.add('{"game":"SNAKE","score":"$score","highScore":"$highScore"}');
+      await prefs.setStringList('scores', mergedData);
+
+    //await prefs.setStringList('scores', <String>['SNAKE', score.toString(), highScore.toString()]);
   }
 
   @override
