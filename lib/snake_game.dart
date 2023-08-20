@@ -90,6 +90,7 @@ class _SnakeGameState extends State<SnakeGame> {
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];
+        score = 0;
       });
     }
   }
