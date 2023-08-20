@@ -23,6 +23,7 @@ class StartScreenState extends State<StartScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height:20),
             const Text('M Y  B R O K E N  G A M E S', style: headingStyle),
             const Divider(),
             ListView.separated(

@@ -1,5 +1,5 @@
 name: minijeux
-description: A new Flutter project.
+description: Mini broken games app.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -61,9 +61,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/marshall.png
-     - assets/rubble.png
+     #- assets/marshall.png
+     #- assets/rubble.png
      - assets/skye.png
+     - assets/happy.png
+     - assets/neutral.png
+     - assets/sad.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

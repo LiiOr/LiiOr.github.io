@@ -13,6 +13,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
 
   int foodLevel = 100;
   int happinessLevel = 100;
+  String face = 'happy';
 
   @override
   void initState() {
@@ -23,6 +24,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
   void startGameLoop() {
     gameLoopTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
+        checkHapinness();
         if (foodLevel > 0 && happinessLevel > 0) {
           foodLevel -= 10;
           happinessLevel -= 5;
@@ -47,6 +49,14 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
     });
   }
 
+  void checkHapinness() {
+      if (happinessLevel < 33 || foodLevel < 33) {
+        face = 'sad';
+      } else if (happinessLevel < 66 || foodLevel < 66) {
+        face = 'neutral';
+      } else { face = 'happy'; }
+  }
+
   @override
   void dispose() {
     gameLoopTimer
@@ -66,14 +76,14 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('rubble.png', height:200.0, fit: BoxFit.contain),
+            Image.asset('$face.png', height:200.0, fit: BoxFit.contain),
             const SizedBox(height: 30),
             Text(
-              'Food Level: $foodLevel',
+              'Food Level : $foodLevel',
               style: const TextStyle(fontSize: 20),
             ),
             Text(
-              'Happiness Level: $happinessLevel',
+              'Happiness Level : $happinessLevel',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 20),
