@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#e91e63",
     "theme_color": "#e91e63",
-    "description": "Mini games app for babies",
+    "description": "Mini (broken) games",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
