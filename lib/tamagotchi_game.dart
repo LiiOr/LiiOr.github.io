@@ -78,7 +78,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('$face.png', height:200.0, fit: BoxFit.contain),
+            Image.asset('assets/$face.png', height:200.0, fit: BoxFit.contain),
             const SizedBox(height: 30),
             Text(
               'Food Level : $foodLevel',

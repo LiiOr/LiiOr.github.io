@@ -306,18 +306,18 @@ class MyCharacter extends StatelessWidget {
         ),
         alignment: Alignment(
             0, (2 * characterY + characterHeight) / (2 - characterHeight)),
-        /*child: Image.asset('assets/skye.png',
+        child: Image.asset('assets/skye.png',
       width: MediaQuery.of(context).size.height * characterWidth / 2,
       height: MediaQuery.of(context).size.height * 3 / 4 * characterHeight / 2,
       fit: BoxFit.fill
-      )*/
-        child: Container(
+      )
+        /*child: Container(
           color: Colors.pink,
           width: MediaQuery.of(context).size.height * characterWidth / 2,
           height:
               MediaQuery.of(context).size.height * 3 / 4 * characterHeight / 2,
           child: Text(characterY.toString()),
-        ));
+        )*/);
   }
 }
 /*import 'dart:async';

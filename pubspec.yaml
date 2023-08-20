@@ -63,10 +63,10 @@ flutter:
   assets:
      #- assets/marshall.png
      #- assets/rubble.png
-     - assets/skye.png
-     - assets/happy.png
-     - assets/neutral.png
-     - assets/sad.png
+    - assets/skye.png
+    - assets/happy.png
+    - assets/neutral.png
+    - assets/sad.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
