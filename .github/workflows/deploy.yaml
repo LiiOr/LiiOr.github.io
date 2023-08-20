@@ -26,7 +26,7 @@ jobs:
           cache: true # improving perfs by enabling caching for the flutter SDK
       - run: flutter pub get
       #- run: flutter build web --dart-define=APP_VERSION=${{github.ref_name}}
-      - run: flutter build web --dart-define=APP_VERSION=${{github.action_ref}}
+      - run: flutter build web --dart-define=APP_VERSION=${{github.event.repository.updated_at}}
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0

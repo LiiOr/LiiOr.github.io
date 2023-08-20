@@ -88,30 +88,27 @@ class _PongGameState extends State<PongGame> {
           Expanded(
             child: GestureDetector(
               onHorizontalDragUpdate: onDragUpdate,
-              child: Container(
-                //  width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: ballX,
-                      top: ballY,
-                      child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Colors.yellow,
-                      ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: ballX,
+                    top: ballY,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      color: Colors.yellow,
                     ),
-                    Positioned(
-                      left: paddleX,
-                      top: paddleY,
-                      child: Container(
-                        width: paddleWidth,
-                        height: 20,
-                        color: Colors.pink[700],
-                      ),
+                  ),
+                  Positioned(
+                    left: paddleX,
+                    top: paddleY,
+                    child: Container(
+                      width: paddleWidth,
+                      height: 20,
+                      color: Colors.pink[700],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

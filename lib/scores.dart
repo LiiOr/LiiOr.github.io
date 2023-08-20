@@ -34,7 +34,7 @@ class ScoresScreen extends StatelessWidget {
             (index) => DataRow(
               cells: <DataCell>[
                 DataCell(Text(games[index].title)),
-                DataCell(Text('-')),
+                const DataCell(Text('-')),
               ],
             ),
           )),
@@ -43,9 +43,9 @@ class ScoresScreen extends StatelessWidget {
 }
 
 class Scoreboard extends StatelessWidget {
-  Scoreboard({super.key, required this.score, required this.highScore});
-  int score;
-  int highScore;
+  const Scoreboard({super.key, required this.score, required this.highScore});
+  final int score;
+  final int highScore;
 
  /* @override
   String toString() {

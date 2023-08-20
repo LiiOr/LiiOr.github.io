@@ -22,7 +22,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
   }
 
   void startGameLoop() {
-    gameLoopTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    gameLoopTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
       setState(() {
         checkHapinness();
         if (foodLevel > 0 && happinessLevel > 0) {
