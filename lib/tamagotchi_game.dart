@@ -38,6 +38,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
       if (foodLevel < 100) {
         foodLevel += 20;
       }
+      checkHapinness();
     });
   }
 
@@ -46,6 +47,7 @@ class _TamagotchiGameState extends State<TamagotchiGame> {
       if (happinessLevel < 100) {
         happinessLevel += 15;
       }
+      checkHapinness();
     });
   }
 
