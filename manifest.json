@@ -1,6 +1,6 @@
 {
-    "name": "MiniGames",
-    "short_name": "MiniGames",
+    "name": "My personal Labs",
+    "short_name": "My personal Labs",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#e91e63",
