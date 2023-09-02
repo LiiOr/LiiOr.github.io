@@ -3,7 +3,6 @@ import 'package:minijeux/chatbot_game.dart';
 import 'package:minijeux/memory_game.dart';
 import 'package:minijeux/pong_game.dart';
 import 'package:minijeux/snake_game.dart';
-import 'package:minijeux/start.dart';
 import 'package:minijeux/tamagotchi_game.dart';
 import 'package:minijeux/tetris_game.dart';
 import 'package:minijeux/tictactoe_game.dart';
@@ -26,7 +25,6 @@ List<MiniGame> games = [
   MiniGame(title: "T I C  T A C  T O E", gameWidget: const TicTacToeGame(), icon: const Icon(Icons.close, color: Colors.white)),
   MiniGame(title: "T E T R I S", gameWidget: const TetrisGame(), icon: const Icon(Icons.sort, color: Colors.white)),
   MiniGame(title: "T A M A G O T C H I", gameWidget: const TamagotchiGame(), icon: const Icon(Icons.pets, color: Colors.white)),
-  MiniGame(title: "Q U I Z Z", gameWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white))
 ];
 
 class Stuff {

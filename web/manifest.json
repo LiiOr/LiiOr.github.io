@@ -1,6 +1,6 @@
 {
     "name": "My personal Labs",
-    "short_name": "My personal Labs",
+    "short_name": "MyLabs",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#e91e63",

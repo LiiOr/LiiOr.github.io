@@ -101,7 +101,7 @@ class StartScreenState extends State<StartScreen> {
                             ));
                       },
                     ),
-                    Text(toolkit[index].title, style: TextStyle(fontSize: 10))
+                    Text(toolkit[index].title, style: const TextStyle(fontSize: 10))
                   ],
                 ),
               );
@@ -143,7 +143,7 @@ class StartScreenState extends State<StartScreen> {
                             ));
                       },
                     ),
-                    Text(games[index].title, style: TextStyle(fontSize: 10))
+                    Text(games[index].title, style: const TextStyle(fontSize: 10))
                   ],
                 ),
               );
@@ -186,7 +186,7 @@ class StartScreenState extends State<StartScreen> {
                             ));
                       },
                     ),
-                    Text(otherstuff[index].title, style: TextStyle(fontSize: 10))
+                    Text(otherstuff[index].title, style: const TextStyle(fontSize: 10))
                   ],
                 ),
               );
