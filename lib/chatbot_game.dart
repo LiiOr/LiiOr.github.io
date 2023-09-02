@@ -8,8 +8,9 @@ class ChatbotGame extends StatefulWidget {
 }
 
 class _ChatbotGameState extends State<ChatbotGame> {
-  TextEditingController userInputController = TextEditingController();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
+  TextEditingController userInputController = TextEditingController();
 
   List<List<String>> q = [
     ["Hey", "Hi", "Hello"]
@@ -21,11 +22,11 @@ class _ChatbotGameState extends State<ChatbotGame> {
   List<String> conversation = [];
 
   addToChat(value) {
-    if (_formKey.currentState!.validate()) { 
+    if (_formKey.currentState!.validate()) {
       setState(() {
         conversation.add(userInputController.text);
+        userInputController.clear();
       });
-      print(conversation.toString());
     }
   }
 
@@ -48,10 +49,10 @@ class _ChatbotGameState extends State<ChatbotGame> {
               shrinkWrap: true,
               //physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(8.0),
-              reverse: true,
               itemCount: conversation.length, //_messages.length,
               itemBuilder: (_, int index) {
                 return Container(
+                  margin: const EdgeInsets.only(bottom: 10.0),
                   padding: const EdgeInsets.all(15.0),
                   // height: 80,
                   decoration: const BoxDecoration(
@@ -81,17 +82,20 @@ class _ChatbotGameState extends State<ChatbotGame> {
                     width: 10,
                   ),
                   Expanded(
-                    child: TextFormField(
+                    child: Form(
+                      autovalidateMode: AutovalidateMode.always,
                       key: _formKey,
-                      controller: userInputController,
-                      onFieldSubmitted: (value) { 
-                        addToChat(value);
-                      },
-                      decoration: const InputDecoration(
-                        //border: OutlineInputBorder(),
-                        border: InputBorder.none,
-                        hintText: 'Type your message ...',
-                        //hintStyle: TextStyle(color: Colors.grey[500]),
+                      child: TextFormField(
+                        controller: userInputController,
+                        onFieldSubmitted: (value) {
+                          addToChat(value);
+                        },
+                        decoration: const InputDecoration(
+                          //border: OutlineInputBorder(),
+                          border: InputBorder.none,
+                          hintText: 'Type your message ...',
+                          //hintStyle: TextStyle(color: Colors.grey[500]),
+                        ),
                       ),
                     ),
                   ),
