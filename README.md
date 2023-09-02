@@ -1,4 +1,4 @@
-# minijeux
+# My personnal Labs
 Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances sur quelques trucs, notamment :
 - [Flutter](https://docs.flutter.dev/) en mode Offline-first (PWA),
 - l'intégration continue avec les workflows et pages github, 
