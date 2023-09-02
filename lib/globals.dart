@@ -36,7 +36,7 @@ class Stuff {
 }
 
 List<Stuff> otherstuff = [
-  Stuff(title: "Q U I Z Z", stuffWidget: const ChatbotGame(), icon: const Icon(Icons.science_outlined, color: Colors.white))
+  //Stuff(title: "Q U I Z Z", stuffWidget: const ChatbotGame(), icon: const Icon(Icons.science_outlined, color: Colors.white))
 ];
 
 
