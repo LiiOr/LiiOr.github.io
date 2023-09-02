@@ -9,10 +9,10 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - et quelques algo de game dev au passage...
 
 # Note to myself :
-- Ajouter controles clavier
-- Casse briques, spaceinvaders, drawsomething? .. 
-- Chatbot ?
-- BloC Pattern ?
+- Passer le scoreboard dans la rubrique jeux / transformer le 2eme onglet principal en resumé des derniers commits (ou releases?) !
+- Jeux : Ajouter controles clavier, Casse briques, spaceinvaders, drawsomething? .. 
+- Tool kit : Ajouter Chatbot, imagePicker, loginPage, infiniteScroll?
+- Creuser les BloC Pattern, les websockets...
 
 # Stuff to fix
 - Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.

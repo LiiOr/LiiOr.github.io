@@ -39,9 +39,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         backgroundColor: Theme.of(context).primaryColor,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.games),
-            icon: Icon(Icons.games_outlined),
-            label: 'G A M E S',
+            activeIcon: Icon(Icons.science),
+            icon: Icon(Icons.science_outlined),
+            label: 'L A B S',
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.scoreboard),

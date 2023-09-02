@@ -10,6 +10,14 @@ import 'package:minijeux/tictactoe_game.dart';
 
 import 'flappy_game.dart';
 
+class MiniGame {
+  final String title;
+  final Widget gameWidget;
+  final Icon? icon;
+
+  MiniGame({required this.title, required this.gameWidget, this.icon});
+}
+
 List<MiniGame> games = [
   MiniGame(title: "M E M O R Y", gameWidget: const MemoryGame(), icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(title: "S N A K E", gameWidget: const SnakeGame(), icon: const Icon(Icons.turn_right, color: Colors.white)),
@@ -21,7 +29,31 @@ List<MiniGame> games = [
   MiniGame(title: "Q U I Z Z", gameWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white))
 ];
 
+class Stuff {
+  final String title;
+  final Widget stuffWidget;
+  final Icon? icon;
 
+  Stuff({required this.title, required this.stuffWidget, this.icon});
+}
+
+List<Stuff> otherstuff = [
+  Stuff(title: "Q U I Z Z", stuffWidget: const ChatbotGame(), icon: const Icon(Icons.science_outlined, color: Colors.white))
+];
+
+
+class Tool {
+  final String title;
+  final Widget toolWidget;
+  final Icon? icon;
+
+  Tool({required this.title, required this.toolWidget, this.icon});
+}
+
+List<Tool> toolkit = [
+  Tool(title: "C H A T  B O T", toolWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white))
+]; 
+ 
 double screenWidth = 0.0;
 double screenHeight = 0.0;
 const headingStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w600);

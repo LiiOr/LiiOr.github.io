@@ -27,9 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.gamepad, size: 40),
+            const Icon(Icons.science_outlined, size: 40),
             const SizedBox(height: 30),
-            const Text('Mini Games', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            const Text('My personal Labs', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             const SizedBox(height: 10),
             Text('Version $numVersion', style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 45),

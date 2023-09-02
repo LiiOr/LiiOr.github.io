@@ -59,7 +59,7 @@ class MyAppState extends State<MyApp> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
-      title: 'Mini games',
+      title: 'My personal Labs',
       theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.pink,
