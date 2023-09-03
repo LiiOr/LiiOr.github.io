@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ChatbotGame extends StatefulWidget {
@@ -9,23 +11,48 @@ class ChatbotGame extends StatefulWidget {
 
 class _ChatbotGameState extends State<ChatbotGame> {
   TextEditingController userInputController = TextEditingController();
+  final AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
 
   List<List<String>> q = [
-    ["Hey", "Hi", "Hello"]
+    ["Hey", "Hi", "Hello", "Bonjour"]
   ];
   List<List<String>> a = [
-    ["Oh, hey !", "Hi bro", "Helloooo :)"]
+    ["Hi bro", "Oh, hey !", "Helloooo :)", "Salut !"]
+  ];
+  List<String> alternatives = [
+      "Doucement, doucement ! Je ne suis qu'un bot !",
+      "Hein, quoi ??",
+      "Eh, mais tu m'as pris pour CHAT GPT ou quoi ?",
+      "Aîe... ma tête..",
   ];
 
-  List<String> conversation = [];
+  List<Map<String, String>> conversation = [];
 
-  addToChat(value) {
-    if (_formKey.currentState!.validate()) { 
+  readAndAnswer(value, sender) {
+    bool found = false;
+    for (int i = 0; i < q.length; i++) {
+      for (int j = 0; j < q[i].length; j++) {
+        if (value.toString().toLowerCase() == q[i][j].toLowerCase()) {
+          addToChat(a[i][j], 'bot');
+          found = true; 
+          break;
+        }
+      }
+      //if (found) break;
+    }
+    if (!found) addToChat(alternatives[Random().nextInt(alternatives.length)], 'bot');
+  }
+
+  addToChat(value, sender) {
+    if (_formKey.currentState!.validate()) {
       setState(() {
-        conversation.add(userInputController.text);
+        conversation.add({'message': value, 'sender': sender});
+        userInputController.clear();
       });
-      print(conversation.toString());
+      if (sender == 'user') {
+        readAndAnswer(value, sender);
+      }
     }
   }
 
@@ -41,68 +68,83 @@ class _ChatbotGameState extends State<ChatbotGame> {
           title: const Text(' CH A T B O T'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        //body: const Center(child: Text('Coming soon.. :)')));
-        body: Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              //physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(8.0),
-              reverse: true,
-              itemCount: conversation.length, //_messages.length,
-              itemBuilder: (_, int index) {
-                return Container(
-                  padding: const EdgeInsets.all(15.0),
-                  // height: 80,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 240, 200, 233),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  child: Text(
-                    conversation[index],
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                  ),
-                );
-              },
-            ),
-            Container(
-              margin: const EdgeInsets.all(8.0),
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              decoration: BoxDecoration(
-                  //color: Color.fromARGB(255, 236, 236, 236),
-                  border: Border.all(width: 1.0, color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.emoji_emotions_outlined,
-                    color: Colors.grey[500],
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: TextFormField(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(8.0),
+                itemCount: conversation.length,
+                itemBuilder: (_, int index) {
+                  return Container(
+                    margin: conversation[index]['sender']! == 'user'
+                        ? const EdgeInsets.only(left: 20.0, bottom: 8.0)
+                        : const EdgeInsets.only(right: 20.0, bottom: 8.0),
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(
+                        color: conversation[index]['sender']! == 'user'
+                            ? Theme.of(context).primaryColor//const Color.fromARGB(255, 240, 200, 233)
+                            : Theme.of(context).primaryColorLight,//const Color.fromARGB(255, 200, 222, 240),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10.0))),
+                    child: Text(
+                      conversation[index]['message']!,
+                      //style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                  );
+                },
+              ),
+              Container(
+                margin: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1.0, color: Colors.grey),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.emoji_emotions_outlined,
+                      color: Colors.grey[500],
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Form(
+                      autovalidateMode: _autovalidateMode,
                       key: _formKey,
-                      controller: userInputController,
-                      onFieldSubmitted: (value) { 
-                        addToChat(value);
-                      },
-                      decoration: const InputDecoration(
-                        //border: OutlineInputBorder(),
-                        border: InputBorder.none,
-                        hintText: 'Type your message ...',
-                        //hintStyle: TextStyle(color: Colors.grey[500]),
+                      child: Expanded(
+                        child: TextFormField(
+                          autofocus: true,
+                          controller: userInputController,
+                          onFieldSubmitted: (value) {
+                            addToChat(value, 'user');
+                          },
+                          decoration: const InputDecoration(
+                            //border: OutlineInputBorder(),
+                            border: InputBorder.none,
+                            hintText: 'Type your message ...',
+                            //hintStyle: TextStyle(color: Colors.grey[500]),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Icon(
-                    Icons.send,
-                    color: Theme.of(context).disabledColor,
-                  )
-                ],
+                    Icon(
+                      Icons.send,
+                      color: Theme.of(context).disabledColor,
+                    )
+                    /*OutlinedButton.icon(
+                      label: Text(''),
+                      icon: Icon(Icons.send),
+                      onPressed: () {
+                        addToChat(userInputController.text, 'user');
+                      },
+                      //color: Theme.of(context).disabledColor,
+                    )*/
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }
