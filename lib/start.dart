@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -9,6 +10,14 @@ class StartScreen extends StatefulWidget {
 }
 
 class StartScreenState extends State<StartScreen> {
+
+  _launchURL(link) async {
+   final Uri url = Uri.parse(link);
+   if (!await launchUrl(url)) {
+        throw Exception('Could not launch $url');
+    }
+}
+
   @override
   Widget build(BuildContext context) {
     /* return Center(
@@ -67,7 +76,7 @@ class StartScreenState extends State<StartScreen> {
     return Column(
       children: [
         const SizedBox(height: 20),
-        const Text('P E R S O N N A L  T O O L  K I T', style: headingStyle),
+        const Text('P E R S O N A L  T O O L  K I T', style: headingStyle),
         const Divider(),
         SizedBox(
           height: 100,
@@ -150,8 +159,18 @@ class StartScreenState extends State<StartScreen> {
             },
           ),
         ),
+        const SizedBox(height: 20),
+        const Text('U S E F U L  L I N K S', style: headingStyle),
         const Divider(),
-         const SizedBox(height: 20),
+        ListTile(
+                  leading: const Icon(Icons.draw),
+                  title: const Text("App Icon Generator"),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                   // _launchURL('https://icon.kitchen');
+                  },
+                ),
+        const SizedBox(height: 20),
         const Text('O T H E R  S T U F F', style: headingStyle),
         const Divider(),
         SizedBox(
