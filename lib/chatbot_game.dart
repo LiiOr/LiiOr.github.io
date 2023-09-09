@@ -13,12 +13,17 @@ class _ChatbotGameState extends State<ChatbotGame> {
   TextEditingController userInputController = TextEditingController();
   final AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
+  bool isTyping = false;
 
   List<List<String>> q = [
-    ["Hey", "Hi", "Hello", "Bonjour"]
+    ["Hey", "Hi", "Hello", "Bonjour", "Salut", "Coucou", "Plop"],
+    ["Ca va?", "Comment va?"],
+    ["Qui es tu?"]
   ];
   List<List<String>> a = [
-    ["Hi bro", "Oh, hey !", "Helloooo :)", "Salut !"]
+    ["Hi bro", "Oh, hey !", "Helloooo :)", "Salut !", "Plop", "Salut", "Coucou"],
+    ["Très bien, merci. Et toi??", "Super et toi ?"],
+    ["Je suis un (modeste) chatbot."]
   ];
   List<String> alternatives = [
     "Doucement, doucement ! Je ne suis qu'un bot !",
@@ -29,7 +34,8 @@ class _ChatbotGameState extends State<ChatbotGame> {
 
   List<Map<String, String>> conversation = [];
 
-  readAndAnswer(value, sender) {
+  readAndAnswer(value, sender) async {
+    await typingEffect(); // Attendre que typingEffect soit terminé
     bool found = false;
     for (int i = 0; i < q.length; i++) {
       for (int j = 0; j < q[i].length; j++) {
@@ -39,10 +45,19 @@ class _ChatbotGameState extends State<ChatbotGame> {
           break;
         }
       }
-      //if (found) break;
     }
-    if (!found)
+    if (!found) {
       addToChat(alternatives[Random().nextInt(alternatives.length)], 'bot');
+    }
+  }
+
+  typingEffect() async {
+    await Future.delayed(const Duration(milliseconds: 2000));
+    setState(() {
+      isTyping = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 3000));
+      isTyping = false;
   }
 
   addToChat(value, sender) {
@@ -102,6 +117,9 @@ class _ChatbotGameState extends State<ChatbotGame> {
                       );
                     },
                   ),
+                  isTyping
+                      ? Container(color: const Color.fromARGB(255, 66, 66, 66), height: 40, child: const Center(child: Text('[ Bot is currently typing... ]', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold))))
+                      : Container(),
                   Container(
                     margin: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),

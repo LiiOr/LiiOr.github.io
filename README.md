@@ -16,6 +16,7 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Creuser les BloC Pattern, les websockets...
 
 # Stuff to fix
+- Bug Chatbot : Quand user écrit trop vite, seul son dernier message est pris en compte
 - Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
 - Fix pb collisions sur flappygame et snake
 - Error: setState() called after dispose(): _MemoryGameState ?
