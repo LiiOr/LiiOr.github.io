@@ -12,7 +12,7 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Chatbot : bottom fixed input, rendre icone send cliquable, ajouter animation effet typing
 - Passer le scoreboard dans la rubrique jeux / transformer le 2eme onglet principal en resumé des derniers commits (ou releases?) !
 - Jeux : Ajouter controles clavier, Casse briques, spaceinvaders, drawsomething? .. 
-- Tool kit : Ajouter Chatbot, imagePicker, loginPage, infiniteScroll?
+- Tool kit : Ajouter imagePicker, infiniteScroll?
 - Creuser les BloC Pattern, les websockets...
 
 # Stuff to fix

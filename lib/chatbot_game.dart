@@ -22,7 +22,7 @@ class _ChatbotGameState extends State<ChatbotGame> {
   ];
   List<List<String>> a = [
     ["Hi bro", "Oh, hey !", "Helloooo :)", "Salut !", "Plop", "Salut", "Coucou"],
-    ["Très bien, merci. Et toi??", "Super et toi ?"],
+    ["Très bien, merci. Et toi??", "Super et toi?"],
     ["Je suis un (modeste) chatbot."]
   ];
   List<String> alternatives = [
