@@ -9,7 +9,6 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - et quelques algo de game dev au passage...
 
 # Note to myself :
-- Réparer launchUrl
 - Chatbot : bottom fixed input, rendre icone send cliquable, ajouter animation effet typing
 - Passer le scoreboard dans la rubrique jeux / transformer le 2eme onglet principal en resumé des derniers commits (ou releases?) !
 - Jeux : Ajouter controles clavier, Casse briques, spaceinvaders, drawsomething? .. 
