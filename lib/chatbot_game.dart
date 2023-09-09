@@ -136,10 +136,15 @@ class _ChatbotGameState extends State<ChatbotGame> {
                             ),
                           ),
                         ),
-                        Icon(
-                          Icons.send,
-                          color: Theme.of(context).disabledColor,
-                        ),
+                        InkWell(
+                          onTap: () {
+                            addToChat(userInputController.text, 'user');
+                          },
+                          child: Icon(
+                            Icons.send,
+                            color: Theme.of(context).disabledColor,
+                          ),
+                        )
                       ],
                     ),
                   ),
