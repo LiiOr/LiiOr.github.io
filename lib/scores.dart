@@ -6,7 +6,7 @@ import 'package:minijeux/globals.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 class ScoresScreen extends StatelessWidget {
-  ScoresScreen({super.key, Key? key});
+  ScoresScreen({Key? key});
   Scoreboard scoreboard = Scoreboard(score: 0, highScore: 0);
 
   @override
