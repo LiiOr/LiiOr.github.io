@@ -13,9 +13,11 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Jeux : Ajouter controles clavier, Casse briques, spaceinvaders, drawsomething? .. 
 - Tool kit : Ajouter imagePicker, infiniteScroll?
 - Creuser les BloC Pattern, les websockets...
+- IA conversationnelle discord en dart ? intégration gpt ??
 
 # Stuff to fix
 - Bug Chatbot : Quand user écrit trop vite, seul son dernier message est pris en compte
-- Revoir workflow: Faire en sorte d'ajouter une nouvelle release à chaque push ? Ou bien remettre deploy après nouvelle release.
+- Mise en place d'un workflow intermédiaire (staging) en plus de la release.
 - Fix pb collisions sur flappygame et snake
+- Affichage du scoreboard cassé + retoucher barres des scores en lightmode
 - Error: setState() called after dispose(): _MemoryGameState ?
