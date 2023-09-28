@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/chatbot_game.dart';
+import 'package:minijeux/filepickerpage.dart';
 import 'package:minijeux/loginpage.dart';
 import 'package:minijeux/memory_game.dart';
 import 'package:minijeux/pong_game.dart';
@@ -52,6 +53,7 @@ class Tool {
 List<Tool> toolkit = [
   Tool(title: "L O G I N  P A G E", toolWidget: const LoginScreen(), icon: const Icon(Icons.login, color: Colors.white)),
   Tool(title: "C H A T  B O T", toolWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white)),
+  Tool(title: "F I L E P I C K E R", toolWidget: const FilepickerPage(), icon: const Icon(Icons.image, color: Colors.white)),
 ]; 
  
 double screenWidth = 0.0;

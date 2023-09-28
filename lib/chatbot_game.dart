@@ -81,7 +81,7 @@ class _ChatbotGameState extends State<ChatbotGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' CH A T B O T'),
+        title: const Text('C H A T B O T'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(

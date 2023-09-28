@@ -1,68 +1,91 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:minijeux/globals.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class ScoresScreen extends StatelessWidget {
-  const ScoresScreen({super.key});
+  ScoresScreen({Key? key});
+  Scoreboard scoreboard = Scoreboard(score: 0, highScore: 0);
 
   @override
   Widget build(BuildContext context) {
-    //return Container(child: const Text('Coming soon...'),);
-    return SingleChildScrollView(
-      child: DataTable(
-         // horizontalMargin: 0.0,
-          columns: const <DataColumn>[
-            DataColumn(
-              label: Expanded(
-                child: Text(
-                  'G A M E',
-                  style: headingStyle,
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      future: scoreboard.getScoresFromLocalStorage(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Affichez un indicateur de chargement en attendant les données.
+        } else if (snapshot.hasError) {
+          return Text('Erreur : ${snapshot.error}');
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Text('Aucun score n\'a été trouvé.'); // Ajustez le message en conséquence.
+        } else {
+          final List<Map<String, dynamic>> scores = snapshot.data!;
+          return SingleChildScrollView(
+            child: DataTable(
+              columns: const <DataColumn>[
+                DataColumn(
+                  label: Text(
+                    'G A M E',
+                    style: headingStyle,
+                  ),
                 ),
-              ),
-            ),
-            DataColumn(
-              label: Expanded(
-                child: Text(
-                  'B E S T',
-                  style: headingStyle,
-                ),
-              ),
-            )
-          ],
-          rows: List.generate(
-            games.length,
-            (index) => DataRow(
-              cells: <DataCell>[
-                DataCell(Text(games[index].title)),
-                const DataCell(Text('-')),
+                DataColumn(
+                  label: Text(
+                    'B E S T',
+                    style: headingStyle,
+                  ),
+                )
               ],
+              rows: scores.map((score) {
+                return DataRow(
+                  cells: <DataCell>[
+                    DataCell(Text(score['game'])),
+                    DataCell(Text(score['highScore'])),
+                  ],
+                );
+              }).toList(),
             ),
-          )),
+          );
+        }
+      },
     );
   }
 }
 
 class Scoreboard extends StatelessWidget {
-  const Scoreboard({super.key, required this.score, required this.highScore});
+  final LocalStorage storage = LocalStorage('scores');
+  Scoreboard({super.key, required this.score, required this.highScore});
   final int score;
   final int highScore;
 
- /* @override
-  String toString() {
-    return '{"game":"SNAKE","score":"$score","highScore":"$highScore"}';
-  }*/
+ Future<List<Map<String, dynamic>>> getScoresFromLocalStorage() async {
+  final String scoresJson = storage.getItem('scores') ?? '{}';
+  final Map<String, dynamic> scoresMap = json.decode(scoresJson);
+  final List<Map<String, dynamic>> scores = [];
+  if (scoresMap.containsKey('scores')) {
+    final Map<String, dynamic> gameScores = scoresMap['scores'];
+    gameScores.forEach((key, value) {
+      scores.add({
+        'game': key,
+        'score': value['score'].toString(),
+        'highScore': value['highScore'].toString(),
+      });
+    });
+  }
+  return scores;
+}
 
   setScore() async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String> mergedData = [];
-      List<String>? existingData = prefs.getStringList('scores');
-      if (existingData != null) {
-        mergedData.addAll(existingData);
-      }
-      mergedData.add('{"game":"SNAKE","score":"$score","highScore":"$highScore"}');
-      await prefs.setStringList('scores', mergedData);
-
-    //await prefs.setStringList('scores', <String>['SNAKE', score.toString(), highScore.toString()]);
+    Map<String, dynamic> mergedData = {};
+    Map<String, dynamic>? existingData = storage.getItem('scores');
+    if (existingData != null) {
+      mergedData.addAll(existingData);
+    }
+    mergedData
+        .addAll({"game":"SNAKE","score":"$score","highScore":"$highScore"});
+    await storage.setItem('scores', mergedData);
   }
 
   @override
@@ -74,8 +97,10 @@ class Scoreboard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('S C O R E : ${score.toString()}', textAlign: TextAlign.center, style: headingStyle),
-            Text('B E S T : ${highScore.toString()}', textAlign: TextAlign.center, style: headingStyle),
+            Text('S C O R E : ${score.toString()}',
+                textAlign: TextAlign.center, style: headingStyle),
+            Text('B E S T : ${highScore.toString()}',
+                textAlign: TextAlign.center, style: headingStyle),
           ],
         ));
   }
