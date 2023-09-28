@@ -6,7 +6,7 @@ import 'package:minijeux/globals.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 class ScoresScreen extends StatelessWidget {
-  ScoresScreen({Key? key});
+  ScoresScreen({super.key, Key? key});
   Scoreboard scoreboard = Scoreboard(score: 0, highScore: 0);
 
   @override
@@ -15,11 +15,11 @@ class ScoresScreen extends StatelessWidget {
       future: scoreboard.getScoresFromLocalStorage(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator(); // Affichez un indicateur de chargement en attendant les données.
+          return const CircularProgressIndicator(); // Affichez un indicateur de chargement en attendant les données.
         } else if (snapshot.hasError) {
           return Text('Erreur : ${snapshot.error}');
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Text('Aucun score n\'a été trouvé.'); // Ajustez le message en conséquence.
+          return const Text('Aucun score n\'a été trouvé.'); // Ajustez le message en conséquence.
         } else {
           final List<Map<String, dynamic>> scores = snapshot.data!;
           return SingleChildScrollView(
