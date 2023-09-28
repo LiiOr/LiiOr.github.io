@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minijeux/faq.dart';
 import 'package:minijeux/globals.dart';
 import 'package:minijeux/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -120,11 +121,11 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: const Text("Frequently asked questions"),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
-                   /* Navigator.of(context).push(
+                    Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const HelpScreen(),
+                        builder: (context) => const FAQ(),
                       ),
-                    );*/
+                    );
                   },
                 ),
                 const Divider(),

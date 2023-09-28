@@ -6,15 +6,21 @@ class FAQ extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return const Scaffold(
-      body : Center(
-        child: Column(children: [
-          Text('Just a simple PWA that I use as my personal lab to test stuff and explore the wonderful world of Flutter.'),
-          Divider(),
-         //Text('')
-        ]),
-      )
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('F A Q'),
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Text(
+                'Just a simple PWA that I use as my personal lab to test stuff and explore the wonderful world of Flutter.'),
+           // Divider(),
+            //Text('')
+          ]),
+        ));
   }
-
 }

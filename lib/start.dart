@@ -62,6 +62,36 @@ class StartScreenState extends State<StartScreen> {
             ),
           ),
           const SizedBox(height: 20),
+          const Text('U S E F U L  L I N K S', style: headingStyle),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.draw),
+            title: const Text("App Icon Generator"),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              js.context.callMethod('open', ['https://icon.kitchen']);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.emoji_people_outlined),
+            title: const Text("Humaaans"),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              js.context.callMethod('open', ['https://blush.design/']);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.computer),
+            title: const Text("HuggingFace"),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              js.context.callMethod('open', ['https://huggingface.co/']);
+            },
+          ),
+          const Divider(),
+         const SizedBox(height: 20),
           const Text('B R O K E N  G A M E S', style: headingStyle),
           const Divider(),
           SizedBox(
@@ -108,36 +138,6 @@ class StartScreenState extends State<StartScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          const Text('U S E F U L  L I N K S', style: headingStyle),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.draw),
-            title: const Text("App Icon Generator"),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              js.context.callMethod('open', ['https://icon.kitchen']);
-            },
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.emoji_people_outlined),
-            title: const Text("Humaaans"),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              js.context.callMethod('open', ['https://blush.design/']);
-            },
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.computer),
-            title: const Text("HuggingFace"),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              js.context.callMethod('open', ['https://huggingface.co/']);
-            },
-          ),
-          const Divider(),
-//          const SizedBox(height: 20),
           /*const Text('O T H E R  S T U F F', style: headingStyle),
           const Divider(),
           SizedBox(
