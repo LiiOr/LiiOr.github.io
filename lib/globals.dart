@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/chatbot_game.dart';
+import 'package:minijeux/colorbook.dart';
 import 'package:minijeux/filepickerpage.dart';
 import 'package:minijeux/loginpage.dart';
 import 'package:minijeux/memory_game.dart';
@@ -20,6 +21,7 @@ class MiniGame {
 }
 
 List<MiniGame> games = [
+  MiniGame(title: "C O L O R I N G  B O O K", gameWidget: ColorBook(), icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(title: "M E M O R Y", gameWidget: const MemoryGame(), icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(title: "S N A K E", gameWidget: const SnakeGame(), icon: const Icon(Icons.turn_right, color: Colors.white)),
   MiniGame(title: "P O N G", gameWidget: const PongGame(), icon: const Icon(Icons.sports_tennis, color: Colors.white)),
