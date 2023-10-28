@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minijeux/commits.dart';
 import 'package:minijeux/main.dart';
 import 'package:minijeux/games/scores.dart';
 import 'package:minijeux/settings.dart';
@@ -16,7 +17,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const StartScreen(),
-    ScoresScreen(),
+    GitCommitsPage(),
     const SettingScreen()
   ];
 
@@ -44,9 +45,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             label: 'L A B S',
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.scoreboard),
-            icon: Icon(Icons.scoreboard_outlined),
-            label: 'S C O R E S',
+            activeIcon: Icon(Icons.commit),
+            icon: Icon(Icons.commit_outlined),
+            label: 'C O M M I T S',
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.settings),
