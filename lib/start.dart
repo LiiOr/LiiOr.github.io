@@ -137,7 +137,10 @@ class StartScreenState extends State<StartScreen> {
               },
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
+            Center(
+                child: Text('Version $numVersion',
+                    style: const TextStyle(fontSize: 12)))
           /*const Text('O T H E R  S T U F F', style: headingStyle),
           const Divider(),
           SizedBox(

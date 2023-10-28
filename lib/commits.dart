@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:minijeux/globals.dart';
+import 'package:minijeux/main.dart';
 
 class CommitInfo {
   final String date;
@@ -68,6 +69,12 @@ class _GitCommitsPageState extends State<GitCommitsPage> {
               },
             ),
           ),
+          const SizedBox(height: 30),
+            Center(
+                child: Text('Version $numVersion',
+                    style: const TextStyle(fontSize: 12))),
+                              const SizedBox(height: 30),
+
         ],
       ),
     );
