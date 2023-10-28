@@ -53,7 +53,7 @@ class Tool {
 }
 
 List<Tool> toolkit = [
-  Tool(title: "I M A G E P I C K E R", toolWidget: const ImagePicker(), icon: const Icon(Icons.image, color: Colors.white)),
+  Tool(title: "I M A G E P I C K E R", toolWidget: const ImagePickerScreen(), icon: const Icon(Icons.image, color: Colors.white)),
   Tool(title: "L O G I N  P A G E", toolWidget: const LoginScreen(), icon: const Icon(Icons.login, color: Colors.white)),
   Tool(title: "C H A T  B O T", toolWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white)),
   Tool(title: "F I L E P I C K E R", toolWidget: const FilepickerPage(), icon: const Icon(Icons.file_present, color: Colors.white)),

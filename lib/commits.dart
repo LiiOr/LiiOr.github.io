@@ -69,11 +69,11 @@ class _GitCommitsPageState extends State<GitCommitsPage> {
               },
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Center(
               child: Text('Version $numVersion',
                   style: const TextStyle(fontSize: 12))),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
         ],
       ),
     );
