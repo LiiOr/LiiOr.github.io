@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker_for_web/image_picker_for_web.dart';
 import 'package:minijeux/toolkit/imagescreen.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ImagePicker extends StatefulWidget {
   const ImagePicker({super.key});
@@ -86,24 +85,33 @@ class ImagePickerState extends State<ImagePicker> {
   }
 
   Future<void> _pickImage() async {
-    if (kIsWeb) {
-      try {
-        const ImagePicker picker = ImagePicker();
-        /*XFile? image = await picker.pickImage(source: ImageSource.gallery);
-        if (image != null) {
-          var f = await image.readAsBytes();
-          setState(() {
-            _file = File("a");
-            webImage = f;
-          });
-        }*/
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(e.toString()),
-          ),
-        );
-      }
+  try {
+    final picker = ImagePickerWeb();
+
+    // Utilisez picker.getImage pour ouvrir la boîte de dialogue de prise de photo.
+    final XFile? pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      // La photo a été prise avec succès.
+      // Vous pouvez maintenant afficher l'image ou la traiter comme vous le souhaitez.
+
+      // Convertissez l'image en base64 pour l'afficher dans votre ListView.
+      final imageBytes = await pickedFile.readAsBytes();
+      final base64Image = base64Encode(imageBytes);
+
+      // Mettez à jour la liste d'images.
+      setState(() {
+        imgList.add(base64Image);
+      });
     }
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(e.toString()),
+      ),
+    );
   }
+}
+
+
 }

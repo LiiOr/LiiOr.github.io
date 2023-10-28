@@ -10,7 +10,6 @@ import 'package:minijeux/games/snake_game.dart';
 import 'package:minijeux/games/tamagotchi_game.dart';
 import 'package:minijeux/games/tetris_game.dart';
 import 'package:minijeux/games/tictactoe_game.dart';
-
 import 'games/flappy_game.dart';
 
 class MiniGame {
