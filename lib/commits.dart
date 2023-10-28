@@ -35,8 +35,8 @@ class _GitCommitsPageState extends State<GitCommitsPage> {
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       final List<CommitInfo> commitList = data
-          .map((commit) =>
-              CommitInfo(commit['commit']['author']['date'], commit['commit']['message']))
+          .map((commit) => CommitInfo(
+              commit['commit']['author']['date'], commit['commit']['message']))
           .toList();
 
       setState(() {
@@ -53,7 +53,7 @@ class _GitCommitsPageState extends State<GitCommitsPage> {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.only(top:15.0, bottom:5.0),
+            padding: EdgeInsets.only(top: 15.0, bottom: 5.0),
             child: Text('L A T E S T  C O M M I T S', style: headingStyle),
           ),
           const Divider(),
@@ -69,12 +69,11 @@ class _GitCommitsPageState extends State<GitCommitsPage> {
               },
             ),
           ),
-          const SizedBox(height: 30),
-            Center(
-                child: Text('Version $numVersion',
-                    style: const TextStyle(fontSize: 12))),
-                              const SizedBox(height: 30),
-
+          const SizedBox(height: 20),
+          Center(
+              child: Text('Version $numVersion',
+                  style: const TextStyle(fontSize: 12))),
+          const SizedBox(height: 20),
         ],
       ),
     );

@@ -1,23 +1,23 @@
 # My personnal Labs
 Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances sur quelques trucs, notamment :
-- [Flutter](https://docs.flutter.dev/) en mode Offline-first (PWA),
+- [Flutter](https://docs.flutter.dev/) et ses packages,
+- la pratique Offline-first (PWA),
 - l'intégration continue avec les workflows et pages github, 
-- la gestion des interactions et préférences utilisateurs (SharedPreferences),
-- les bonnes pratiques en matière de code,
-- les notifications, 
-- les animations,
+- la récupération et l'affichage des commits (avec l'API github)
+- la gestion des interactions et préférences utilisateurs (SharedPreferences / localStorage),
+- les bonnes pratiques en matière de code, et les tests d'intégration
+- les notifications, les animations,
 - et quelques algo de game dev au passage...
 
-# Note to myself :
-- Passer le scoreboard dans la rubrique jeux / transformer le 2eme onglet principal en resumé des derniers commits (ou releases?) !
+### Note to myself :
 - Jeux : Ajouter controles clavier, Casse briques, spaceinvaders, drawsomething? .. 
-- Tool kit : Ajouter imagePicker, infiniteScroll?
-- Creuser les BloC Pattern, les websockets...
+- Tool kit : infiniteScroll, carousel d'images, 
+- Creuser le sujet des BloC Pattern, les websockets...
 - IA conversationnelle discord en dart ? intégration gpt ??
 
-# Stuff to fix
+### Stuff to fix
 - Bug Chatbot : Quand user écrit trop vite, seul son dernier message est pris en compte
 - Mise en place d'un workflow intermédiaire (staging) en plus de la release.
 - Fix pb collisions sur flappygame et snake
-- Affichage du scoreboard cassé + retoucher barres des scores en lightmode
+- Gestion du scoreboard (affichage depuis scores stockés ds l'appareil)
 - Error: setState() called after dispose(): _MemoryGameState ?
