@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/chatbot_game.dart';
-import 'package:minijeux/colorbook.dart';
-import 'package:minijeux/filepickerpage.dart';
-import 'package:minijeux/loginpage.dart';
-import 'package:minijeux/memory_game.dart';
-import 'package:minijeux/pong_game.dart';
-import 'package:minijeux/snake_game.dart';
-import 'package:minijeux/tamagotchi_game.dart';
-import 'package:minijeux/tetris_game.dart';
-import 'package:minijeux/tictactoe_game.dart';
+import 'package:minijeux/toolkit/chatbot.dart';
+import 'package:minijeux/games/colorbook.dart';
+import 'package:minijeux/toolkit/filepickerpage.dart';
+import 'package:minijeux/toolkit/image_picker.dart';
+import 'package:minijeux/toolkit/loginpage.dart';
+import 'package:minijeux/games/memory_game.dart';
+import 'package:minijeux/games/pong_game.dart';
+import 'package:minijeux/games/snake_game.dart';
+import 'package:minijeux/games/tamagotchi_game.dart';
+import 'package:minijeux/games/tetris_game.dart';
+import 'package:minijeux/games/tictactoe_game.dart';
 
-import 'flappy_game.dart';
+import 'games/flappy_game.dart';
 
 class MiniGame {
   final String title;
@@ -53,9 +54,10 @@ class Tool {
 }
 
 List<Tool> toolkit = [
+  Tool(title: "I M A G E P I C K E R", toolWidget: const ImagePicker(), icon: const Icon(Icons.image, color: Colors.white)),
   Tool(title: "L O G I N  P A G E", toolWidget: const LoginScreen(), icon: const Icon(Icons.login, color: Colors.white)),
   Tool(title: "C H A T  B O T", toolWidget: const ChatbotGame(), icon: const Icon(Icons.chat, color: Colors.white)),
-  Tool(title: "F I L E P I C K E R", toolWidget: const FilepickerPage(), icon: const Icon(Icons.image, color: Colors.white)),
+  Tool(title: "F I L E P I C K E R", toolWidget: const FilepickerPage(), icon: const Icon(Icons.file_present, color: Colors.white)),
 ]; 
  
 double screenWidth = 0.0;
