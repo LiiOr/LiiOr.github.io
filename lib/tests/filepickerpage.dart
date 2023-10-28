@@ -4,7 +4,7 @@ import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:minijeux/toolkit/imagescreen.dart';
+import 'package:minijeux/tests/imagescreen.dart';
 
 class FilepickerPage extends StatefulWidget {
   const FilepickerPage({super.key});

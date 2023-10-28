@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
 import 'dart:js' as js;
@@ -26,6 +28,7 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: toolkit.length,
               itemBuilder: (context, index) {
+                var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
                       borderRadius:
@@ -34,8 +37,8 @@ class StartScreenState extends State<StartScreen> {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
-                          generateCardColor(index),
-                          generateCardColor(index + 1),
+                          generateCardColor(idColor),
+                          generateCardColor(idColor + 1),
                         ],
                       )),
                   width: 130,
@@ -54,7 +57,58 @@ class StartScreenState extends State<StartScreen> {
                         },
                       ),
                       Text(toolkit[index].title,
-                          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white))
+                          style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white))
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text('P A C K A G E S  T E S T S', style: headingStyle),
+          const Divider(),
+          SizedBox(
+            height: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: packagestests.length,
+              itemBuilder: (context, index) {
+                var idColor = Random().nextInt(8);
+                return Container(
+                  decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10.0)),
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          generateCardColor(idColor),
+                          generateCardColor(idColor + 1),
+                        ],
+                      )),
+                  width: 130,
+                  margin: const EdgeInsets.all(8),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: packagestests[index].icon,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    packagestests[index].testWidget,
+                              ));
+                        },
+                      ),
+                      Text(packagestests[index].title,
+                          style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white))
                     ],
                   ),
                 );
@@ -91,7 +145,7 @@ class StartScreenState extends State<StartScreen> {
             },
           ),
           const Divider(),
-         const SizedBox(height: 20),
+          const SizedBox(height: 20),
           const Text('B R O K E N  G A M E S', style: headingStyle),
           const Divider(),
           SizedBox(
@@ -100,6 +154,7 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: games.length,
               itemBuilder: (context, index) {
+              var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
                       borderRadius:
@@ -108,10 +163,8 @@ class StartScreenState extends State<StartScreen> {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
-                          generateCardColor(index),
-                          generateCardColor(index + 1),
-                        //  Colors.purple.withOpacity(0.5),
-                         // Colors.pink.withOpacity(0.5)
+                          generateCardColor(idColor),
+                          generateCardColor(idColor + 1),
                         ],
                       )),
                   width: 130,
@@ -130,7 +183,10 @@ class StartScreenState extends State<StartScreen> {
                         },
                       ),
                       Text(games[index].title,
-                          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white))
+                          style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white))
                     ],
                   ),
                 );
@@ -138,9 +194,9 @@ class StartScreenState extends State<StartScreen> {
             ),
           ),
           const SizedBox(height: 30),
-            Center(
-                child: Text('Version $numVersion',
-                    style: const TextStyle(fontSize: 12)))
+          Center(
+              child: Text('Version $numVersion',
+                  style: const TextStyle(fontSize: 12)))
           /*const Text('O T H E R  S T U F F', style: headingStyle),
           const Divider(),
           SizedBox(
@@ -201,6 +257,8 @@ Color generateCardColor(index) {
     Colors.orange,
     Colors.red,
   ];
-  Color c = isDark ? customColors[index].withOpacity(0.5) : customColors[index].withOpacity(0.8);
+  Color c = isDark
+      ? customColors[index].withOpacity(0.5)
+      : customColors[index].withOpacity(0.8);
   return c;
 }
