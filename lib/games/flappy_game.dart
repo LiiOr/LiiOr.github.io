@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:minijeux/scores.dart';
+import 'package:minijeux/games/scores.dart';
 
 class FlappyGame extends StatefulWidget {
   const FlappyGame({super.key});

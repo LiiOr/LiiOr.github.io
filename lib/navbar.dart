@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/main.dart';
-import 'package:minijeux/scores.dart';
+import 'package:minijeux/games/scores.dart';
 import 'package:minijeux/settings.dart';
 import 'package:minijeux/start.dart';
 
