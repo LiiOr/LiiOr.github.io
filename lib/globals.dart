@@ -22,35 +22,35 @@ class MiniGame {
 
 List<MiniGame> games = [
   MiniGame(
-      title: "C O L O R B O O K",
+      title: "COLOR BOOK",
       gameWidget: const ColorBook(),
       icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(
-      title: "M E M O R Y",
+      title: "MEMORY",
       gameWidget: const MemoryGame(),
       icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(
-      title: "S N A K E",
+      title: "SNAKE",
       gameWidget: const SnakeGame(),
       icon: const Icon(Icons.turn_right, color: Colors.white)),
   MiniGame(
-      title: "P O N G",
+      title: "PONG",
       gameWidget: const PongGame(),
       icon: const Icon(Icons.sports_tennis, color: Colors.white)),
   MiniGame(
-      title: "F L A P P Y",
+      title: "FLAPPY",
       gameWidget: const FlappyGame(),
       icon: const Icon(Icons.flight, color: Colors.white)),
   MiniGame(
-      title: "T I C  T A C  T O E",
+      title: "TIC TAC TOE",
       gameWidget: const TicTacToeGame(),
       icon: const Icon(Icons.close, color: Colors.white)),
   MiniGame(
-      title: "T E T R I S",
+      title: "TETRIS",
       gameWidget: const TetrisGame(),
       icon: const Icon(Icons.sort, color: Colors.white)),
   MiniGame(
-      title: "T A M A G O T C H I",
+      title: "TAMAGOTCHI",
       gameWidget: const TamagotchiGame(),
       icon: const Icon(Icons.pets, color: Colors.white)),
 ];
@@ -65,11 +65,11 @@ class PackageTest {
 
 List<PackageTest> packagestests = [
   PackageTest(
-      title: "I M A G E P I C K E R",
+      title: "IMAGE PICKER",
       testWidget: const ImagePickerScreen(),
       icon: const Icon(Icons.image, color: Colors.white)),
   PackageTest(
-      title: "F I L E P I C K E R",
+      title: "FILE PICKER",
       testWidget: const FilepickerPage(),
       icon: const Icon(Icons.file_present, color: Colors.white)),
 ];
@@ -84,13 +84,36 @@ class Tool {
 
 List<Tool> toolkit = [
   Tool(
-      title: "L O G I N  P A G E",
+      title: "LOGIN PAGE",
       toolWidget: const LoginScreen(),
       icon: const Icon(Icons.login, color: Colors.white)),
   Tool(
-      title: "C H A T  B O T",
+      title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
       icon: const Icon(Icons.chat, color: Colors.white)),
+];
+
+class Link {
+  final String title;
+  final String link;
+  final Icon? icon;
+
+  Link({required this.title, required this.link, this.icon});
+}
+
+List<Link> favoritelinks = [
+  Link(
+      title: "APP ICON GENERATOR",
+      link: "https://icon.kitchen",
+      icon: const Icon(Icons.draw, color: Colors.white)),
+  Link(
+      title: "HUMAAANS",
+      link: "https://blush.design/",
+      icon: const Icon(Icons.emoji_people, color: Colors.white)),
+  Link(
+      title: "HUGGING FACE",
+      link: "https://huggingface.co/",
+      icon: const Icon(Icons.computer, color: Colors.white)),
 ];
 
 double screenWidth = 0.0;
