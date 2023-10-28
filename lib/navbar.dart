@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minijeux/commits.dart';
 import 'package:minijeux/main.dart';
-import 'package:minijeux/games/scores.dart';
 import 'package:minijeux/settings.dart';
 import 'package:minijeux/start.dart';
 
@@ -17,7 +16,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const StartScreen(),
-    GitCommitsPage(),
+    const GitCommitsPage(),
     const SettingScreen()
   ];
 

@@ -7,7 +7,7 @@ class ColorBook extends StatefulWidget {
   const ColorBook({Key? key}) : super(key: key);
 
   @override
-  _ColorBookState createState() => _ColorBookState();
+  State<ColorBook> createState() => _ColorBookState();
 }
 
 class _ColorBookState extends State<ColorBook> {
@@ -44,7 +44,7 @@ class _ColorBookState extends State<ColorBook> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Coloring Book App'),
+        title: const Text('C O L O R B O O K'),
       ),
       body: isImageLoaded
           ? GestureDetector(
@@ -53,11 +53,11 @@ class _ColorBookState extends State<ColorBook> {
                 final localPosition = renderBox.globalToLocal(details.globalPosition);
                 final x = (localPosition.dx / renderBox.size.width * coloringImage!.width).toInt();
                 final y = (localPosition.dy / renderBox.size.height * coloringImage!.height).toInt();
-                colorPixel(x, y, Color.fromARGB(255, 83, 3, 83) as img.Color); // Couleur rouge
+                colorPixel(x, y, const Color.fromARGB(255, 83, 3, 83) as img.Color); // Couleur rouge
               },
               child: Image.memory(Uint8List.fromList(img.encodePng(coloredImage!))),
             )
-          : Center(
+          : const Center(
               child: CircularProgressIndicator(),
             ),
     );

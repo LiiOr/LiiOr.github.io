@@ -85,7 +85,7 @@ class ImagePickerState extends State<ImagePicker> {
   }
 
   Future<void> _pickImage() async {
-  /*try {
+  try {
     final picker = ImagePickerWeb();
 
     // Utilisez picker.getImage pour ouvrir la boîte de dialogue de prise de photo.
@@ -110,7 +110,7 @@ class ImagePickerState extends State<ImagePicker> {
         content: Text(e.toString()),
       ),
     );
-  }*/
+  }
 }
 
 
