@@ -61,10 +61,12 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'My personal Labs',
       theme: ThemeData(
+          useMaterial3: true,
           brightness: Brightness.light,
           primarySwatch: Colors.pink,
           primaryColor: Colors.pink[800]),
       darkTheme: ThemeData(
+          useMaterial3: true,
           brightness: Brightness.dark,
           primarySwatch: Colors.grey,
           primaryColor: Colors.black),
