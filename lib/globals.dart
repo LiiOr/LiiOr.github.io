@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minijeux/games/scores.dart';
 import 'package:minijeux/toolkit/chatbot.dart';
 import 'package:minijeux/games/colorbook.dart';
 import 'package:minijeux/tests/filepickerpage.dart';
@@ -21,10 +22,10 @@ class MiniGame {
 }
 
 List<MiniGame> games = [
-  MiniGame(
+  /*MiniGame(
       title: "COLOR BOOK",
       gameWidget: const ColorBook(),
-      icon: const Icon(Icons.memory, color: Colors.white)),
+      icon: const Icon(Icons.memory, color: Colors.white)),*/
   MiniGame(
       title: "MEMORY",
       gameWidget: const MemoryGame(),
@@ -41,18 +42,22 @@ List<MiniGame> games = [
       title: "FLAPPY",
       gameWidget: const FlappyGame(),
       icon: const Icon(Icons.flight, color: Colors.white)),
-  MiniGame(
+ /* MiniGame(
       title: "TIC TAC TOE",
       gameWidget: const TicTacToeGame(),
       icon: const Icon(Icons.close, color: Colors.white)),
   MiniGame(
       title: "TETRIS",
       gameWidget: const TetrisGame(),
-      icon: const Icon(Icons.sort, color: Colors.white)),
+      icon: const Icon(Icons.sort, color: Colors.white)),*/
   MiniGame(
       title: "TAMAGOTCHI",
       gameWidget: const TamagotchiGame(),
       icon: const Icon(Icons.pets, color: Colors.white)),
+  MiniGame(
+      title: "SCORE BOARD",
+      gameWidget: ScoreBoardScreen(),
+      icon: const Icon(Icons.scoreboard, color: Colors.white)),
 ];
 
 class PackageTest {

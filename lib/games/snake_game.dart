@@ -36,7 +36,7 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void dispose() {
-    var scoreboard = Scoreboard(score: score, highScore: highScore);
+    var scoreboard = GameScore(game: 'SNAKE', score: score, highScore: highScore);
     scoreboard.setScore();
     //score = snake.length;
     gameLoopTimer
@@ -159,7 +159,7 @@ class _SnakeGameState extends State<SnakeGame> {
             ),
           ),
           BottomAppBar(
-              child: Scoreboard(score: score, highScore: highScore,)),
+              child: GameScore(game: 'SNAKE', score: score, highScore: highScore,)),
         ],
       ),
     );

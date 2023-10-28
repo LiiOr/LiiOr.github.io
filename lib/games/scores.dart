@@ -1,91 +1,101 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:minijeux/globals.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 
-class ScoresScreen extends StatelessWidget {
-  ScoresScreen({Key? key});
-  Scoreboard scoreboard = Scoreboard(score: 0, highScore: 0);
+class ScoreBoardScreen extends StatefulWidget {
+  const ScoreBoardScreen({super.key});
+
+  @override
+  State<ScoreBoardScreen> createState() => ScoreBoardScreenState();
+}
+
+class ScoreBoardScreenState extends State<ScoreBoardScreen> {
+  final LocalStorage storage = LocalStorage('scores');
+
+  Future<List<Map<String, dynamic>>> getScoresFromLocalStorage() async {
+    final scores = storage.getItem('scores') ?? <Map<String, dynamic>>[];
+    return scores;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Map<String, dynamic>>>(
-      future: scoreboard.getScoresFromLocalStorage(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // Affichez un indicateur de chargement en attendant les données.
-        } else if (snapshot.hasError) {
-          return Text('Erreur : ${snapshot.error}');
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Text('Aucun score n\'a été trouvé.'); // Ajustez le message en conséquence.
-        } else {
-          final List<Map<String, dynamic>> scores = snapshot.data!;
-          return SingleChildScrollView(
-            child: DataTable(
-              columns: const <DataColumn>[
-                DataColumn(
-                  label: Text(
-                    'G A M E',
-                    style: headingStyle,
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('S C O R E B O A R D'),
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        body: FutureBuilder<List<Map<String, dynamic>>>(
+          future: getScoresFromLocalStorage(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                  child:
+                      CircularProgressIndicator()); // Affichez un indicateur de chargement en attendant les données.
+            } else if (snapshot.hasError) {
+              return Center(
+                  child: Text(
+                      'Erreur au chargement des scores : ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return const Center(
+                  child: Text(
+                      'Aucun score n\'a été trouvé.')); // Ajustez le message en conséquence.
+            } else {
+              final List<Map<String, dynamic>> scores = snapshot.data!;
+              return SingleChildScrollView(
+                child: FittedBox(
+                  child: DataTable(
+                    columns: const <DataColumn>[
+                      DataColumn(
+                        label: Text(
+                          'G A M E',
+                          style: headingStyle,
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          'B E S T  S C O R E',
+                          style: headingStyle,
+                        ),
+                      )
+                    ],
+                    rows: scores.map((score) {
+                      return DataRow(
+                        cells: <DataCell>[
+                          DataCell(Text(score['game'])),
+                          DataCell(Text(score['highScore']))
+                        ],
+                      );
+                    }).toList(),
                   ),
                 ),
-                DataColumn(
-                  label: Text(
-                    'B E S T',
-                    style: headingStyle,
-                  ),
-                )
-              ],
-              rows: scores.map((score) {
-                return DataRow(
-                  cells: <DataCell>[
-                    DataCell(Text(score['game'])),
-                    DataCell(Text(score['highScore'])),
-                  ],
-                );
-              }).toList(),
-            ),
-          );
-        }
-      },
-    );
+              );
+            }
+          },
+        ));
   }
 }
 
-class Scoreboard extends StatelessWidget {
+class GameScore extends StatelessWidget {
   final LocalStorage storage = LocalStorage('scores');
-  Scoreboard({super.key, required this.score, required this.highScore});
+  GameScore(
+      {super.key,
+      required this.game,
+      required this.score,
+      required this.highScore});
+  final String game;
   final int score;
   final int highScore;
 
- Future<List<Map<String, dynamic>>> getScoresFromLocalStorage() async {
-  final String scoresJson = storage.getItem('scores') ?? '{}';
-  final Map<String, dynamic> scoresMap = json.decode(scoresJson);
-  final List<Map<String, dynamic>> scores = [];
-  if (scoresMap.containsKey('scores')) {
-    final Map<String, dynamic> gameScores = scoresMap['scores'];
-    gameScores.forEach((key, value) {
-      scores.add({
-        'game': key,
-        'score': value['score'].toString(),
-        'highScore': value['highScore'].toString(),
-      });
-    });
-  }
-  return scores;
-}
-
   setScore() async {
-    Map<String, dynamic> mergedData = {};
-    Map<String, dynamic>? existingData = storage.getItem('scores');
-    if (existingData != null) {
-      mergedData.addAll(existingData);
-    }
-    mergedData
-        .addAll({"game":"SNAKE","score":"$score","highScore":"$highScore"});
-    await storage.setItem('scores', mergedData);
+    final currentscores = storage.getItem('scores') ?? <Map<String, dynamic>>[];
+    var nouvScore = {
+      'game': game.toString(),
+      'score': score.toString(),
+      'highScore': highScore.toString()
+    };
+    currentscores.add(nouvScore);
+    storage.setItem('scores', currentscores);
   }
 
   @override

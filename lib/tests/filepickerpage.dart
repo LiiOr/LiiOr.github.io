@@ -42,8 +42,14 @@ class FilepickerPageState extends State<FilepickerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Padding(
+              padding: EdgeInsets.only(top:10, bottom:10),
+              child: Text('Test de charge',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            const Text('Package file_picker 5.5.0.'),
             Padding(
-              padding: const EdgeInsets.only(bottom:15.0),
+              padding: const EdgeInsets.only(top:15.0, bottom:15.0),
               child: ElevatedButton.icon(
                   label: const Text('Pick files'),
                   onPressed: _pickImage,

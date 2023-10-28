@@ -76,9 +76,10 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: packagestests.length,
               itemBuilder: (context, index) {
-                var idColor = Random().nextInt(8);
+                //var idColor = Random().nextInt(8);
                 return Container(
                   decoration: const BoxDecoration(
+                   // border: Border(bottom: BorderSide(color: Colors.black), top: BorderSide(color: Colors.black), left: BorderSide(color: Colors.black), right: BorderSide(color: Colors.black)),
                     color: Color.fromARGB(255, 22, 22, 22),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     /* gradient: LinearGradient(
@@ -170,7 +171,7 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: games.length,
               itemBuilder: (context, index) {
-                var idColor = Random().nextInt(8);
+              //  var idColor = Random().nextInt(8);
                 return Container(
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 22, 22, 22),

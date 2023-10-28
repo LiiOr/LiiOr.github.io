@@ -354,7 +354,7 @@ class _MemoryGameState extends State<MemoryGame> {
               },
             ),
           ),
-          BottomAppBar(child: Scoreboard(score: score, highScore: score))
+          BottomAppBar(child: GameScore(game: 'MEMORY', score: score, highScore: score))
         ],
       ),
     );

@@ -242,7 +242,7 @@ class _FlappyGameState extends State<FlappyGame> {
                     Colors.brown,
                   ],
                 ))),
-            BottomAppBar(child: Scoreboard(score: score, highScore: highScore)),
+            BottomAppBar(child: GameScore(game: 'FLAPPY', score: score, highScore: highScore)),
           ],
         ),
       ),

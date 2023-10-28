@@ -112,7 +112,7 @@ class _PongGameState extends State<PongGame> {
               ),
             ),
           ),
-          BottomAppBar(child: Scoreboard(score: score, highScore: score))
+          BottomAppBar(child: GameScore(game: 'PONG', score: score, highScore: score))
         ],
       ),
     );
