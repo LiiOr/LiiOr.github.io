@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:minijeux/scores.dart';
+import 'package:minijeux/games/scores.dart';
 
 /*class MemoryGame extends StatefulWidget {
   const MemoryGame({super.key});
@@ -354,7 +354,7 @@ class _MemoryGameState extends State<MemoryGame> {
               },
             ),
           ),
-          BottomAppBar(child: Scoreboard(score: score, highScore: score))
+          BottomAppBar(child: GameScore(game: 'MEMORY', score: score, highScore: score))
         ],
       ),
     );

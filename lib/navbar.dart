@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:minijeux/commits.dart';
 import 'package:minijeux/main.dart';
-import 'package:minijeux/scores.dart';
 import 'package:minijeux/settings.dart';
 import 'package:minijeux/start.dart';
 
@@ -14,10 +14,10 @@ class MyNavigationBar extends StatefulWidget {
 class _MyNavigationBarState extends State<MyNavigationBar> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    StartScreen(),
-    ScoresScreen(),
-    SettingScreen()
+  static final List<Widget> _widgetOptions = <Widget>[
+    const StartScreen(),
+    const GitCommitsPage(),
+    const SettingScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -44,9 +44,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             label: 'L A B S',
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.scoreboard),
-            icon: Icon(Icons.scoreboard_outlined),
-            label: 'S C O R E S',
+            activeIcon: Icon(Icons.commit),
+            icon: Icon(Icons.commit_outlined),
+            label: 'C O M M I T S',
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.settings),

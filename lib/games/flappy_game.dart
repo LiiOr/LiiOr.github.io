@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:minijeux/scores.dart';
+import 'package:minijeux/games/scores.dart';
 
 class FlappyGame extends StatefulWidget {
   const FlappyGame({super.key});
@@ -242,7 +242,7 @@ class _FlappyGameState extends State<FlappyGame> {
                     Colors.brown,
                   ],
                 ))),
-            BottomAppBar(child: Scoreboard(score: score, highScore: highScore)),
+            BottomAppBar(child: GameScore(game: 'FLAPPY', score: score, highScore: highScore)),
           ],
         ),
       ),

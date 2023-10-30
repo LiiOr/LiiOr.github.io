@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
-import 'package:minijeux/scores.dart';
+import 'package:minijeux/games/scores.dart';
 
 class SnakeGame extends StatefulWidget {
   const SnakeGame({super.key});
@@ -17,6 +17,7 @@ class _SnakeGameState extends State<SnakeGame> {
   Direction direction = Direction.right;
   double gestureDetectorHeight = 0.0;
   int score = 0;
+  int highScore = 0;
 
   Timer? gameLoopTimer;
 
@@ -35,7 +36,7 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void dispose() {
-    var scoreboard = Scoreboard(score: score, highScore: score);
+    var scoreboard = GameScore(game: 'SNAKE', score: score, highScore: highScore);
     scoreboard.setScore();
     //score = snake.length;
     gameLoopTimer
@@ -90,6 +91,7 @@ class _SnakeGameState extends State<SnakeGame> {
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];
+        if (highScore < score) highScore = score;
         score = 0;
       });
     }
@@ -157,7 +159,7 @@ class _SnakeGameState extends State<SnakeGame> {
             ),
           ),
           BottomAppBar(
-              child: Scoreboard(score: score, highScore: score,)),
+              child: GameScore(game: 'SNAKE', score: score, highScore: highScore,)),
         ],
       ),
     );

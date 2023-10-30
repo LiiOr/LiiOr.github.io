@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:minijeux/globals.dart';
-import 'package:minijeux/scores.dart';
+import 'package:minijeux/games/scores.dart';
 
 class PongGame extends StatefulWidget {
   const PongGame({super.key});
@@ -112,7 +112,7 @@ class _PongGameState extends State<PongGame> {
               ),
             ),
           ),
-          BottomAppBar(child: Scoreboard(score: score, highScore: score))
+          BottomAppBar(child: GameScore(game: 'PONG', score: score, highScore: score))
         ],
       ),
     );
