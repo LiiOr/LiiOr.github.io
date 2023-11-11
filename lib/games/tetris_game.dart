@@ -8,6 +8,16 @@ class TetrisGame extends StatefulWidget {
 }
 
 class _TetrisGameState extends State<TetrisGame> {
+
+  
+  /*@override
+  void dispose() {
+    gameLoopTimer?.cancel(); 
+    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    scoreboard.setScore();
+    super.dispose();
+  }*/
+
     @override
   Widget build(BuildContext context) {
   return Scaffold(appBar: AppBar(

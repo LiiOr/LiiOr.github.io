@@ -97,6 +97,14 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     );
   }
 
+  /*@override
+  void dispose() {
+    gameLoopTimer?.cancel(); 
+    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    scoreboard.setScore();
+    super.dispose();
+  }*/
+
   @override
   Widget build(BuildContext context) {
     /*return Scaffold(

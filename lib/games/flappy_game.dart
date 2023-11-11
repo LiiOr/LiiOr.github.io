@@ -156,6 +156,14 @@ class _FlappyGameState extends State<FlappyGame> {
   }
 
   @override
+  void dispose() {
+    var scoreboard = GameScore(game: 'FLAPPY', score: score, highScore: highScore);
+    scoreboard.setScore();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {

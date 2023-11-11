@@ -69,10 +69,12 @@ class _PongGameState extends State<PongGame> {
     });
   }
 
+  
   @override
   void dispose() {
-    gameLoopTimer
-        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    gameLoopTimer?.cancel(); 
+    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    scoreboard.setScore();
     super.dispose();
   }
 

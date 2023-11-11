@@ -27,13 +27,13 @@ List<MiniGame> games = [
       gameWidget: const ColorBook(),
       icon: const Icon(Icons.memory, color: Colors.white)),*/
   MiniGame(
-      title: "MEMORY",
-      gameWidget: const MemoryGame(),
-      icon: const Icon(Icons.memory, color: Colors.white)),
-  MiniGame(
       title: "SNAKE",
       gameWidget: const SnakeGame(),
       icon: const Icon(Icons.turn_right, color: Colors.white)),
+  MiniGame(
+      title: "MEMORY",
+      gameWidget: const MemoryGame(),
+      icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(
       title: "PONG",
       gameWidget: const PongGame(),
