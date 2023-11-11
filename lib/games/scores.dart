@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:minijeux/globals.dart';
@@ -23,7 +22,6 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('S C O R E B O A R D'),
-          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: FutureBuilder<List<Map<String, dynamic>>>(
           future: getScoresFromLocalStorage(),
@@ -100,18 +98,19 @@ class GameScore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: screenWidth,
-        padding: const EdgeInsets.all(10.0),
-        color: Theme.of(context).primaryColorDark,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text('S C O R E : ${score.toString()}',
-                textAlign: TextAlign.center, style: headingStyle),
-            Text('B E S T : ${highScore.toString()}',
-                textAlign: TextAlign.center, style: headingStyle),
-          ],
-        ));
+    return BottomAppBar(
+      color: Theme.of(context).primaryColor,
+      child: SizedBox(
+          width: screenWidth,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text('S C O R E : ${score.toString()}',
+                  textAlign: TextAlign.center, style: scoreStyle),
+              Text('B E S T : ${highScore.toString()}',
+                  textAlign: TextAlign.center, style: scoreStyle),
+            ],
+          )),
+    );
   }
 }

@@ -320,7 +320,6 @@ class _MemoryGameState extends State<MemoryGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('M E M O R Y'),
-        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [
@@ -354,7 +353,7 @@ class _MemoryGameState extends State<MemoryGame> {
               },
             ),
           ),
-          BottomAppBar(child: GameScore(game: 'MEMORY', score: score, highScore: score))
+          GameScore(game: 'MEMORY', score: score, highScore: score)
         ],
       ),
     );

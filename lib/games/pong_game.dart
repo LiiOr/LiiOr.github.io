@@ -80,8 +80,7 @@ class _PongGameState extends State<PongGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pong Game'),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text('P O N G'),
       ),
       body: Column(
         children: [
@@ -112,7 +111,7 @@ class _PongGameState extends State<PongGame> {
               ),
             ),
           ),
-          BottomAppBar(child: GameScore(game: 'PONG', score: score, highScore: score))
+          GameScore(game: 'PONG', score: score, highScore: score)
         ],
       ),
     );

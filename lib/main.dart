@@ -62,6 +62,7 @@ class MyAppState extends State<MyApp> {
       title: 'My personal Labs',
       theme: ThemeData(
           useMaterial3: true,
+         // scaffoldBackgroundColor: Colors.transparent,
           brightness: Brightness.light,
           primarySwatch: Colors.pink,
           primaryColor: Colors.pink[800]),

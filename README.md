@@ -21,4 +21,3 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Fix pb collisions sur flappygame et snake
 - Gestion du scoreboard (affichage depuis scores stockés ds l'appareil)
 - Error: setState() called after dispose(): _MemoryGameState ?
-- Reprendre le scoreboard !

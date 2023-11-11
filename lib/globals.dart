@@ -124,3 +124,5 @@ List<Link> favoritelinks = [
 double screenWidth = 0.0;
 double screenHeight = 0.0;
 const headingStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
+const scoreStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white);
+

@@ -168,7 +168,6 @@ class _FlappyGameState extends State<FlappyGame> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('F L A P P Y'),
-          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Column(
           children: <Widget>[
@@ -242,7 +241,7 @@ class _FlappyGameState extends State<FlappyGame> {
                     Colors.brown,
                   ],
                 ))),
-            BottomAppBar(child: GameScore(game: 'FLAPPY', score: score, highScore: highScore)),
+            GameScore(game: 'FLAPPY', score: score, highScore: highScore),
           ],
         ),
       ),

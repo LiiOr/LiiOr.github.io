@@ -102,7 +102,6 @@ class _SnakeGameState extends State<SnakeGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('S N A K E'),
-        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [
@@ -158,8 +157,7 @@ class _SnakeGameState extends State<SnakeGame> {
               },
             ),
           ),
-          BottomAppBar(
-              child: GameScore(game: 'SNAKE', score: score, highScore: highScore,)),
+          GameScore(game: 'SNAKE', score: score, highScore: highScore),
         ],
       ),
     );
