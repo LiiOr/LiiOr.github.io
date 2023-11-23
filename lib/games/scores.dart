@@ -41,31 +41,34 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
             } else {
               final List<Map<String, dynamic>> scores = snapshot.data!;
               return SingleChildScrollView(
-                child: FittedBox(
-                  child: DataTable(
-                    columns: const <DataColumn>[
-                      DataColumn(
-                        label: Text(
-                          'G A M E',
-                          style: headingStyle,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    DataTable(
+                      columns: const <DataColumn>[
+                        DataColumn(
+                          label: Text(
+                            'G A M E',
+                            style: headingStyle,
+                          ),
                         ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          'B E S T  S C O R E',
-                          style: headingStyle,
-                        ),
-                      )
-                    ],
-                    rows: scores.map((score) {
-                      return DataRow(
-                        cells: <DataCell>[
-                          DataCell(Text(score['game'])),
-                          DataCell(Text(score['best'].toString()))
-                        ],
-                      );
-                    }).toList(),
-                  ),
+                        DataColumn(
+                          label: Text(
+                            'B E S T  S C O R E',
+                            style: headingStyle,
+                          ),
+                        )
+                      ],
+                      rows: scores.map((score) {
+                        return DataRow(
+                          cells: <DataCell>[
+                            DataCell(Text(score['game'])),
+                            DataCell(Text(score['best'].toString()))
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
               );
             }
