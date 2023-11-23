@@ -72,9 +72,10 @@ class _SnakeGameState extends State<SnakeGame> {
   void generateFood() {
     final random = Random();
     int x = random.nextInt(18) * 20;
+    //int y = random.nextInt(screenHeight - ((AppBar().preferredSize.height as int) + 70) as int);
+    
     int y = random.nextInt(30) * 20;
     /*int x = random.nextInt(screenWidth as int);
-    int y = random.nextInt(screenHeight - AppBar().preferredSize.height as int);
     print('screenWidth : $screenWidth');
     print('screenHeigth: $screenHeight');
     print(x.toString() +','+ y.toString());*/

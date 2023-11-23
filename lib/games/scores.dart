@@ -119,6 +119,7 @@ class GameScore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      height: 70,
       color: Theme.of(context).primaryColor,
       child: SizedBox(
         width: screenWidth,

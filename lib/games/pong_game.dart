@@ -73,7 +73,7 @@ class _PongGameState extends State<PongGame> {
   @override
   void dispose() {
     gameLoopTimer?.cancel(); 
-    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    var scoreboard = GameScore(game: 'PONG', score: score, highScore: highScore);
     scoreboard.setScore();
     super.dispose();
   }
