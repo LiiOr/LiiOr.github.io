@@ -18,6 +18,6 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 ### Stuff to fix
 - Bug Chatbot : Quand user écrit trop vite, seul son dernier message est pris en compte
 - Mise en place d'un workflow intermédiaire (staging) en plus de la release.
-- Fix pb collisions sur flappygame et snake
+- Fix pb collisions sur flappygame
 - Gestion du scoreboard (affichage depuis scores stockés ds l'appareil)
 - Error: setState() called after dispose(): _MemoryGameState ?
