@@ -70,19 +70,22 @@ class _SnakeGameState extends State<SnakeGame> {
   }
 
   void generateFood() {
-    final random = Random();
-    int x = random.nextInt(18) * 20;
-    //int y = random.nextInt(screenHeight - ((AppBar().preferredSize.height as int) + 70) as int);
-    
-    int y = random.nextInt(30) * 20;
-    /*int x = random.nextInt(screenWidth as int);
-    print('screenWidth : $screenWidth');
-    print('screenHeigth: $screenHeight');
-    print(x.toString() +','+ y.toString());*/
-    setState(() {
-      food = Offset(x.toDouble(), y.toDouble());
-    });
-  }
+  double appBarHeight = AppBar().preferredSize.height;
+  double bottomBarHeight = kBottomNavigationBarHeight; // Default bottom bar height
+  double screenHeight = MediaQuery.of(context).size.height;
+  double screenWidth = MediaQuery.of(context).size.width;
+
+  double usableHeight = screenHeight - appBarHeight - bottomBarHeight;
+  final random = Random();
+  
+  // Ensure that the food's position is a multiple of 20 and within the screen bounds
+  int x = (random.nextInt((screenWidth / 20).floor()) * 20).toInt();
+  int y = (random.nextInt((usableHeight / 20).floor()) * 20).toInt();
+
+  setState(() {
+    food = Offset(x.toDouble(), y.toDouble());
+  });
+}
 
   void checkCollisions() {
     if (snake.first.dx < 0 ||
