@@ -11,6 +11,7 @@ import 'package:minijeux/games/snake_game.dart';
 import 'package:minijeux/games/tamagotchi_game.dart';
 import 'package:minijeux/games/tetris_game.dart';
 import 'package:minijeux/games/tictactoe_game.dart';
+import 'package:minijeux/toolkit/pokertable.dart';
 import 'games/flappy_game.dart';
 
 class MiniGame {
@@ -95,6 +96,10 @@ List<Tool> toolkit = [
   Tool(
       title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
+      icon: const Icon(Icons.chat, color: Colors.white)),
+      Tool(
+      title: "POKER TABLE",
+      toolWidget: PokerTable(),
       icon: const Icon(Icons.chat, color: Colors.white)),
 ];
 

@@ -19,6 +19,7 @@ class _SnakeGameState extends State<SnakeGame> {
   double gestureDetectorHeight = 0.0;
   int score = 0;
   int highScore = 0;
+  
   Timer? gameLoopTimer;
   late FocusNode _focusNode;
 
