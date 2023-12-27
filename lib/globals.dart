@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylabs/games/scores.dart';
+import 'package:mylabs/tests/image_picker_doc.dart';
 import 'package:mylabs/toolkit/chatbot.dart';
 import 'package:mylabs/games/colorbook.dart';
 import 'package:mylabs/tests/filepickerpage.dart';
@@ -78,6 +79,10 @@ List<PackageTest> packagestests = [
       title: "FILE PICKER",
       testWidget: const FilepickerPage(),
       icon: const Icon(Icons.file_present, color: Colors.white)),
+      PackageTest(
+      title: "IMAGE PICKER DOC",
+      testWidget: const ImagePickerDocScreen(),
+      icon: const Icon(Icons.image, color: Colors.white)),
 ];
 
 class Tool {
