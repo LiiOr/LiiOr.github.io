@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:minijeux/globals.dart';
+import 'package:mylabs/globals.dart';
 import 'dart:js' as js;
 
-import 'package:minijeux/main.dart';
+import 'package:mylabs/main.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});

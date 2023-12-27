@@ -1,7 +1,7 @@
-import 'package:minijeux/globals.dart';
+import 'package:mylabs/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:minijeux/splash.dart';
+import 'package:mylabs/splash.dart';
 
 String numVersion =
     const String.fromEnvironment('APP_VERSION', defaultValue: 'DEV');

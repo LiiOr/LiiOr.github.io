@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:minijeux/globals.dart';
-import 'package:minijeux/games/scores.dart';
+import 'package:mylabs/globals.dart';
+import 'package:mylabs/games/scores.dart';
 
 class SnakeGame extends StatefulWidget {
   const SnakeGame({super.key});

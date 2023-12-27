@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/faq.dart';
-import 'package:minijeux/globals.dart';
-import 'package:minijeux/main.dart';
+import 'package:mylabs/faq.dart';
+import 'package:mylabs/globals.dart';
+import 'package:mylabs/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingScreen extends StatefulWidget {

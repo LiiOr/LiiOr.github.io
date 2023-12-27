@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:minijeux/globals.dart';
-import 'package:minijeux/main.dart';
+import 'package:mylabs/globals.dart';
+import 'package:mylabs/main.dart';
 
 class CommitInfo {
   final String date;

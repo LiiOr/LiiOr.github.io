@@ -1,4 +1,4 @@
-package com.example.minijeux
+package com.example.mylabs
 
 import io.flutter.embedding.android.FlutterActivity
 

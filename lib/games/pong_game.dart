@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:minijeux/globals.dart';
-import 'package:minijeux/games/scores.dart';
+import 'package:mylabs/globals.dart';
+import 'package:mylabs/games/scores.dart';
 
 class PongGame extends StatefulWidget {
   const PongGame({super.key});

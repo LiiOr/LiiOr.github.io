@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/main.dart';
-import 'package:minijeux/navbar.dart';
+import 'package:mylabs/main.dart';
+import 'package:mylabs/navbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:minijeux/globals.dart';
+import 'package:mylabs/globals.dart';
 
 class ScoreBoardScreen extends StatefulWidget {
   const ScoreBoardScreen({super.key});

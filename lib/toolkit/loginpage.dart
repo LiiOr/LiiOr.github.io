@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/main.dart';
+import 'package:mylabs/main.dart';
 
 class LoginScreen extends StatefulWidget {
   //final String logoImagePath;
