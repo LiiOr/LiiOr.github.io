@@ -1,6 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mylabs/tests/imagescreen.dart';
 
@@ -12,7 +12,7 @@ class ImagePickerScreen extends StatefulWidget {
 }
 
 class ImagePickerScreenState extends State<ImagePickerScreen> {
-  List<String> imgList = [];
+  List<Uint8List> imgList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +26,24 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top:10, bottom:10),
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text('Test de charge',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
-            const Text('Package image_picker 1.0.4.'),
-                 const Divider(),
-              Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
-              Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
-              Text('Current image count in cache: ${imageCache.currentSize}'),
-              Text('Maximum image count in cache: ${imageCache.maximumSize}'),
-            Divider(),
+            const Text('Package image_picker 1.0.5.'),
+            const Divider(),
+            Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
+            Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
+            Text('Current image count in cache: ${imageCache.currentSize}'),
+            Text('Maximum image count in cache: ${imageCache.maximumSize}'),
+            const Divider(),
             Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: ElevatedButton.icon(
                   label: const Text('Pick images'),
-                  onPressed: _pickImage,
+                  onPressed: () {
+                    _pickImage();
+                  },
                   icon: const Icon(Icons.add_a_photo)),
             ),
             if (imgList.isNotEmpty)
@@ -58,9 +60,11 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
                         child: GestureDetector(
                           child: Stack(children: [
                             Image.memory(
-                              Uint8List.fromList(base64Decode(image)),
+                              image,
                               width: 100,
                               height: 100,
+                              cacheHeight: 100,
+                              cacheWidth: 100,
                               fit: BoxFit.cover,
                             ),
                             Positioned(
@@ -94,24 +98,37 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
 
   final ImagePicker picker = ImagePicker();
 
-  Future<void> _pickImage() async {
-    try {
+  _pickImage() async {
+   // try {
       final XFile? pickedFile =
           await picker.pickImage(source: ImageSource.camera);
       if (pickedFile != null) {
-        final imageBytes = await pickedFile.readAsBytes();
-        final base64Image = base64Encode(imageBytes);
-        setState(() {
-          imgList.add(base64Image);
-        });
+        Uint8List imageBytes = await pickedFile.readAsBytes();
+        if (imageBytes.isNotEmpty) {
+          Uint8List compressedImage = await compressImage(imageBytes);
+          setState(() {
+            imgList.add(compressedImage);
+          });
+          imageCache.clear();
+        }
       }
-    } catch (e) {
+    /*} catch (e) {
+      print(e);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.toString()),
         ),
       );
-    }
+    }*/
+  }
+
+  Future<Uint8List> compressImage(Uint8List imageBytes) async {
+    var compressedBytes = await FlutterImageCompress.compressWithList(
+        imageBytes,
+        minWidth: 500,
+        minHeight: 500,
+        quality: 25);
+    return compressedBytes;
   }
 }
 

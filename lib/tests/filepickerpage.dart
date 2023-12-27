@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,40 +12,40 @@ class FilepickerPage extends StatefulWidget {
 }
 
 class FilepickerPageState extends State<FilepickerPage> {
-  List<String> imgList = [];
+  List<Uint8List> imgList = [];
 
-  Future<void> _pickImage() async {
-    FilePickerResult? result =
-        await FilePickerWeb.platform.pickFiles(allowMultiple: true);
-    if (result != null) {
-      for (int i = 0; i < result.files.length; i++) {
-        PlatformFile file = result.files[i];
-        Uint8List? imageBytes = file.bytes!;
-        Uint8List? compressedImage = await compressImage(imageBytes);
-        String base64Image = base64Encode(compressedImage);
-        imgList.add(base64Image);
+  _pickImage() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+          type: FileType.image, allowMultiple: true, allowCompression: true);
+      if (result != null && result.files.isNotEmpty) {
+        for (int i = 0; i < result.files.length; i++) {
+          PlatformFile file = result.files[i];
+          Uint8List? imageBytes = file.bytes!;
+          Uint8List? compressedImage = await compressImage(imageBytes);
+          imgList.add(compressedImage);
+          imageBytes = null;
+          compressedImage = null;
+        }
+        imageCache.clear();
+        result.files.clear();
+        result = null;
+        setState(() {});
       }
-      imageCache.clear();
-      result.files.clear();
-      result = null;
+    } catch (e) {
+      throw Exception('Picking images failed : $e');
     }
-    setState(() {});
   }
 
   Future<Uint8List> compressImage(Uint8List imageBytes) async {
-    final List<int> compressedBytes =
-        await FlutterImageCompress.compressWithList(
-      imageBytes,
-      minWidth: 500,
-      minHeight: 500,
-      quality: 25,
-    );
-    return Uint8List.fromList(compressedBytes);
+    var result = await FlutterImageCompress.compressWithList(imageBytes, minWidth: 500, minHeight: 500, quality: 25);
+    print(imageBytes.length);
+    print(result.length);
+    return Uint8List.fromList(result);
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: const Text('F I L E P I C K E R'),
@@ -74,7 +71,9 @@ class FilepickerPageState extends State<FilepickerPage> {
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: ElevatedButton.icon(
                   label: const Text('Pick files'),
-                  onPressed: _pickImage,
+                  onPressed: () {
+                    _pickImage();
+                  },
                   icon: const Icon(Icons.add_a_photo)),
             ),
             if (imgList.isNotEmpty)
@@ -91,7 +90,7 @@ class FilepickerPageState extends State<FilepickerPage> {
                         child: GestureDetector(
                           child: Stack(children: [
                             Image.memory(
-                              Uint8List.fromList(base64Decode(image)),
+                              image,
                               width: 100,
                               height: 100,
                               cacheWidth: 100,

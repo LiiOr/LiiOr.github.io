@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ImageScreen extends StatelessWidget {
-  final String image;
+  final Uint8List image;
 
   const ImageScreen({super.key, required this.image});
 
@@ -20,7 +20,7 @@ class ImageScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
           child: Image.memory(
-            Uint8List.fromList(base64Decode(image)),
+            Uint8List.fromList(image),
             fit: BoxFit.cover,
           ),
         ),
