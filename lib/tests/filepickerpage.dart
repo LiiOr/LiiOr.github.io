@@ -70,6 +70,7 @@ class FilepickerPageState extends State<FilepickerPage> {
             const Divider(),
             Text('Current image cache >> ${imageCache.currentSizeBytes} bytes'),
             Text('Maximum cache size >>> ${imageCache.maximumSizeBytes} bytes'),
+            Text('Percents of cache used >>> ${(imageCache.currentSizeBytes / imageCache.maximumSizeBytes * 100).toStringAsFixed(2).toString()} %'),
             Text('Current image count in cache: ${imageCache.currentSize}'),
             Text('Maximum image count in cache: ${imageCache.maximumSize}'),
             const Divider(),
