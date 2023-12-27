@@ -32,12 +32,12 @@ class FilepickerPageState extends State<FilepickerPage> {
           Uint8List? imageBytes = file.bytes!;
           Uint8List? compressedImage = await compressImage(imageBytes);
           imgList.add(compressedImage);
-          imageBytes = null;
-          compressedImage = null;
+         /* imageBytes = null;
+          compressedImage = null;*/
         }
-        imageCache.clear();
+       /* imageCache.clear();
         result.files.clear();
-        result = null;
+        result = null;*/
         setState(() {});
       }
     } catch (e) {

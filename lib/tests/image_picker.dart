@@ -118,17 +118,9 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
           setState(() {
             imgList.add(compressedImage);
           });
-          imageCache.clear();
+          //imageCache.clear();
         }
       }
-    /*} catch (e) {
-      print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toString()),
-        ),
-      );
-    }*/
   }
 
   Future<Uint8List> compressImage(Uint8List imageBytes) async {
