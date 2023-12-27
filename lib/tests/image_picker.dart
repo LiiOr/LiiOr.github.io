@@ -115,9 +115,8 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
         Uint8List imageBytes = await pickedFile.readAsBytes();
         if (imageBytes.isNotEmpty) {
           Uint8List compressedImage = await compressImage(imageBytes);
-          setState(() {
-            imgList.add(compressedImage);
-          });
+          imgList.add(compressedImage);
+          setState(() {});
           //imageCache.clear();
         }
       }
