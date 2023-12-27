@@ -14,6 +14,15 @@ class ImagePickerScreen extends StatefulWidget {
 class ImagePickerScreenState extends State<ImagePickerScreen> {
   List<Uint8List> imgList = [];
 
+  
+  @override
+  void dispose() {
+    imgList.clear();
+    imageCache.clear();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +41,8 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
             ),
             const Text('Package image_picker 1.0.5.'),
             const Divider(),
-            Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
-            Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
+            Text('Current image cache >> ${imageCache.currentSizeBytes} bytes'),
+            Text('Maximum cache size >>> ${imageCache.maximumSizeBytes} bytes'),
             Text('Current image count in cache: ${imageCache.currentSize}'),
             Text('Maximum image count in cache: ${imageCache.maximumSize}'),
             const Divider(),

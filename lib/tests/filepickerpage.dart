@@ -14,6 +14,14 @@ class FilepickerPage extends StatefulWidget {
 class FilepickerPageState extends State<FilepickerPage> {
   List<Uint8List> imgList = [];
 
+  @override
+  void dispose() {
+    imgList.clear();
+    imageCache.clear();
+    super.dispose();
+  }
+
+
   _pickImage() async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -39,8 +47,6 @@ class FilepickerPageState extends State<FilepickerPage> {
 
   Future<Uint8List> compressImage(Uint8List imageBytes) async {
     var result = await FlutterImageCompress.compressWithList(imageBytes, minWidth: 500, minHeight: 500, quality: 25);
-    print(imageBytes.length);
-    print(result.length);
     return Uint8List.fromList(result);
   }
 
@@ -62,8 +68,8 @@ class FilepickerPageState extends State<FilepickerPage> {
             ),
             const Text('Package file_picker 5.5.0.'),
             const Divider(),
-            Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
-            Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
+            Text('Current image cache >> ${imageCache.currentSizeBytes} bytes'),
+            Text('Maximum cache size >>> ${imageCache.maximumSizeBytes} bytes'),
             Text('Current image count in cache: ${imageCache.currentSize}'),
             Text('Maximum image count in cache: ${imageCache.maximumSize}'),
             const Divider(),
