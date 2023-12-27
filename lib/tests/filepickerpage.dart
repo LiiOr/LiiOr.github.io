@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mylabs/tests/imagescreen.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class FilepickerPage extends StatefulWidget {
   const FilepickerPage({super.key});
@@ -22,12 +23,27 @@ class FilepickerPageState extends State<FilepickerPage> {
     if (result != null) {
       for (int i = 0; i < result.files.length; i++) {
         PlatformFile file = result.files[i];
-        List<int> imageBytes = file.bytes ?? [];
-        String base64Image = base64Encode(imageBytes);
+        Uint8List? imageBytes = file.bytes!;
+        Uint8List? compressedImage = await compressImage(imageBytes);
+        String base64Image = base64Encode(compressedImage);
         imgList.add(base64Image);
       }
+      imageCache.clear();
+      result.files.clear();
+      result = null;
     }
     setState(() {});
+  }
+
+  Future<Uint8List> compressImage(Uint8List imageBytes) async {
+    final List<int> compressedBytes =
+        await FlutterImageCompress.compressWithList(
+      imageBytes,
+      minWidth: 500,
+      minHeight: 500,
+      quality: 25,
+    );
+    return Uint8List.fromList(compressedBytes);
   }
 
   @override
@@ -43,19 +59,19 @@ class FilepickerPageState extends State<FilepickerPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top:10, bottom:10),
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text('Test de charge',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             const Text('Package file_picker 5.5.0.'),
             const Divider(),
-              Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
-              Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
-              Text('Current image count in cache: ${imageCache.currentSize}'),
-              Text('Maximum image count in cache: ${imageCache.maximumSize}'),
-            Divider(),
+            Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
+            Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
+            Text('Current image count in cache: ${imageCache.currentSize}'),
+            Text('Maximum image count in cache: ${imageCache.maximumSize}'),
+            const Divider(),
             Padding(
-              padding: const EdgeInsets.only(top:15.0, bottom:15.0),
+              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: ElevatedButton.icon(
                   label: const Text('Pick files'),
                   onPressed: _pickImage,
@@ -78,6 +94,10 @@ class FilepickerPageState extends State<FilepickerPage> {
                               Uint8List.fromList(base64Decode(image)),
                               width: 100,
                               height: 100,
+                              cacheWidth: 100,
+                              cacheHeight: 100,
+                              filterQuality: FilterQuality.low,
+                              scale: 1.0,
                               fit: BoxFit.cover,
                             ),
                             Positioned(
@@ -89,6 +109,7 @@ class FilepickerPageState extends State<FilepickerPage> {
                                   ),
                                   onPressed: () => setState(() {
                                         imgList.removeAt(indexImage);
+                                        imageCache.clearLiveImages();
                                       })),
                             ),
                           ]),
