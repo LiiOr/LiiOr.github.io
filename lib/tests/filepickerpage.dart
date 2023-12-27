@@ -48,6 +48,12 @@ class FilepickerPageState extends State<FilepickerPage> {
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             const Text('Package file_picker 5.5.0.'),
+            const Divider(),
+              Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
+              Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
+              Text('Current image count in cache: ${imageCache.currentSize}'),
+              Text('Maximum image count in cache: ${imageCache.maximumSize}'),
+            Divider(),
             Padding(
               padding: const EdgeInsets.only(top:15.0, bottom:15.0),
               child: ElevatedButton.icon(
