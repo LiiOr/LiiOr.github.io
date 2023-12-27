@@ -31,6 +31,12 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             const Text('Package image_picker 1.0.4.'),
+                 const Divider(),
+              Text('Current image cache: ${imageCache.currentSizeBytes} bytes'),
+              Text('Maximum cache size: ${imageCache.maximumSizeBytes} bytes'),
+              Text('Current image count in cache: ${imageCache.currentSize}'),
+              Text('Maximum image count in cache: ${imageCache.maximumSize}'),
+            Divider(),
             Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: ElevatedButton.icon(
