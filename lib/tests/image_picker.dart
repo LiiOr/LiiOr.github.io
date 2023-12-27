@@ -12,14 +12,36 @@ class ImagePickerScreen extends StatefulWidget {
 }
 
 class ImagePickerScreenState extends State<ImagePickerScreen> {
+  final ImagePicker picker = ImagePicker();
   List<Uint8List> imgList = [];
 
-  
   @override
   void dispose() {
     imgList.clear();
     imageCache.clear();
     super.dispose();
+  }
+
+  _pickImage() async {
+      final XFile? pickedFile = await picker.pickImage(source: ImageSource.camera);
+      if (pickedFile != null) {
+        Uint8List imageBytes = await pickedFile.readAsBytes();
+        if (imageBytes.isNotEmpty) {
+          Uint8List compressedImage = await compressImage(imageBytes);
+          imgList.add(compressedImage);
+          //imageCache.clear();
+        }
+      }
+      setState(() {});
+  }
+
+  Future<Uint8List> compressImage(Uint8List imageBytes) async {
+    var compressedBytes = await FlutterImageCompress.compressWithList(
+        imageBytes,
+        minWidth: 500,
+        minHeight: 500,
+        quality: 25);
+    return compressedBytes;
   }
 
 
@@ -43,6 +65,7 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
             const Divider(),
             Text('Current image cache >> ${imageCache.currentSizeBytes} bytes'),
             Text('Maximum cache size >>> ${imageCache.maximumSizeBytes} bytes'),
+            Text('Percents of cache used >>> ${imageCache.currentSizeBytes / imageCache.maximumSizeBytes * 100} %'),
             Text('Current image count in cache: ${imageCache.currentSize}'),
             Text('Maximum image count in cache: ${imageCache.maximumSize}'),
             const Divider(),
@@ -74,6 +97,8 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
                               height: 100,
                               cacheHeight: 100,
                               cacheWidth: 100,
+                              filterQuality: FilterQuality.low,
+                              scale: 1.0,
                               fit: BoxFit.cover,
                             ),
                             Positioned(
@@ -103,31 +128,5 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
         ),
       ),
     );
-  }
-
-  final ImagePicker picker = ImagePicker();
-
-  _pickImage() async {
-   // try {
-      final XFile? pickedFile =
-          await picker.pickImage(source: ImageSource.camera);
-      if (pickedFile != null) {
-        Uint8List imageBytes = await pickedFile.readAsBytes();
-        if (imageBytes.isNotEmpty) {
-          Uint8List compressedImage = await compressImage(imageBytes);
-          imgList.add(compressedImage);
-          setState(() {});
-          //imageCache.clear();
-        }
-      }
-  }
-
-  Future<Uint8List> compressImage(Uint8List imageBytes) async {
-    var compressedBytes = await FlutterImageCompress.compressWithList(
-        imageBytes,
-        minWidth: 500,
-        minHeight: 500,
-        quality: 25);
-    return compressedBytes;
   }
 }

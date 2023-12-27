@@ -12,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 class ImagePickerDocScreen extends StatefulWidget {
   const ImagePickerDocScreen({super.key});
 
-
   @override
   State<ImagePickerDocScreen> createState() => ImagePickerDocScreenState();
 }
@@ -39,7 +38,6 @@ class ImagePickerDocScreenState extends State<ImagePickerDocScreen> {
     bool isMultiImage = false,
     bool isMedia = false,
   }) async {
-    
     if (context.mounted) {
       if (isMultiImage) {
         await _displayPickImageDialog(context,
@@ -115,6 +113,7 @@ class ImagePickerDocScreenState extends State<ImagePickerDocScreen> {
     maxWidthController.dispose();
     maxHeightController.dispose();
     qualityController.dispose();
+    imageCache.clear();
     super.dispose();
   }
 
@@ -132,10 +131,8 @@ class ImagePickerDocScreenState extends State<ImagePickerDocScreen> {
             // Why network for web?
             // See https://pub.dev/packages/image_picker_for_web#limitations-on-the-web-platform
             return Semantics(
-              label: 'image_picker_example_picked_image',
-              child: Image.network(_mediaFileList![index].path)
-                 
-            );
+                label: 'image_picker_example_picked_image',
+                child: Image.network(_mediaFileList![index].path));
           },
           itemCount: _mediaFileList!.length,
         ),
@@ -154,7 +151,7 @@ class ImagePickerDocScreenState extends State<ImagePickerDocScreen> {
   }
 
   Widget _handlePreview() {
-      return _previewImages();
+    return _previewImages();
   }
 
   @override
