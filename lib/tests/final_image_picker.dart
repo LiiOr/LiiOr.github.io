@@ -60,52 +60,53 @@ class ImagePickerScreenState extends State<FinalImagePickerScreen> {
                   },
                   icon: const Icon(Icons.add_a_photo)),
             ),
-            if (_mediaFileList != null)
-              SizedBox(
-                height: 120,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: _mediaFileList!.length,
-                    itemBuilder: (context, indexImage) {
-                      var image = _mediaFileList![indexImage];
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: GestureDetector(
-                          child: Stack(children: [
-                            Image.network(
-                              image.path,
-                              width: 100,
-                              height: 100,
-                              cacheHeight: 100,
-                              cacheWidth: 100,
-                              filterQuality: FilterQuality.low,
-                              scale: 1.0,
-                              fit: BoxFit.cover,
+            SizedBox(
+              height: 120,
+              child: ListView.builder(
+                 // scrollDirection: Axis.horizontal,
+                 scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: _mediaFileList.length,
+                  itemBuilder: (context, indexImage) {
+                    var image = _mediaFileList[indexImage];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                        child: Stack(children: [
+                          Image.network(
+                            image.path,
+                            width: 100,
+                            height: 100,
+                            cacheHeight: 100,
+                            cacheWidth: 100,
+                            filterQuality: FilterQuality.low,
+                            scale: 1.0,
+                            fit: BoxFit.cover,
+                          ),
+                          //SizedBox(height:50, child: Text(image.path)),
+                          Positioned(
+                            right: 0,
+                            child: IconButton(
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.pink,
+                                ),
+                                onPressed: () => setState(() {
+                                      _mediaFileList.removeAt(indexImage);
+                                    })),
+                          ),
+                        ]),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => FinalImageScreen(image: image),
                             ),
-                            Positioned(
-                              right: 0,
-                              child: IconButton(
-                                  icon: const Icon(
-                                    Icons.close,
-                                    color: Colors.pink,
-                                  ),
-                                  onPressed: () => setState(() {
-                                        _mediaFileList!.removeAt(indexImage);
-                                      })),
-                            ),
-                          ]),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => FinalImageScreen(image: image),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    }),
-              ),
+                          );
+                        },
+                      ),
+                    );
+                  }),
+            ),
           ],
         ),
       ),
