@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mylabs/games/scores.dart';
+import 'package:mylabs/tests/final_image_picker.dart';
 import 'package:mylabs/tests/image_picker_doc.dart';
 import 'package:mylabs/toolkit/chatbot.dart';
-import 'package:mylabs/games/colorbook.dart';
 import 'package:mylabs/tests/filepickerpage.dart';
 import 'package:mylabs/tests/image_picker.dart';
 import 'package:mylabs/toolkit/loginpage.dart';
@@ -10,8 +10,6 @@ import 'package:mylabs/games/memory_game.dart';
 import 'package:mylabs/games/pong_game.dart';
 import 'package:mylabs/games/snake_game.dart';
 import 'package:mylabs/games/tamagotchi_game.dart';
-import 'package:mylabs/games/tetris_game.dart';
-import 'package:mylabs/games/tictactoe_game.dart';
 import 'package:mylabs/toolkit/pokertable.dart';
 import 'games/flappy_game.dart';
 
@@ -71,6 +69,10 @@ class PackageTest {
 }
 
 List<PackageTest> packagestests = [
+  PackageTest(
+      title: "FINAL TEST",
+      testWidget: const FinalImagePickerScreen(),
+      icon: const Icon(Icons.image, color: Colors.white)),
   PackageTest(
       title: "IMAGE PICKER",
       testWidget: const ImagePickerScreen(),
