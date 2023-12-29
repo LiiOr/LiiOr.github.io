@@ -66,7 +66,7 @@ class FilepickerPageState extends State<FilepickerPage> {
               child: Text('Test de charge',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
-            const Text('Package file_picker 5.5.0.'),
+            const Text('Package file_picker 6.1.1'),
             const Divider(),
             Text('Current image cache >> ${imageCache.currentSizeBytes} bytes'),
             Text('Maximum cache size >>> ${imageCache.maximumSizeBytes} bytes'),

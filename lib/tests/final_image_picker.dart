@@ -63,8 +63,7 @@ class ImagePickerScreenState extends State<FinalImagePickerScreen> {
             SizedBox(
               height: 120,
               child: ListView.builder(
-                 // scrollDirection: Axis.horizontal,
-                 scrollDirection: Axis.vertical,
+                  scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: _mediaFileList.length,
                   itemBuilder: (context, indexImage) {
@@ -83,7 +82,6 @@ class ImagePickerScreenState extends State<FinalImagePickerScreen> {
                             scale: 1.0,
                             fit: BoxFit.cover,
                           ),
-                          //SizedBox(height:50, child: Text(image.path)),
                           Positioned(
                             right: 0,
                             child: IconButton(
