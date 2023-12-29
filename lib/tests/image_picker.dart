@@ -23,7 +23,31 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
   }
 
   _pickImage() async {
-      final XFile? pickedFile = await picker.pickImage(source: ImageSource.camera);
+    XFile? pickedFile;
+
+     String? source = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text('Pick Image from'),
+          children: <Widget>[
+            SimpleDialogOption(
+              onPressed: () { Navigator.pop(context, 'camera'); },
+              child: const Text('Camera'),
+            ),
+            SimpleDialogOption(
+              onPressed: () { Navigator.pop(context, 'gallery'); },
+              child: const Text('Gallery'),
+            ),
+          ],
+        );
+      }
+    );
+    if (source != null && source.isNotEmpty && source == 'camera') { 
+      pickedFile = await picker.pickImage(source: ImageSource.camera);
+    } else if (source != null && source.isNotEmpty && source == 'gallery') { 
+      pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    }
       if (pickedFile != null) {
         Uint8List imageBytes = await pickedFile.readAsBytes();
         if (imageBytes.isNotEmpty) {
