@@ -98,9 +98,9 @@ class Tool {
 
 List<Tool> toolkit = [
   Tool(
-      title: "LOGIN PAGE",
-      toolWidget: const LoginScreen(),
-      icon: const Icon(Icons.login, color: Colors.white)),
+      title: "PWD GENERATOR",
+      toolWidget: const PwdGenScreen(),
+      icon: const Icon(Icons.lock, color: Colors.white)),
   Tool(
       title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
@@ -110,8 +110,8 @@ List<Tool> toolkit = [
       toolWidget: PokerTable(),
       icon: const Icon(Icons.chat, color: Colors.white)),
   Tool(
-      title: "PASSWORD GENERATOR",
-      toolWidget: const PwdGenScreen(),
+      title: "LOGIN PAGE",
+      toolWidget: const LoginScreen(),
       icon: const Icon(Icons.login, color: Colors.white)),
 ];
 

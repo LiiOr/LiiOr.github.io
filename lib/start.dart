@@ -28,19 +28,20 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: toolkit.length,
               itemBuilder: (context, index) {
-                var idColor = Random().nextInt(8);
+                //var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
+                      /*gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
                           generateCardColor(idColor),
                           generateCardColor(idColor + 1),
                         ],
-                      )),
+                      )*/),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -78,9 +79,9 @@ class StartScreenState extends State<StartScreen> {
               itemBuilder: (context, index) {
                 //var idColor = Random().nextInt(8);
                 return Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                    // border: Border(bottom: BorderSide(color: Colors.black), top: BorderSide(color: Colors.black), left: BorderSide(color: Colors.black), right: BorderSide(color: Colors.black)),
-                    color: Color.fromARGB(255, 22, 22, 22),
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     /* gradient: LinearGradient(
                         begin: Alignment.topRight,
@@ -126,20 +127,20 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: favoritelinks.length,
               itemBuilder: (context, index) {
-                var idColor = Random().nextInt(8);
+                //var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 22, 22, 22),
+                    color: Theme.of(context).primaryColor,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
+                      /*gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
                           generateCardColor(idColor),
                           generateCardColor(idColor + 1),
                         ],
-                      )),
+                      )*/),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -173,8 +174,8 @@ class StartScreenState extends State<StartScreen> {
               itemBuilder: (context, index) {
               //  var idColor = Random().nextInt(8);
                 return Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 22, 22, 22),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     /*gradient: LinearGradient(
                         begin: Alignment.topRight,
