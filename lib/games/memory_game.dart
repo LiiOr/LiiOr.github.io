@@ -295,7 +295,17 @@ class _MemoryGameState extends State<MemoryGame> {
       } else {
         isProcessing = true;
         Timer(const Duration(seconds: 1), () {
-          if (items[previousIndex] != items[index]) {
+          if (items[previousIndex] == items[index]) {
+            setState(() {
+              score++;
+            });
+            if (score > highScore) {
+              highScore = score;
+              var scoreboard =
+                  GameScore(game: 'MEMORY', score: score, highScore: highScore);
+              scoreboard.setScore();
+            }
+          } else {
             setState(() {
               itemsOpened[previousIndex] = false;
               itemsOpened[index] = false;
@@ -310,8 +320,9 @@ class _MemoryGameState extends State<MemoryGame> {
 
   @override
   void dispose() {
-    gameLoopTimer?.cancel(); 
-    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    gameLoopTimer?.cancel();
+    var scoreboard =
+        GameScore(game: 'MEMORY', score: score, highScore: highScore);
     scoreboard.setScore();
     super.dispose();
   }

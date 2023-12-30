@@ -19,7 +19,7 @@ class _SnakeGameState extends State<SnakeGame> {
   double gestureDetectorHeight = 0.0;
   int score = 0;
   int highScore = 0;
-  
+
   Timer? gameLoopTimer;
   late FocusNode _focusNode;
 
@@ -68,6 +68,12 @@ class _SnakeGameState extends State<SnakeGame> {
         snake.removeLast();
       } else {
         score++;
+        if (score > highScore) {
+          highScore = score;
+          var scoreboard =
+              GameScore(game: 'SNAKE', score: score, highScore: highScore);
+          scoreboard.setScore();
+        }
         generateFood();
       }
     });
@@ -100,7 +106,7 @@ class _SnakeGameState extends State<SnakeGame> {
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];
-        if (highScore < score) highScore = score;
+        //if (highScore < score) highScore = score;
         score = 0;
       });
     }
@@ -126,13 +132,6 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   Widget build(BuildContext context) {
-    double appBarHeight = AppBar().preferredSize.height;
-    double bottomBarHeight =
-        kBottomNavigationBarHeight;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-    double usableHeight = screenHeight - appBarHeight - bottomBarHeight;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('S N A K E'),
