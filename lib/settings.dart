@@ -5,7 +5,7 @@ import 'package:mylabs/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  const SettingScreen({super.key});
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();

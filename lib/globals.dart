@@ -56,7 +56,7 @@ List<MiniGame> games = [
       icon: const Icon(Icons.pets, color: Colors.white)),
   MiniGame(
       title: "SCORE BOARD",
-      gameWidget: ScoreBoardScreen(),
+      gameWidget: const ScoreBoardScreen(),
       icon: const Icon(Icons.scoreboard, color: Colors.white)),
 ];
 

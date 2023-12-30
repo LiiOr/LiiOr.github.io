@@ -127,7 +127,7 @@ class ImagePickerDocScreenState extends State<ImagePickerDocScreen> {
         label: 'image_picker_example_picked_images',
         child: ListView.builder(
           key: UniqueKey(),
-          itemBuilder: (BuildContext context, int index) { print(_mediaFileList![index].path);
+          itemBuilder: (BuildContext context, int index) {
             // Why network for web?
             // See https://pub.dev/packages/image_picker_for_web#limitations-on-the-web-platform
             return Semantics(
@@ -158,7 +158,7 @@ class ImagePickerDocScreenState extends State<ImagePickerDocScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('fdhfdhth'),
+        title: const Text('fdhfdhth'),
       ),
       body: Center(
         child: _handlePreview(),

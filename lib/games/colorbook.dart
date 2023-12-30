@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 
 class ColorBook extends StatefulWidget {
-  const ColorBook({Key? key}) : super(key: key);
+  const ColorBook({super.key});
 
   @override
   State<ColorBook> createState() => _ColorBookState();

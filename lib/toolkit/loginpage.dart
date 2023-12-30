@@ -5,8 +5,8 @@ class LoginScreen extends StatefulWidget {
   //final String logoImagePath;
   
   const LoginScreen({
-    Key? key, /*required this.logoImagePath,*/
-  }) : super(key: key);
+    super.key, /*required this.logoImagePath,*/
+  });
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }

@@ -11,7 +11,7 @@ class FinalImagePickerScreen extends StatefulWidget {
 
 class ImagePickerScreenState extends State<FinalImagePickerScreen> {
   final ImagePicker picker = ImagePicker();
- List<XFile> _mediaFileList = [];
+ final List<XFile> _mediaFileList = [];
 
   @override
   void dispose() {

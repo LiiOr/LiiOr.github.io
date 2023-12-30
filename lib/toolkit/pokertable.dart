@@ -141,11 +141,11 @@ class PokerTable extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8)),
+                            height: 60,
+                            width: 45,
                             child: Center(
                                 child: Text(card1,
-                                    style: TextStyle(color: cardColor(card1)))),
-                            height: 60,
-                            width: 45),
+                                    style: TextStyle(color: cardColor(card1))))),
                       ),
                       const SizedBox(width: 10),
                       Transform.rotate(
@@ -154,11 +154,11 @@ class PokerTable extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8)),
+                            height: 60,
+                            width: 45,
                             child: Center(
                                 child: Text(card2,
-                                    style: TextStyle(color: cardColor(card2)))),
-                            height: 60,
-                            width: 45),
+                                    style: TextStyle(color: cardColor(card2))))),
                       )
                     ],
                   )),
@@ -238,6 +238,8 @@ class PokerTable extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8)),
+                            height: 60,
+                            width: 45,
                             child: Center(
                               child: Text(
                                   deck[2], // Replace with the actual card
@@ -245,9 +247,7 @@ class PokerTable extends StatelessWidget {
                                       color: cardColor(deck[
                                           2])) // Replace with the actual card color
                                   ),
-                            ),
-                            height: 60,
-                            width: 45),
+                            )),
                       ),
                       const SizedBox(width: 10),
                       // Add more cards as needed
