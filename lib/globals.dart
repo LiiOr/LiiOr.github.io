@@ -10,6 +10,7 @@ import 'package:mylabs/games/memory_game.dart';
 import 'package:mylabs/games/pong_game.dart';
 import 'package:mylabs/games/snake_game.dart';
 import 'package:mylabs/games/tamagotchi_game.dart';
+import 'package:mylabs/toolkit/passwordgen.dart';
 import 'package:mylabs/toolkit/pokertable.dart';
 import 'games/flappy_game.dart';
 
@@ -42,7 +43,7 @@ List<MiniGame> games = [
       title: "FLAPPY",
       gameWidget: const FlappyGame(),
       icon: const Icon(Icons.flight, color: Colors.white)),
- /* MiniGame(
+  /* MiniGame(
       title: "TIC TAC TOE",
       gameWidget: const TicTacToeGame(),
       icon: const Icon(Icons.close, color: Colors.white)),
@@ -81,7 +82,7 @@ List<PackageTest> packagestests = [
       title: "FILE PICKER",
       testWidget: const FilepickerPage(),
       icon: const Icon(Icons.file_present, color: Colors.white)),
-      PackageTest(
+  PackageTest(
       title: "IMAGE PICKER DOC",
       testWidget: const ImagePickerDocScreen(),
       icon: const Icon(Icons.image, color: Colors.white)),
@@ -104,10 +105,14 @@ List<Tool> toolkit = [
       title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
       icon: const Icon(Icons.chat, color: Colors.white)),
-      Tool(
+  Tool(
       title: "POKER TABLE",
       toolWidget: PokerTable(),
       icon: const Icon(Icons.chat, color: Colors.white)),
+  Tool(
+      title: "PASSWORD GENERATOR",
+      toolWidget: const PwdGenScreen(),
+      icon: const Icon(Icons.login, color: Colors.white)),
 ];
 
 class Link {
@@ -136,5 +141,5 @@ List<Link> favoritelinks = [
 double screenWidth = 0.0;
 double screenHeight = 0.0;
 const headingStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
-const scoreStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white);
-
+const scoreStyle =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white);
