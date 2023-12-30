@@ -12,6 +12,7 @@ class PwdGenScreen extends StatefulWidget {
 
 class _PwdGenScreenState extends State<PwdGenScreen> {
   int _length = 10;
+  String _password = "";
 
   String generatePassword(int length) {
     const String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&*()_+?.';
@@ -23,10 +24,16 @@ class _PwdGenScreenState extends State<PwdGenScreen> {
   // Function to advise user than a password under 12 characters is not secure
   pwdLengthWarning(int length) {
     if (length < 12) {
-      return Text('Your password is not secure', style: TextStyle(color: Colors.red));
+      return const Text('Your password is not secure', style: TextStyle(color: Colors.red));
     } else {
-      return Text('Your password is secure', style: TextStyle(color: Colors.green));
+      return const Text('Your password is secure', style: TextStyle(color: Colors.green));
     }
+  }
+
+@override
+  void initState() {
+    super.initState();
+    _password = generatePassword(_length); // Generate initial password
   }
 
   @override
@@ -59,6 +66,15 @@ class _PwdGenScreenState extends State<PwdGenScreen> {
             Text(
               generatePassword(_length),
               style: headingStyle
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              label: const Text('Generate New Password'),
+              onPressed: () {
+                setState(() {
+                  _password = generatePassword(_length); // Generate new password
+                });
+              }, icon: const Icon(Icons.refresh)
             ),
           ],
         ),
