@@ -20,6 +20,15 @@ class _PwdGenScreenState extends State<PwdGenScreen> {
         length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
   }
 
+  // Function to advise user than a password under 12 characters is not secure
+  pwdLengthWarning(int length) {
+    if (length < 12) {
+      return Text('Your password is not secure', style: TextStyle(color: Colors.red));
+    } else {
+      return Text('Your password is secure', style: TextStyle(color: Colors.green));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +43,12 @@ class _PwdGenScreenState extends State<PwdGenScreen> {
               'Password length: $_length',
               style: headingStyle,
             ),
+            pwdLengthWarning(_length),
             Slider(
               value: _length.toDouble(),
-              min: 1,
+              min: 8,
               max: 20,
-              divisions: 20,
+              divisions: 12,
               label: _length.toString(),
               onChanged: (double value) {
                 setState(() {
