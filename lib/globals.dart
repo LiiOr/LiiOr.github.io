@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mylabs/games/scores.dart';
 import 'package:mylabs/tests/final_image_picker.dart';
 import 'package:mylabs/tests/image_picker_doc.dart';
+import 'package:mylabs/toolkit/GPT.dart';
 import 'package:mylabs/toolkit/chatbot.dart';
 import 'package:mylabs/tests/filepickerpage.dart';
 import 'package:mylabs/tests/image_picker.dart';
@@ -98,6 +99,10 @@ class Tool {
 
 List<Tool> toolkit = [
   Tool(
+      title: "GPT INTEGRATION",
+      toolWidget: const GptScreen(),
+      icon: const Icon(Icons.bolt, color: Colors.white)),
+  Tool(
       title: "PWD GENERATOR",
       toolWidget: const PwdGenScreen(),
       icon: const Icon(Icons.lock, color: Colors.white)),
@@ -108,7 +113,7 @@ List<Tool> toolkit = [
   Tool(
       title: "POKER TABLE",
       toolWidget: PokerTable(),
-      icon: const Icon(Icons.chat, color: Colors.white)),
+      icon: const Icon(Icons.money_outlined, color: Colors.white)),
   Tool(
       title: "LOGIN PAGE",
       toolWidget: const LoginScreen(),
