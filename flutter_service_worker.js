@@ -18,8 +18,8 @@ const RESOURCES = {"assets/assets/neutral.png": "9b2486d116b4543a6d387a6f6d22f1f
 "assets/packages/flutter_image_compress_web/assets/pica.min.js": "6208ed6419908c4b04382adc8a3053a2",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "89ed8f4e49bcdfc0b5bfc9b24591e347",
 "manifest.json": "e85440f26dfcd75a6b0c1972542c735c",
-"index.html": "b536953a153d10978a2d8ed37e5c4ba0",
-"/": "b536953a153d10978a2d8ed37e5c4ba0",
+"index.html": "a2940cb7bf9dbcfebe5004d7aceeca7f",
+"/": "a2940cb7bf9dbcfebe5004d7aceeca7f",
 "canvaskit/chromium/canvaskit.wasm": "143af6ff368f9cd21c863bfa4274c406",
 "canvaskit/chromium/canvaskit.js": "0ae8bbcc58155679458a0f7a00f66873",
 "canvaskit/skwasm.wasm": "2fc47c0a0c3c7af8542b601634fe9674",
@@ -33,7 +33,7 @@ const RESOURCES = {"assets/assets/neutral.png": "9b2486d116b4543a6d387a6f6d22f1f
 "icons/apple-touch-icon.png": "17b281dea055ce4fafaf5bbfb94df872",
 "icons/Icon-512-maskable.png": "f63c3d5d26ec2a9a24f64e4a699138ac",
 "favicon.ico": "720d31774a8dfe62a52782dc318b718c",
-"main.dart.js": "ca5084918a309ebea5b06718b65c7d76",
+"main.dart.js": "e3a3e10fa9b5b0e2e7974e917a2216e2",
 "flutter.js": "7d69e653079438abfbb24b82a655b0a4",
 "version.json": "034fb9c3c2428c8317033dde4712d236"};
 // The application shell files that are downloaded before a service worker can
