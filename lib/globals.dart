@@ -13,6 +13,7 @@ import 'package:mylabs/games/snake_game.dart';
 import 'package:mylabs/games/tamagotchi_game.dart';
 import 'package:mylabs/toolkit/passwordgen.dart';
 import 'package:mylabs/toolkit/pokertable.dart';
+import 'package:mylabs/toolkit/stats.dart';
 import 'games/flappy_game.dart';
 
 class MiniGame {
@@ -98,6 +99,10 @@ class Tool {
 }
 
 List<Tool> toolkit = [
+    Tool(
+      title: "STATS TABLE & GRAPHS",
+      toolWidget: const StatsPage(),
+      icon: const Icon(Icons.bar_chart, color: Colors.white)),
   Tool(
       title: "GPT INTEGRATION",
       toolWidget: const GptScreen(),

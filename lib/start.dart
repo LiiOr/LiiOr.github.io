@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mylabs/globals.dart';
 import 'dart:js' as js;
@@ -28,20 +26,16 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: toolkit.length,
               itemBuilder: (context, index) {
-                //var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).primaryColor,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      /*gradient: LinearGradient(
+                      gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [
-                          generateCardColor(idColor),
-                          generateCardColor(idColor + 1),
-                        ],
-                      )*/),
+                        colors: [customColors[index], customColors[index + 1]],
+                      )),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -77,21 +71,16 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: packagestests.length,
               itemBuilder: (context, index) {
-                //var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
-                   // border: Border(bottom: BorderSide(color: Colors.black), top: BorderSide(color: Colors.black), left: BorderSide(color: Colors.black), right: BorderSide(color: Colors.black)),
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    /* gradient: LinearGradient(
+                      // border: Border(bottom: BorderSide(color: Colors.black), top: BorderSide(color: Colors.black), left: BorderSide(color: Colors.black), right: BorderSide(color: Colors.black)),
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                      gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [
-                          generateCardColor(idColor),
-                          generateCardColor(idColor + 1),
-                        ],
-                      )*/
-                  ),
+                        colors: [customColors[index], customColors[index + 1]],
+                      )),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -127,20 +116,16 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: favoritelinks.length,
               itemBuilder: (context, index) {
-                //var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).primaryColor,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      /*gradient: LinearGradient(
+                      gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [
-                          generateCardColor(idColor),
-                          generateCardColor(idColor + 1),
-                        ],
-                      )*/),
+                        colors: [customColors[index], customColors[index + 1]],
+                      )),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -172,20 +157,15 @@ class StartScreenState extends State<StartScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: games.length,
               itemBuilder: (context, index) {
-              //  var idColor = Random().nextInt(8);
                 return Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    /*gradient: LinearGradient(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                      gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [
-                          generateCardColor(idColor),
-                          generateCardColor(idColor + 1),
-                        ],
-                      )*/
-                  ),
+                        colors: [customColors[index], customColors[index + 1]],
+                      )),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -223,20 +203,13 @@ class StartScreenState extends State<StartScreen> {
   }
 }
 
-Color generateCardColor(index) {
-  final List<Color> customColors = [
-    Colors.purple,
-    Colors.pink,
-    Colors.indigo,
-    Colors.blue,
-    Colors.cyan,
-    Colors.green,
-    Colors.lime,
-    Colors.orange,
-    Colors.red,
-  ];
-  Color c = isDark
-      ? customColors[index].withOpacity(0.5)
-      : customColors[index].withOpacity(0.8);
-  return c;
-}
+final List<Color> customColors = [
+  Colors.pink,
+  Colors.indigo,
+  Colors.blue,
+  Colors.cyan,
+  Colors.green,
+  Colors.lime,
+  Colors.orange,
+  Colors.red,
+];
