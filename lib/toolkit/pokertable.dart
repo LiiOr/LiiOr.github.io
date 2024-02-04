@@ -77,7 +77,7 @@ class PokerTable extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 22, 22, 22),
         appBar: AppBar(
           title: const Text('P O K E R  T R A I N I N G'),
-          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+          //backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),

@@ -82,7 +82,7 @@ class _ChatbotGameState extends State<ChatbotGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('C H A T B O T'),
-        backgroundColor: Theme.of(context).primaryColor,
+        //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [

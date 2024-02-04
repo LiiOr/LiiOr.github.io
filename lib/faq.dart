@@ -8,7 +8,7 @@ class FAQ extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('F A Q'),
-          backgroundColor: Theme.of(context).primaryColor,
+          //backgroundColor: Theme.of(context).primaryColor,
         ),
         body: const Padding(
           padding: EdgeInsets.all(8.0),

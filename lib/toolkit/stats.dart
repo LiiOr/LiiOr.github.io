@@ -9,7 +9,7 @@ class StatsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('S T A T  T A B L E  &  G R A P H S'),
-        backgroundColor: Theme.of(context).primaryColor,
+        //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [

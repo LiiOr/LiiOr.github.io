@@ -55,7 +55,7 @@ class FilepickerPageState extends State<FilepickerPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('F I L E P I C K E R'),
-        backgroundColor: Theme.of(context).primaryColor,
+        //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
         child: Column(

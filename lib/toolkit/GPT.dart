@@ -80,7 +80,7 @@ class _GptScreenState extends State<GptScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GPT-3 EMBEDDED'),
-        backgroundColor: Theme.of(context).primaryColor,
+        //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [

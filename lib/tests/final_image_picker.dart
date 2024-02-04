@@ -32,7 +32,7 @@ class ImagePickerScreenState extends State<FinalImagePickerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('F I N A L  I M A G E  P I C K E R'),
-        backgroundColor: Theme.of(context).primaryColor,
+        //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
         child: Column(

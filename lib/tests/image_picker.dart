@@ -74,7 +74,7 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('I M A G E  P I C K E R'),
-        backgroundColor: Theme.of(context).primaryColor,
+        //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
         child: Column(
