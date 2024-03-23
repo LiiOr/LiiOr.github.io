@@ -97,6 +97,14 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     );
   }
 
+  /*@override
+  void dispose() {
+    gameLoopTimer?.cancel(); 
+    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    scoreboard.setScore();
+    super.dispose();
+  }*/
+
   @override
   Widget build(BuildContext context) {
     /*return Scaffold(
@@ -133,7 +141,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     );*/
   return Scaffold(appBar: AppBar(
           title: const Text('T I C  T A C  T O E'),
-          backgroundColor: Theme.of(context).primaryColor,
         ),
     body: const Center(child: Text('Coming soon.. :)')));
   }

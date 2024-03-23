@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:minijeux/games/scores.dart';
+import 'package:mylabs/games/scores.dart';
 
 /*class MemoryGame extends StatefulWidget {
   const MemoryGame({super.key});
@@ -295,7 +295,17 @@ class _MemoryGameState extends State<MemoryGame> {
       } else {
         isProcessing = true;
         Timer(const Duration(seconds: 1), () {
-          if (items[previousIndex] != items[index]) {
+          if (items[previousIndex] == items[index]) {
+            setState(() {
+              score++;
+            });
+            if (score > highScore) {
+              highScore = score;
+              var scoreboard =
+                  GameScore(game: 'MEMORY', score: score, highScore: highScore);
+              scoreboard.setScore();
+            }
+          } else {
             setState(() {
               itemsOpened[previousIndex] = false;
               itemsOpened[index] = false;
@@ -310,8 +320,10 @@ class _MemoryGameState extends State<MemoryGame> {
 
   @override
   void dispose() {
-    gameLoopTimer
-        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    gameLoopTimer?.cancel();
+    var scoreboard =
+        GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    scoreboard.setScore();
     super.dispose();
   }
 
@@ -320,7 +332,6 @@ class _MemoryGameState extends State<MemoryGame> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('M E M O R Y'),
-        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [
@@ -354,7 +365,7 @@ class _MemoryGameState extends State<MemoryGame> {
               },
             ),
           ),
-          BottomAppBar(child: GameScore(game: 'MEMORY', score: score, highScore: score))
+          GameScore(game: 'MEMORY', score: score, highScore: score)
         ],
       ),
     );

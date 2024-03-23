@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:minijeux/games/scores.dart';
+import 'package:mylabs/games/scores.dart';
 
 class FlappyGame extends StatefulWidget {
   const FlappyGame({super.key});
@@ -40,6 +40,12 @@ class _FlappyGameState extends State<FlappyGame> {
     setState(() {
       time = 0;
       initialPos = characterY;
+      if (score > highScore) {
+        highScore = score;
+        var scoreboard =
+            GameScore(game: 'FLAPPY', score: score, highScore: highScore);
+        scoreboard.setScore();
+      }
     });
   }
 
@@ -156,6 +162,14 @@ class _FlappyGameState extends State<FlappyGame> {
   }
 
   @override
+  void dispose() {
+    var scoreboard =
+        GameScore(game: 'FLAPPY', score: score, highScore: highScore);
+    scoreboard.setScore();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -168,7 +182,6 @@ class _FlappyGameState extends State<FlappyGame> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('F L A P P Y'),
-          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Column(
           children: <Widget>[
@@ -242,7 +255,7 @@ class _FlappyGameState extends State<FlappyGame> {
                     Colors.brown,
                   ],
                 ))),
-            BottomAppBar(child: GameScore(game: 'FLAPPY', score: score, highScore: highScore)),
+            GameScore(game: 'FLAPPY', score: score, highScore: highScore),
           ],
         ),
       ),
@@ -290,7 +303,6 @@ class MyCharacter extends StatelessWidget {
       required this.characterWidth,
       required this.characterHeight});
 
-  //final characterpos = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -307,299 +319,13 @@ class MyCharacter extends StatelessWidget {
         alignment: Alignment(
             0, (2 * characterY + characterHeight) / (2 - characterHeight)),
         child: Image.asset('assets/skye.png',
-      width: MediaQuery.of(context).size.height * characterWidth / 2,
-      height: MediaQuery.of(context).size.height * 3 / 4 * characterHeight / 2,
-      fit: BoxFit.fill
-      )
-        /*child: Container(
-          color: Colors.pink,
-          width: MediaQuery.of(context).size.height * characterWidth / 2,
-          height:
-              MediaQuery.of(context).size.height * 3 / 4 * characterHeight / 2,
-          child: Text(characterY.toString()),
-        )*/);
-  }
-}
-/*import 'dart:async';
-import 'dart:math';
-import 'package:flutter/material.dart';
-
-class FlappyGame extends StatefulWidget {
-  const FlappyGame({Key? key}) : super(key: key);
-
-  @override
-  _FlappyGameState createState() => _FlappyGameState();
-}
-
-class _FlappyGameState extends State<FlappyGame> {
-  double characterY = 0;
-  double time = 0;
-  bool isJumping = false;
-  bool isGameOver = false;
-  int score = 0;
-  int highScore = 0;
-
-  List<Obstacle> obstacles = [];
-  double obstacleSpacing = 2;
-
-  @override
-  void initState() {
-    super.initState();
-    startGame();
-  }
-
-  void startGame() {
-    setState(() {
-      characterY = 0;
-      time = 0;
-      isJumping = false;
-      isGameOver = false;
-      score = 0;
-      obstacles.clear();
-    });
-
-    Timer.periodic(const Duration(milliseconds: 10), (timer) {
-      if (isGameOver) {
-        timer.cancel();
-        if (score > highScore) {
-          highScore = score;
-        }
-        showLoseDialog();
-        return;
-      }
-
-      moveCharacter();
-      moveObstacles();
-      checkCollisions();
-      updateScore();
-    });
-  }
-
-  void moveCharacter() {
-    setState(() {
-      if (isJumping) {
-        time = 0;
-      }
-      characterY = 1 - 4.9 * time * time + 2.0 * time;
-    });
-  }
-
-  void moveObstacles() {
-    for (int i = 0; i < obstacles.length; i++) {
-      setState(() {
-        obstacles[i].x -= 0.005;
-      });
-      if (obstacles[i].x < -0.2) {
-        obstacles[i] = generateObstacle();
-      }
-    }
-  }
-
-  void jump() {
-    if (!isJumping) {
-      setState(() {
-        isJumping = true;
-        time = 1.2;
-      });
-    }
-  }
-
-  Obstacle generateObstacle() {
-    double topHeight = Random().nextDouble() * 0.6 + 0.1;
-    double bottomHeight = 1 - topHeight - obstacleSpacing;
-    return Obstacle(1.5, topHeight, bottomHeight);
-  }
-
-  void checkCollisions() {
-    for (Obstacle obstacle in obstacles) {
-      if (characterY < obstacle.topHeight ||
-          characterY > 1 - obstacle.bottomHeight) {
-        if (obstacle.x < characterWidth && obstacle.x + barrierWidth > 0) {
-          setState(() {
-            isGameOver = true;
-          });
-          return;
-        }
-      }
-    }
-  }
-
-  void updateScore() {
-    for (Obstacle obstacle in obstacles) {
-      if (obstacle.x + barrierWidth < -characterWidth) {
-        setState(() {
-          score++;
-        });
-      }
-    }
-  }
-
-  void showLoseDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Game Over'),
-          content: Text('Score: $score\nHigh Score: $highScore'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Play Again'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                startGame();
-              },
-            ),
-          ],
+            width: MediaQuery.of(context).size.height * characterWidth / 2,
+            height: MediaQuery.of(context).size.height *
+                3 /
+                4 *
+                characterHeight /
+                2,
+            fit: BoxFit.fill)
         );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (!isGameOver) {
-          jump();
-        } else {
-          startGame();
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flappy Bird'),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Colors.blue,
-                          Colors.white,
-                        ],
-                      ),
-                    ),
-                  ),
-                  AnimatedContainer(
-                    alignment: Alignment(0, characterY),
-                    duration: const Duration(milliseconds: 0),
-                    child: MyCharacter(),
-                  ),
-                  for (Obstacle obstacle in obstacles) ...[
-                    MyBarrier(
-                      x: obstacle.x,
-                      topHeight: obstacle.topHeight,
-                      bottomHeight: obstacle.bottomHeight,
-                    ),
-                  ],
-                ],
-              ),
-            ),
-            Container(
-              height: 15,
-              color: Colors.green,
-            ),
-            Container(
-              height: 30,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [
-                    Colors.black,
-                    Colors.brown,
-                  ],
-                ),
-              ),
-            ),
-            BottomAppBar(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Score: $score'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('High Score: $highScore'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
-
-class MyBarrier extends StatelessWidget {
-  final double x;
-  final double topHeight;
-  final double bottomHeight;
-
-  const MyBarrier({
-    Key? key,
-    required this.x,
-    required this.topHeight,
-    required this.bottomHeight,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment(x, 0),
-      child: Column(
-        children: [
-          Container(
-            color: Colors.green,
-            width: MediaQuery.of(context).size.width * barrierWidth / 2,
-            height:
-                MediaQuery.of(context).size.height * topHeight / 2,
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            color: Colors.green,
-            width: MediaQuery.of(context).size.width * barrierWidth / 2,
-            height:
-                MediaQuery.of(context).size.height * bottomHeight / 2,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MyCharacter extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.height * characterWidth / 2,
-      height: MediaQuery.of(context).size.height * 3 / 4 * characterHeight / 2,
-      color: Colors.blue,
-    );
-  }
-}
-
-class Obstacle {
-  double x;
-  double topHeight;
-  double bottomHeight;
-
-  Obstacle(this.x, this.topHeight, this.bottomHeight);
-}
-
-double characterWidth = 0.1;
-double characterHeight = 0.1;
-double barrierWidth = 0.2;*/

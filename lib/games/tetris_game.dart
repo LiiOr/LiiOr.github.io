@@ -8,11 +8,20 @@ class TetrisGame extends StatefulWidget {
 }
 
 class _TetrisGameState extends State<TetrisGame> {
+
+  
+  /*@override
+  void dispose() {
+    gameLoopTimer?.cancel(); 
+    var scoreboard = GameScore(game: 'MEMORY', score: score, highScore: highScore);
+    scoreboard.setScore();
+    super.dispose();
+  }*/
+
     @override
   Widget build(BuildContext context) {
   return Scaffold(appBar: AppBar(
           title: const Text('T E T R I S'),
-          backgroundColor: Theme.of(context).primaryColor,
         ),
     body: const Center(child: Text('Coming soon.. :)')));
   }

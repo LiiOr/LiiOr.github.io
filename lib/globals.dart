@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/games/scores.dart';
-import 'package:minijeux/toolkit/chatbot.dart';
-import 'package:minijeux/games/colorbook.dart';
-import 'package:minijeux/tests/filepickerpage.dart';
-import 'package:minijeux/tests/image_picker.dart';
-import 'package:minijeux/toolkit/loginpage.dart';
-import 'package:minijeux/games/memory_game.dart';
-import 'package:minijeux/games/pong_game.dart';
-import 'package:minijeux/games/snake_game.dart';
-import 'package:minijeux/games/tamagotchi_game.dart';
-import 'package:minijeux/games/tetris_game.dart';
-import 'package:minijeux/games/tictactoe_game.dart';
+import 'package:mylabs/games/scores.dart';
+import 'package:mylabs/tests/final_image_picker.dart';
+import 'package:mylabs/tests/image_picker_doc.dart';
+import 'package:mylabs/toolkit/GPT.dart';
+import 'package:mylabs/toolkit/chatbot.dart';
+import 'package:mylabs/tests/filepickerpage.dart';
+import 'package:mylabs/tests/image_picker.dart';
+import 'package:mylabs/toolkit/loginpage.dart';
+import 'package:mylabs/games/memory_game.dart';
+import 'package:mylabs/games/pong_game.dart';
+import 'package:mylabs/games/snake_game.dart';
+import 'package:mylabs/games/tamagotchi_game.dart';
+import 'package:mylabs/toolkit/passwordgen.dart';
+import 'package:mylabs/toolkit/pokertable.dart';
+import 'package:mylabs/toolkit/stats.dart';
 import 'games/flappy_game.dart';
 
 class MiniGame {
@@ -27,13 +30,13 @@ List<MiniGame> games = [
       gameWidget: const ColorBook(),
       icon: const Icon(Icons.memory, color: Colors.white)),*/
   MiniGame(
-      title: "MEMORY",
-      gameWidget: const MemoryGame(),
-      icon: const Icon(Icons.memory, color: Colors.white)),
-  MiniGame(
       title: "SNAKE",
       gameWidget: const SnakeGame(),
       icon: const Icon(Icons.turn_right, color: Colors.white)),
+  MiniGame(
+      title: "MEMORY",
+      gameWidget: const MemoryGame(),
+      icon: const Icon(Icons.memory, color: Colors.white)),
   MiniGame(
       title: "PONG",
       gameWidget: const PongGame(),
@@ -42,7 +45,7 @@ List<MiniGame> games = [
       title: "FLAPPY",
       gameWidget: const FlappyGame(),
       icon: const Icon(Icons.flight, color: Colors.white)),
- /* MiniGame(
+  /* MiniGame(
       title: "TIC TAC TOE",
       gameWidget: const TicTacToeGame(),
       icon: const Icon(Icons.close, color: Colors.white)),
@@ -56,7 +59,7 @@ List<MiniGame> games = [
       icon: const Icon(Icons.pets, color: Colors.white)),
   MiniGame(
       title: "SCORE BOARD",
-      gameWidget: ScoreBoardScreen(),
+      gameWidget: const ScoreBoardScreen(),
       icon: const Icon(Icons.scoreboard, color: Colors.white)),
 ];
 
@@ -70,6 +73,10 @@ class PackageTest {
 
 List<PackageTest> packagestests = [
   PackageTest(
+      title: "FINAL TEST",
+      testWidget: const FinalImagePickerScreen(),
+      icon: const Icon(Icons.image, color: Colors.white)),
+  PackageTest(
       title: "IMAGE PICKER",
       testWidget: const ImagePickerScreen(),
       icon: const Icon(Icons.image, color: Colors.white)),
@@ -77,6 +84,10 @@ List<PackageTest> packagestests = [
       title: "FILE PICKER",
       testWidget: const FilepickerPage(),
       icon: const Icon(Icons.file_present, color: Colors.white)),
+  PackageTest(
+      title: "IMAGE PICKER DOC",
+      testWidget: const ImagePickerDocScreen(),
+      icon: const Icon(Icons.image, color: Colors.white)),
 ];
 
 class Tool {
@@ -88,14 +99,30 @@ class Tool {
 }
 
 List<Tool> toolkit = [
+    Tool(
+      title: "STATS TABLE & GRAPHS",
+      toolWidget: const StatsPage(),
+      icon: const Icon(Icons.bar_chart, color: Colors.white)),
   Tool(
-      title: "LOGIN PAGE",
-      toolWidget: const LoginScreen(),
-      icon: const Icon(Icons.login, color: Colors.white)),
+      title: "GPT INTEGRATION",
+      toolWidget: const GptScreen(),
+      icon: const Icon(Icons.bolt, color: Colors.white)),
+  Tool(
+      title: "PWD GENERATOR",
+      toolWidget: const PwdGenScreen(),
+      icon: const Icon(Icons.lock, color: Colors.white)),
   Tool(
       title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
       icon: const Icon(Icons.chat, color: Colors.white)),
+  Tool(
+      title: "POKER TABLE",
+      toolWidget: PokerTable(),
+      icon: const Icon(Icons.money_outlined, color: Colors.white)),
+  Tool(
+      title: "LOGIN PAGE",
+      toolWidget: const LoginScreen(),
+      icon: const Icon(Icons.login, color: Colors.white)),
 ];
 
 class Link {
@@ -124,3 +151,5 @@ List<Link> favoritelinks = [
 double screenWidth = 0.0;
 double screenHeight = 0.0;
 const headingStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
+const scoreStyle =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white);

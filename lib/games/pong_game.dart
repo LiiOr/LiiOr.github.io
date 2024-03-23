@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:minijeux/globals.dart';
-import 'package:minijeux/games/scores.dart';
+import 'package:flutter/services.dart';
+import 'package:mylabs/globals.dart';
+import 'package:mylabs/games/scores.dart';
 
 class PongGame extends StatefulWidget {
   const PongGame({super.key});
@@ -54,6 +55,13 @@ class _PongGameState extends State<PongGame> {
           ballX >= paddleX &&
           ballX <= paddleX + paddleWidth) {
         ballSpeedY = -ballSpeedY;
+        score++;
+        if (score > highScore) {
+          highScore = score;
+          var scoreboard =
+              GameScore(game: 'PONG', score: score, highScore: highScore);
+          scoreboard.setScore();
+        }
       }
     });
   }
@@ -69,10 +77,23 @@ class _PongGameState extends State<PongGame> {
     });
   }
 
+  void movePaddle(double dx) {
+  setState(() {
+    paddleX += dx;
+    if (paddleX < 0) {
+      paddleX = 0;
+    } else if (paddleX > screenWidth - paddleWidth) {
+      paddleX = screenWidth - paddleWidth;
+    }
+  });
+}
+
   @override
   void dispose() {
-    gameLoopTimer
-        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    gameLoopTimer?.cancel();
+    var scoreboard =
+        GameScore(game: 'PONG', score: score, highScore: highScore);
+    scoreboard.setScore();
     super.dispose();
   }
 
@@ -80,40 +101,52 @@ class _PongGameState extends State<PongGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pong Game'),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text('P O N G'),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onHorizontalDragUpdate: onDragUpdate,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: ballX,
-                    top: ballY,
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      color: Colors.yellow,
+      body: RawKeyboardListener(
+        focusNode: FocusNode(),
+      autofocus: true,
+      onKey: (RawKeyEvent event) {
+        if (event is RawKeyDownEvent) {
+          if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
+            movePaddle(10.0);
+          } else if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+            movePaddle(-10.0);
+          }
+        }
+      },
+        child: Column(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onHorizontalDragUpdate: onDragUpdate,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: ballX,
+                      top: ballY,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.yellow,
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    left: paddleX,
-                    top: paddleY,
-                    child: Container(
-                      width: paddleWidth,
-                      height: 20,
-                      color: Colors.pink[700],
+                    Positioned(
+                      left: paddleX,
+                      top: paddleY,
+                      child: Container(
+                        width: paddleWidth,
+                        height: 20,
+                        color: Colors.pink[700],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          BottomAppBar(child: GameScore(game: 'PONG', score: score, highScore: score))
-        ],
+            GameScore(game: 'PONG', score: score, highScore: score)
+          ],
+        ),
       ),
     );
   }

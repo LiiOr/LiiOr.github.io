@@ -1,7 +1,7 @@
-import 'package:minijeux/globals.dart';
+import 'package:mylabs/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:minijeux/splash.dart';
+import 'package:mylabs/splash.dart';
 
 String numVersion =
     const String.fromEnvironment('APP_VERSION', defaultValue: 'DEV');
@@ -62,6 +62,7 @@ class MyAppState extends State<MyApp> {
       title: 'My personal Labs',
       theme: ThemeData(
           useMaterial3: true,
+         // scaffoldBackgroundColor: Colors.transparent,
           brightness: Brightness.light,
           primarySwatch: Colors.pink,
           primaryColor: Colors.pink[800]),

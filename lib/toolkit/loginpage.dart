@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/main.dart';
+import 'package:mylabs/main.dart';
 
 class LoginScreen extends StatefulWidget {
   //final String logoImagePath;
   
   const LoginScreen({
-    Key? key, /*required this.logoImagePath,*/
-  }) : super(key: key);
+    super.key, /*required this.logoImagePath,*/
+  });
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
           title: const Text('SIMPLE LOGIN PAGE'),
-          backgroundColor: Theme.of(context).primaryColor,
+          //backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Center(
             child: Container(

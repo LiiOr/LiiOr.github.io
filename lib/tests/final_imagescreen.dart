@@ -1,11 +1,11 @@
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
-class ImageScreen extends StatelessWidget {
-  final Uint8List image;
+class FinalImageScreen extends StatelessWidget {
+  final XFile image;
 
-  const ImageScreen({super.key, required this.image});
+  const FinalImageScreen({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,7 @@ class ImageScreen extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
           },
-          child: Image.memory(
-            Uint8List.fromList(image),
+          child: Image.network(image.path,
             fit: BoxFit.cover,
           ),
         ),

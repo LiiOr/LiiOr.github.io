@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:minijeux/globals.dart';
+import 'package:mylabs/globals.dart';
 
 class ScoreBoardScreen extends StatefulWidget {
   const ScoreBoardScreen({super.key});
@@ -14,7 +13,7 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
   final LocalStorage storage = LocalStorage('scores');
 
   Future<List<Map<String, dynamic>>> getScoresFromLocalStorage() async {
-    final scores = storage.getItem('scores') ?? <Map<String, dynamic>>[];
+    final List<Map<String, dynamic>> scores = (storage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
     return scores;
   }
 
@@ -23,7 +22,6 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('S C O R E B O A R D'),
-          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: FutureBuilder<List<Map<String, dynamic>>>(
           future: getScoresFromLocalStorage(),
@@ -43,31 +41,34 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
             } else {
               final List<Map<String, dynamic>> scores = snapshot.data!;
               return SingleChildScrollView(
-                child: FittedBox(
-                  child: DataTable(
-                    columns: const <DataColumn>[
-                      DataColumn(
-                        label: Text(
-                          'G A M E',
-                          style: headingStyle,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    DataTable(
+                      columns: const <DataColumn>[
+                        DataColumn(
+                          label: Text(
+                            'G A M E',
+                            style: headingStyle,
+                          ),
                         ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          'B E S T  S C O R E',
-                          style: headingStyle,
-                        ),
-                      )
-                    ],
-                    rows: scores.map((score) {
-                      return DataRow(
-                        cells: <DataCell>[
-                          DataCell(Text(score['game'])),
-                          DataCell(Text(score['highScore']))
-                        ],
-                      );
-                    }).toList(),
-                  ),
+                        DataColumn(
+                          label: Text(
+                            'B E S T  S C O R E',
+                            style: headingStyle,
+                          ),
+                        )
+                      ],
+                      rows: scores.map((score) {
+                        return DataRow(
+                          cells: <DataCell>[
+                            DataCell(Text(score['game'])),
+                            DataCell(Text(score['best'].toString()))
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
               );
             }
@@ -88,30 +89,57 @@ class GameScore extends StatelessWidget {
   final int highScore;
 
   setScore() async {
-    final currentscores = storage.getItem('scores') ?? <Map<String, dynamic>>[];
-    var nouvScore = {
-      'game': game.toString(),
-      'score': score.toString(),
-      'highScore': highScore.toString()
-    };
-    currentscores.add(nouvScore);
-    storage.setItem('scores', currentscores);
+    final List<Map<String, dynamic>> currentScores =
+        (storage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ??
+            [];
+    final index =
+        currentScores.indexWhere((element) => element['game'] == game);
+    if (index != -1) {
+      if (highScore > currentScores[index]['best']) {
+        currentScores[index]['best'] = highScore;
+      }
+    } else {
+      currentScores.add({'game': game, 'best': highScore});
+    }
+    storage.setItem('scores', currentScores);
+  }
+
+  Future<int> getBestScore() async {
+    final List<Map<String, dynamic>> currentScores = (storage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
+
+    final index = currentScores.indexWhere((element) => element['game'] == game);
+
+    if (index != -1) {
+      return int.parse(currentScores[index]['best'].toString());
+    } else {
+      return 0; // Default value if no score is found
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return BottomAppBar(
+      height: 70,
+      color: Theme.of(context).primaryColor,
+      child: SizedBox(
         width: screenWidth,
-        padding: const EdgeInsets.all(10.0),
-        color: Theme.of(context).primaryColorDark,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text('S C O R E : ${score.toString()}',
-                textAlign: TextAlign.center, style: headingStyle),
-            Text('B E S T : ${highScore.toString()}',
-                textAlign: TextAlign.center, style: headingStyle),
-          ],
-        ));
+        child: FutureBuilder<int>(
+          future: getBestScore(),
+          builder: (context, snapshot) {
+            final bestScore = snapshot.data ?? 0;
+
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text('S C O R E : ${score.toString()}',
+                    textAlign: TextAlign.center, style: scoreStyle),
+                Text('B E S T : ${bestScore.toString()}',
+                    textAlign: TextAlign.center, style: scoreStyle),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }

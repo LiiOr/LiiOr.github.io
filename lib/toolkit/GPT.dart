@@ -1,55 +1,21 @@
-import 'dart:math';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-class ChatbotGame extends StatefulWidget {
-  const ChatbotGame({super.key});
+class GptScreen extends StatefulWidget {
+  const GptScreen({super.key});
 
   @override
-  State<ChatbotGame> createState() => _ChatbotGameState();
+  State<GptScreen> createState() => _GptScreenState();
 }
 
-class _ChatbotGameState extends State<ChatbotGame> {
+class _GptScreenState extends State<GptScreen> {
   TextEditingController userInputController = TextEditingController();
   final AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
   bool isTyping = false;
 
-  List<List<String>> q = [
-    ["Hey", "Hi", "Hello", "Bonjour", "Salut", "Coucou", "Plop"],
-    ["Ca va?", "Comment va?"],
-    ["Qui es tu?"]
-  ];
-  List<List<String>> a = [
-    ["Hi bro", "Oh, hey !", "Helloooo :)", "Salut !", "Plop", "Salut", "Coucou"],
-    ["Très bien, merci. Et toi??", "Super et toi?"],
-    ["Je suis un (modeste) chatbot."]
-  ];
-  List<String> alternatives = [
-    "Doucement, doucement ! Je ne suis qu'un bot !",
-    "Hein, quoi ??",
-    "Eh, mais tu m'as pris pour CHAT GPT ou quoi ?",
-    "Aîe... ma tête..",
-  ];
-
   List<Map<String, String>> conversation = [];
-
-  readAndAnswer(value, sender) async {
-    await typingEffect(); // Attendre que typingEffect soit terminé
-    bool found = false;
-    for (int i = 0; i < q.length; i++) {
-      for (int j = 0; j < q[i].length; j++) {
-        if (value.toString().toLowerCase() == q[i][j].toLowerCase()) {
-          addToChat(a[i][j], 'bot');
-          found = true;
-          break;
-        }
-      }
-    }
-    if (!found) {
-      addToChat(alternatives[Random().nextInt(alternatives.length)], 'bot');
-    }
-  }
 
   typingEffect() async {
     await Future.delayed(const Duration(milliseconds: 2000));
@@ -57,19 +23,51 @@ class _ChatbotGameState extends State<ChatbotGame> {
       isTyping = true;
     });
     await Future.delayed(const Duration(milliseconds: 3000));
-      isTyping = false;
+    isTyping = false;
   }
 
   addToChat(value, sender) {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        conversation.add({'message': value, 'sender': sender});
         userInputController.clear();
       });
       if (sender == 'user') {
-        readAndAnswer(value, sender);
+        getChatGptResponse(value);
       }
+      conversation.add({'message': value, 'sender': sender});
     }
+  }
+
+  Future getChatGptResponse(String userMessage) async {
+    const apiKey = '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';
+    const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $apiKey',
+    };
+
+    final requestBody = {
+      "model": "gpt-3.5-turbo",
+      "messages": [{"role": "user", "content": userMessage}]
+    };
+
+    final response = await http.post(Uri.parse(endpoint),
+        headers: headers, body: json.encode(requestBody));
+
+    if (response.statusCode == 200) {
+      final responseData = json.decode(response.body);
+      return responseData['choices'][0]['text'];
+    } else if (context.mounted) {
+      final errorResponse = json.decode(response.body);
+      return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to fetch response from ChatGPT : ${errorResponse['error']['message'].toString()}'),
+          duration: const Duration(seconds: 5),
+        ),
+      );
+    } else {
+      throw Exception('Failed to fetch response from ChatGPT');}
   }
 
   @override
@@ -81,7 +79,7 @@ class _ChatbotGameState extends State<ChatbotGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('C H A T B O T'),
+        title: const Text('GPT-3 EMBEDDED'),
         //backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
@@ -118,7 +116,14 @@ class _ChatbotGameState extends State<ChatbotGame> {
                     },
                   ),
                   isTyping
-                      ? Container(color: const Color.fromARGB(255, 66, 66, 66), height: 40, child: const Center(child: Text('[ Bot is currently typing... ]', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold))))
+                      ? Container(
+                          color: const Color.fromARGB(255, 66, 66, 66),
+                          height: 40,
+                          child: const Center(
+                              child: Text('[ Bot is currently typing... ]',
+                                  textAlign: TextAlign.center,
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold))))
                       : Container(),
                   Container(
                     margin: const EdgeInsets.all(8.0),
@@ -144,8 +149,16 @@ class _ChatbotGameState extends State<ChatbotGame> {
                             child: TextFormField(
                               autofocus: true,
                               controller: userInputController,
-                              onFieldSubmitted: (value) {
+                              onFieldSubmitted: (value) async {
                                 addToChat(value, 'user');
+                                // Send user message to ChatGPT API
+                                final userMessage = userInputController.text;
+                                //final response = await getChatGptResponse(userMessage);
+
+                                setState(() {
+                                  //_chatGptResponse = response;
+                                  userInputController.clear();
+                                });
                               },
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
@@ -155,8 +168,16 @@ class _ChatbotGameState extends State<ChatbotGame> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {
+                          onTap: () async {
                             addToChat(userInputController.text, 'user');
+                            // Send user message to ChatGPT API
+                            final userMessage = userInputController.text;
+                            //final response = await getChatGptResponse(userMessage);
+
+                            setState(() {
+                              //_chatGptResponse = response;
+                              userInputController.clear();
+                            });
                           },
                           child: Icon(
                             Icons.send,

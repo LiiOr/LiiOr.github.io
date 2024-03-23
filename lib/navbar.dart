@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:minijeux/commits.dart';
-import 'package:minijeux/main.dart';
-import 'package:minijeux/settings.dart';
-import 'package:minijeux/start.dart';
+import 'package:mylabs/commits.dart';
+import 'package:mylabs/main.dart';
+import 'package:mylabs/settings.dart';
+import 'package:mylabs/start.dart';
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});

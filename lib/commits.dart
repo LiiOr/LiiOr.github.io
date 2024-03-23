@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:minijeux/globals.dart';
-import 'package:minijeux/main.dart';
+import 'package:mylabs/globals.dart';
+import 'package:mylabs/main.dart';
 
 class CommitInfo {
   final String date;
@@ -49,33 +49,40 @@ class _GitCommitsPageState extends State<GitCommitsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 15.0, bottom: 5.0),
-            child: Text('L A T E S T  C O M M I T S', style: headingStyle),
-          ),
-          const Divider(),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: commits.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(commits[index].message),
-                  subtitle: Text(commits[index].date),
-                );
-              },
+    return /*Container(
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.purple, Colors.pink])),
+      child: */Scaffold(
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 15.0, bottom: 5.0),
+              child: Text('L A T E S T  C O M M I T S', style: headingStyle),
             ),
-          ),
-          const SizedBox(height: 10),
-          Center(
-              child: Text('Version $numVersion',
-                  style: const TextStyle(fontSize: 12))),
-          const SizedBox(height: 10),
-        ],
-      ),
+            const Divider(),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: commits.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(commits[index].message),
+                    subtitle: Text(commits[index].date),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
+            Center(
+                child: Text('Version $numVersion',
+                    style: const TextStyle(fontSize: 12))),
+            const SizedBox(height: 10),
+          ],
+        ),
+      /*),*/
     );
   }
 }
