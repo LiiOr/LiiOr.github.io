@@ -5,7 +5,6 @@ class FAQ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         appBar: AppBar(
           title: const Text('F A Q'),
