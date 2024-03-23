@@ -7242,6 +7242,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 flutter_image_compress
 flutter_image_compress_common
 flutter_image_compress_macos
+flutter_image_compress_ohos
 flutter_image_compress_platform_interface
 flutter_image_compress_web
 
