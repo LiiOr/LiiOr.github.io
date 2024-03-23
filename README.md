@@ -14,7 +14,7 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Tool kit : infiniteScroll, carousel d'images, 
 - Creuser le sujet des BloC Pattern, les websockets...
 - IA conversationnelle discord en dart ?
-- UI copy - travailler light mode
+- Fake Apps UI - travailler light mode
 - Tests unitaires / integration
 - Drag and drop
 

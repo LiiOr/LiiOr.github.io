@@ -29,7 +29,7 @@ jobs:
       - run: flutter build web --dart-define=APP_VERSION=${{github.ref_name}}
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.5.0 #todo changer pr action offi gh
+        uses: JamesIves/github-pages-deploy-action@v4.5.0 #todo changer pr action offi gh
         with:
           branch: gh-pages
           folder: build/web
