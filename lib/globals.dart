@@ -100,7 +100,7 @@ class Tool {
 
 List<Tool> toolkit = [
     Tool(
-      title: "STATS TABLE & GRAPHS",
+      title: "STATS",
       toolWidget: const StatsPage(),
       icon: const Icon(Icons.bar_chart, color: Colors.white)),
   Tool(
