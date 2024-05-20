@@ -112,7 +112,7 @@ class _SnakeGameState extends State<SnakeGame> {
     }
   }
 
-  void _handleKeyEvent(RawKeyEvent event) {
+  void _handleKeyEvent(KeyEvent event) {
     if (event.runtimeType.toString() == 'RawKeyDownEvent') {
       if (event.logicalKey == LogicalKeyboardKey.arrowUp &&
           direction != Direction.down) {
@@ -136,9 +136,9 @@ class _SnakeGameState extends State<SnakeGame> {
       appBar: AppBar(
         title: const Text('S N A K E'),
       ),
-      body: RawKeyboardListener(
+      body: KeyboardListener (
         focusNode: _focusNode,
-        onKey: _handleKeyEvent,
+        onKeyEvent: _handleKeyEvent,
         autofocus: true,
         child: Column(
           children: [

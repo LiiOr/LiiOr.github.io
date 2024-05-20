@@ -103,11 +103,11 @@ class _PongGameState extends State<PongGame> {
       appBar: AppBar(
         title: const Text('P O N G'),
       ),
-      body: RawKeyboardListener(
+      body: KeyboardListener(
         focusNode: FocusNode(),
       autofocus: true,
-      onKey: (RawKeyEvent event) {
-        if (event is RawKeyDownEvent) {
+      onKeyEvent: (KeyEvent event) {
+        if (event is KeyDownEvent) {
           if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
             movePaddle(10.0);
           } else if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
