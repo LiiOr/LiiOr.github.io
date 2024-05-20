@@ -10,10 +10,9 @@ class ScoreBoardScreen extends StatefulWidget {
 }
 
 class ScoreBoardScreenState extends State<ScoreBoardScreen> {
-  final LocalStorage storage = LocalStorage('scores');
 
   Future<List<Map<String, dynamic>>> getScoresFromLocalStorage() async {
-    final List<Map<String, dynamic>> scores = (storage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
+    final List<Map<String, dynamic>> scores = (localStorage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
     return scores;
   }
 
@@ -78,7 +77,6 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
 }
 
 class GameScore extends StatelessWidget {
-  final LocalStorage storage = LocalStorage('scores');
   GameScore(
       {super.key,
       required this.game,
@@ -90,7 +88,7 @@ class GameScore extends StatelessWidget {
 
   setScore() async {
     final List<Map<String, dynamic>> currentScores =
-        (storage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ??
+        (localStorage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ??
             [];
     final index =
         currentScores.indexWhere((element) => element['game'] == game);
@@ -101,11 +99,11 @@ class GameScore extends StatelessWidget {
     } else {
       currentScores.add({'game': game, 'best': highScore});
     }
-    storage.setItem('scores', currentScores);
+    localStorage.setItem('scores', currentScores as String);
   }
 
   Future<int> getBestScore() async {
-    final List<Map<String, dynamic>> currentScores = (storage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
+    final List<Map<String, dynamic>> currentScores = (localStorage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
 
     final index = currentScores.indexWhere((element) => element['game'] == game);
 
