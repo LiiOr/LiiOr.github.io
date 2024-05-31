@@ -33,9 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 10),
             Text('Version $numVersion', style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 45),
-            const Padding(
-              padding: EdgeInsets.all(8),
-              child: CircularProgressIndicator(color: Colors.pink),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: CircularProgressIndicator(color: pickedThemeColor),
             )
           ],
         ),

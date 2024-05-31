@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
+import 'package:mylabs/main.dart';
 
 class ColorBook extends StatefulWidget {
   const ColorBook({super.key});
@@ -57,8 +58,8 @@ class _ColorBookState extends State<ColorBook> {
               },
               child: Image.memory(Uint8List.fromList(img.encodePng(coloredImage!))),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
+          : Center(
+              child: CircularProgressIndicator(color: pickedThemeColor),
             ),
     );
   }

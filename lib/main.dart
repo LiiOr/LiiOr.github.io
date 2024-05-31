@@ -6,6 +6,7 @@ import 'package:mylabs/splash.dart';
 String numVersion =
     const String.fromEnvironment('APP_VERSION', defaultValue: 'DEV');
 bool isDark = true;
+Color pickedThemeColor = Colors.purple;
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,7 @@ class MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     checkThemeMode();
+    checkThemeColor();
   }
 
   Future<void> checkThemeMode() async {
@@ -37,9 +39,20 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+  Future<void> checkThemeColor() async {
+    final prefs = await SharedPreferences.getInstance();
+    pickedThemeColor = Color(prefs.getInt('themeColor') ?? 0xFF000000);
+  }
+
   void changeTheme(ThemeMode themeMode) {
     setState(() {
       _themeMode = themeMode;
+    });
+  }
+
+  void changeThemeColor(Color color) {
+    setState(() {
+      pickedThemeColor = color;
     });
   }
 
@@ -64,13 +77,11 @@ class MyAppState extends State<MyApp> {
           useMaterial3: true,
          // scaffoldBackgroundColor: Colors.transparent,
           brightness: Brightness.light,
-          primarySwatch: Colors.pink,
-          primaryColor: Colors.pink[800]),
+          colorSchemeSeed: pickedThemeColor),
       darkTheme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-          primarySwatch: Colors.grey,
-          primaryColor: Colors.black),
+          colorSchemeSeed: pickedThemeColor),
       themeMode: _themeMode,
       home: const SplashScreen(),
     );

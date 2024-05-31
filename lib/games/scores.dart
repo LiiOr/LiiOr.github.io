@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mylabs/globals.dart';
+import 'package:mylabs/main.dart';
 
 class ScoreBoardScreen extends StatefulWidget {
   const ScoreBoardScreen({super.key});
@@ -26,9 +27,9 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
           future: getScoresFromLocalStorage(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
+              return Center(
                   child:
-                      CircularProgressIndicator()); // Affichez un indicateur de chargement en attendant les données.
+                      CircularProgressIndicator(color: pickedThemeColor)); // Affichez un indicateur de chargement en attendant les données.
             } else if (snapshot.hasError) {
               return Center(
                   child: Text(
