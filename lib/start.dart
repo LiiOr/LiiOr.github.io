@@ -28,14 +28,9 @@ class StartScreenState extends State<StartScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [customColors[index], customColors[index + 1]],
-                      )),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    border: Border.all(color: pickedThemeColor),
+                  ),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -46,16 +41,15 @@ class StartScreenState extends State<StartScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    toolkit[index].toolWidget,
+                                builder: (BuildContext context) => toolkit[index].toolWidget,
                               ));
                         },
                       ),
                       Text(toolkit[index].title,
                           style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white))
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ))
                     ],
                   ),
                 );
@@ -73,14 +67,9 @@ class StartScreenState extends State<StartScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                      // border: Border(bottom: BorderSide(color: Colors.black), top: BorderSide(color: Colors.black), left: BorderSide(color: Colors.black), right: BorderSide(color: Colors.black)),
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [customColors[index], customColors[index + 1]],
-                      )),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    border: Border.all(color: pickedThemeColor),
+                  ),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -91,16 +80,15 @@ class StartScreenState extends State<StartScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    packagestests[index].testWidget,
+                                builder: (BuildContext context) => packagestests[index].testWidget,
                               ));
                         },
                       ),
                       Text(packagestests[index].title,
                           style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white))
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ))
                     ],
                   ),
                 );
@@ -118,14 +106,9 @@ class StartScreenState extends State<StartScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [customColors[index], customColors[index + 1]],
-                      )),
+                    border: Border.all(color: pickedThemeColor),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  ),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -133,15 +116,14 @@ class StartScreenState extends State<StartScreen> {
                       ListTile(
                         title: favoritelinks[index].icon,
                         onTap: () {
-                          js.context
-                              .callMethod('open', [favoritelinks[index].link]);
+                          js.context.callMethod('open', [favoritelinks[index].link]);
                         },
                       ),
                       Text(favoritelinks[index].title,
                           style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white))
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ))
                     ],
                   ),
                 );
@@ -159,13 +141,9 @@ class StartScreenState extends State<StartScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [customColors[index], customColors[index + 1]],
-                      )),
+                    border: Border.all(color: pickedThemeColor),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  ),
                   width: 130,
                   margin: const EdgeInsets.all(8),
                   child: Column(
@@ -176,16 +154,15 @@ class StartScreenState extends State<StartScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    games[index].gameWidget,
+                                builder: (BuildContext context) => games[index].gameWidget,
                               ));
                         },
                       ),
                       Text(games[index].title,
                           style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white))
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ))
                     ],
                   ),
                 );
@@ -193,23 +170,10 @@ class StartScreenState extends State<StartScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          Center(
-              child: Text('Version $numVersion',
-                  style: const TextStyle(fontSize: 12))),
+          Center(child: Text('Version $numVersion', style: const TextStyle(fontSize: 12))),
           const SizedBox(height: 10),
         ],
       ),
     );
   }
 }
-
-final List<Color> customColors = [
-  Colors.pink,
-  Colors.indigo,
-  Colors.blue,
-  Colors.cyan,
-  Colors.green,
-  Colors.lime,
-  Colors.orange,
-  Colors.red,
-];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylabs/games/scores.dart';
+import 'package:mylabs/main.dart';
 import 'package:mylabs/tests/final_image_picker.dart';
 import 'package:mylabs/tests/image_picker_doc.dart';
 import 'package:mylabs/toolkit/GPT.dart';
@@ -12,6 +13,7 @@ import 'package:mylabs/games/pong_game.dart';
 import 'package:mylabs/games/snake_game.dart';
 import 'package:mylabs/games/tamagotchi_game.dart';
 import 'package:mylabs/toolkit/passwordgen.dart';
+import 'package:mylabs/toolkit/plants.dart';
 import 'package:mylabs/toolkit/pokertable.dart';
 import 'package:mylabs/toolkit/stats.dart';
 import 'games/flappy_game.dart';
@@ -28,39 +30,39 @@ List<MiniGame> games = [
   /*MiniGame(
       title: "COLOR BOOK",
       gameWidget: const ColorBook(),
-      icon: const Icon(Icons.memory, color: Colors.white)),*/
+      icon: Icon(Icons.memory, color: pickedThemeColor)),*/
   MiniGame(
       title: "SNAKE",
       gameWidget: const SnakeGame(),
-      icon: const Icon(Icons.turn_right, color: Colors.white)),
+      icon: Icon(Icons.turn_right, color: pickedThemeColor)),
   MiniGame(
       title: "MEMORY",
       gameWidget: const MemoryGame(),
-      icon: const Icon(Icons.memory, color: Colors.white)),
+      icon: Icon(Icons.memory, color: pickedThemeColor)),
   MiniGame(
       title: "PONG",
       gameWidget: const PongGame(),
-      icon: const Icon(Icons.sports_tennis, color: Colors.white)),
+      icon: Icon(Icons.sports_tennis, color: pickedThemeColor)),
   MiniGame(
       title: "FLAPPY",
       gameWidget: const FlappyGame(),
-      icon: const Icon(Icons.flight, color: Colors.white)),
+      icon: Icon(Icons.flight, color: pickedThemeColor)),
   /* MiniGame(
       title: "TIC TAC TOE",
       gameWidget: const TicTacToeGame(),
-      icon: const Icon(Icons.close, color: Colors.white)),
+      icon: Icon(Icons.close, color: pickedThemeColor)),
   MiniGame(
       title: "TETRIS",
       gameWidget: const TetrisGame(),
-      icon: const Icon(Icons.sort, color: Colors.white)),*/
+      icon: Icon(Icons.sort, color: pickedThemeColor)),*/
   MiniGame(
       title: "TAMAGOTCHI",
       gameWidget: const TamagotchiGame(),
-      icon: const Icon(Icons.pets, color: Colors.white)),
+      icon: Icon(Icons.pets, color: pickedThemeColor)),
   MiniGame(
       title: "SCORE BOARD",
       gameWidget: const ScoreBoardScreen(),
-      icon: const Icon(Icons.scoreboard, color: Colors.white)),
+      icon: Icon(Icons.scoreboard, color: pickedThemeColor)),
 ];
 
 class PackageTest {
@@ -75,19 +77,19 @@ List<PackageTest> packagestests = [
   PackageTest(
       title: "FINAL TEST",
       testWidget: const FinalImagePickerScreen(),
-      icon: const Icon(Icons.image, color: Colors.white)),
+      icon: Icon(Icons.image, color: pickedThemeColor)),
   PackageTest(
       title: "IMAGE PICKER",
       testWidget: const ImagePickerScreen(),
-      icon: const Icon(Icons.image, color: Colors.white)),
+      icon: Icon(Icons.image, color: pickedThemeColor)),
   PackageTest(
       title: "FILE PICKER",
       testWidget: const FilepickerPage(),
-      icon: const Icon(Icons.file_present, color: Colors.white)),
+      icon: Icon(Icons.file_present, color: pickedThemeColor)),
   PackageTest(
       title: "IMAGE PICKER DOC",
       testWidget: const ImagePickerDocScreen(),
-      icon: const Icon(Icons.image, color: Colors.white)),
+      icon: Icon(Icons.image, color: pickedThemeColor)),
 ];
 
 class Tool {
@@ -99,30 +101,34 @@ class Tool {
 }
 
 List<Tool> toolkit = [
+   Tool(
+      title: "PLANTS RECOGNITION",
+      toolWidget: const PlantScreen(),
+      icon: Icon(Icons.camera, color: pickedThemeColor)),
     Tool(
       title: "STATS",
       toolWidget: const StatsPage(),
-      icon: const Icon(Icons.bar_chart, color: Colors.white)),
+      icon: Icon(Icons.bar_chart, color: pickedThemeColor)),
   Tool(
       title: "GPT INTEGRATION",
       toolWidget: const GptScreen(),
-      icon: const Icon(Icons.bolt, color: Colors.white)),
+      icon: Icon(Icons.bolt, color: pickedThemeColor)),
   Tool(
       title: "PWD GENERATOR",
       toolWidget: const PwdGenScreen(),
-      icon: const Icon(Icons.lock, color: Colors.white)),
+      icon: Icon(Icons.lock, color: pickedThemeColor)),
   Tool(
       title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
-      icon: const Icon(Icons.chat, color: Colors.white)),
+      icon: Icon(Icons.chat, color: pickedThemeColor)),
   Tool(
       title: "POKER TABLE",
       toolWidget: PokerTable(),
-      icon: const Icon(Icons.money_outlined, color: Colors.white)),
+      icon: Icon(Icons.money_outlined, color: pickedThemeColor)),
   Tool(
       title: "LOGIN PAGE",
       toolWidget: const LoginScreen(),
-      icon: const Icon(Icons.login, color: Colors.white)),
+      icon: Icon(Icons.login, color: pickedThemeColor)),
 ];
 
 class Link {
@@ -137,15 +143,15 @@ List<Link> favoritelinks = [
   Link(
       title: "APP ICON GENERATOR",
       link: "https://icon.kitchen",
-      icon: const Icon(Icons.draw, color: Colors.white)),
+      icon: Icon(Icons.draw, color: pickedThemeColor)),
   Link(
       title: "HUMAAANS",
       link: "https://blush.design/",
-      icon: const Icon(Icons.emoji_people, color: Colors.white)),
+      icon: Icon(Icons.emoji_people, color: pickedThemeColor)),
   Link(
       title: "HUGGING FACE",
       link: "https://huggingface.co/",
-      icon: const Icon(Icons.computer, color: Colors.white)),
+      icon: Icon(Icons.computer, color: pickedThemeColor)),
 ];
 
 double screenWidth = 0.0;
