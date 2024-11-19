@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mylabs/faq.dart';
 import 'package:mylabs/globals.dart';
@@ -52,6 +54,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     children: <Widget>[
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.pink),
+                        trailing: pickedThemeColor.value == Colors.pink.value ? const Icon(Icons.check) : null,
                         title: const Text('Pink'),
                         onTap: () {
                           setState(() {
@@ -62,6 +65,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.blue),
+                        trailing: pickedThemeColor.value == Colors.blue.value ? const Icon(Icons.check) : null,
                         title: const Text('Blue'),
                         onTap: () {
                           setState(() {
@@ -73,6 +77,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ListTile(
                         title: const Text('Green'),
                         leading: Container(width: 20, height: 20, color: Colors.green),
+                        trailing: pickedThemeColor.value == Colors.green.value ? const Icon(Icons.check) : null,
                         onTap: () {
                           setState(() {
                             themeColor = Colors.green;
@@ -82,6 +87,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.yellow),
+                        trailing: pickedThemeColor.value == Colors.yellow.value ? const Icon(Icons.check) : null,
                         title: const Text('Yellow'),
                         onTap: () {
                           setState(() {
@@ -92,6 +98,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.red),
+                        trailing: pickedThemeColor.value == Colors.red.value ? const Icon(Icons.check) : null,
                         title: const Text('Red'),
                         onTap: () {
                           setState(() {
@@ -102,6 +109,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.purple),
+                        trailing: pickedThemeColor.value == Colors.purple.value ? const Icon(Icons.check) : null,
                         title: const Text('Purple'),
                         onTap: () {
                           setState(() {
@@ -112,6 +120,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.orange),
+                        trailing: pickedThemeColor.value == Colors.orange.value ? const Icon(Icons.check) : null,
                         title: const Text('Orange'),
                         onTap: () {
                           setState(() {
@@ -122,6 +131,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.brown),
+                        trailing: pickedThemeColor.value == Colors.brown.value ? const Icon(Icons.check) : null,
                         title: const Text('Brown'),
                         onTap: () {
                           setState(() {
@@ -132,6 +142,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       ListTile(
                         leading: Container(width: 20, height: 20, color: Colors.grey),
+                        trailing: pickedThemeColor.value == Colors.grey.value ? const Icon(Icons.check) : null,
                         title: const Text('Grey'),
                         onTap: () {
                           setState(() {
