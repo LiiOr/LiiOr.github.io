@@ -19,6 +19,7 @@ Simple projet un peu 'fourre-tout' pour apprendre / améliorer mes connaissances
 - Drag and drop
 
 ### Stuff to fix
+- La couleur sélectionnée ne change pas immédiatement celle des icones de la page Labs ... ?
 - Bug Chatbot : Quand user écrit trop vite, seul son dernier message est pris en compte
 - Fix pb collisions sur flappygame & pong
 - Gestion du scoreboard (affichage depuis scores stockés ds l'appareil)

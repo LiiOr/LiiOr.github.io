@@ -34,35 +34,35 @@ List<MiniGame> games = [
   MiniGame(
       title: "SNAKE",
       gameWidget: const SnakeGame(),
-      icon: Icon(Icons.turn_right, color: pickedThemeColor)),
+      icon: const Icon(Icons.turn_right)),
   MiniGame(
       title: "MEMORY",
       gameWidget: const MemoryGame(),
-      icon: Icon(Icons.memory, color: pickedThemeColor)),
+      icon: const Icon(Icons.memory)),
   MiniGame(
       title: "PONG",
       gameWidget: const PongGame(),
-      icon: Icon(Icons.sports_tennis, color: pickedThemeColor)),
+      icon: const Icon(Icons.sports_tennis)),
   MiniGame(
       title: "FLAPPY",
       gameWidget: const FlappyGame(),
-      icon: Icon(Icons.flight, color: pickedThemeColor)),
+      icon: const Icon(Icons.flight)),
   /* MiniGame(
       title: "TIC TAC TOE",
       gameWidget: const TicTacToeGame(),
-      icon: Icon(Icons.close, color: pickedThemeColor)),
+      icon: Icon(Icons.close)),
   MiniGame(
       title: "TETRIS",
       gameWidget: const TetrisGame(),
-      icon: Icon(Icons.sort, color: pickedThemeColor)),*/
+      icon: Icon(Icons.sort)),*/
   MiniGame(
       title: "TAMAGOTCHI",
       gameWidget: const TamagotchiGame(),
-      icon: Icon(Icons.pets, color: pickedThemeColor)),
+      icon: const Icon(Icons.pets)),
   MiniGame(
       title: "SCORE BOARD",
       gameWidget: const ScoreBoardScreen(),
-      icon: Icon(Icons.scoreboard, color: pickedThemeColor)),
+      icon: const Icon(Icons.scoreboard)),
 ];
 
 class PackageTest {
@@ -77,19 +77,19 @@ List<PackageTest> packagestests = [
   PackageTest(
       title: "FINAL TEST",
       testWidget: const FinalImagePickerScreen(),
-      icon: Icon(Icons.image, color: pickedThemeColor)),
+      icon: const Icon(Icons.image)),
   PackageTest(
       title: "IMAGE PICKER",
       testWidget: const ImagePickerScreen(),
-      icon: Icon(Icons.image, color: pickedThemeColor)),
+      icon: const Icon(Icons.image)),
   PackageTest(
       title: "FILE PICKER",
       testWidget: const FilepickerPage(),
-      icon: Icon(Icons.file_present, color: pickedThemeColor)),
+      icon: const Icon(Icons.file_present)),
   PackageTest(
       title: "IMAGE PICKER DOC",
       testWidget: const ImagePickerDocScreen(),
-      icon: Icon(Icons.image, color: pickedThemeColor)),
+      icon: const Icon(Icons.image)),
 ];
 
 class Tool {
@@ -104,31 +104,31 @@ List<Tool> toolkit = [
    Tool(
       title: "PLANTS RECOGNITION",
       toolWidget: const PlantScreen(),
-      icon: Icon(Icons.camera, color: pickedThemeColor)),
+      icon: const Icon(Icons.camera)),
     Tool(
       title: "STATS",
       toolWidget: const StatsPage(),
-      icon: Icon(Icons.bar_chart, color: pickedThemeColor)),
+      icon: const Icon(Icons.bar_chart)),
   Tool(
       title: "GPT INTEGRATION",
       toolWidget: const GptScreen(),
-      icon: Icon(Icons.bolt, color: pickedThemeColor)),
+      icon: const Icon(Icons.bolt)),
   Tool(
       title: "PWD GENERATOR",
       toolWidget: const PwdGenScreen(),
-      icon: Icon(Icons.lock, color: pickedThemeColor)),
+      icon: const Icon(Icons.lock)),
   Tool(
       title: "CHAT BOT",
       toolWidget: const ChatbotGame(),
-      icon: Icon(Icons.chat, color: pickedThemeColor)),
+      icon: const Icon(Icons.chat)),
   Tool(
       title: "POKER TABLE",
       toolWidget: PokerTable(),
-      icon: Icon(Icons.money_outlined, color: pickedThemeColor)),
+      icon: const Icon(Icons.money_outlined)),
   Tool(
       title: "LOGIN PAGE",
       toolWidget: const LoginScreen(),
-      icon: Icon(Icons.login, color: pickedThemeColor)),
+      icon: const Icon(Icons.login)),
 ];
 
 class Link {
@@ -143,15 +143,15 @@ List<Link> favoritelinks = [
   Link(
       title: "APP ICON GENERATOR",
       link: "https://icon.kitchen",
-      icon: Icon(Icons.draw, color: pickedThemeColor)),
+      icon: const Icon(Icons.draw)),
   Link(
       title: "HUMAAANS",
       link: "https://blush.design/",
-      icon: Icon(Icons.emoji_people, color: pickedThemeColor)),
+      icon: const Icon(Icons.emoji_people)),
   Link(
       title: "HUGGING FACE",
       link: "https://huggingface.co/",
-      icon: Icon(Icons.computer, color: pickedThemeColor)),
+      icon: const Icon(Icons.computer)),
 ];
 
 double screenWidth = 0.0;
