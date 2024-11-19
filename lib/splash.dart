@@ -3,7 +3,8 @@ import 'package:mylabs/main.dart';
 import 'package:mylabs/navbar.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final Color themeColor;
+  const SplashScreen({super.key, required this.themeColor});
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -35,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 45),
             Padding(
               padding: const EdgeInsets.all(8),
-              child: CircularProgressIndicator(color: pickedThemeColor),
+              child: CircularProgressIndicator(color: widget.themeColor),
             )
           ],
         ),

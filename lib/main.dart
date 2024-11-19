@@ -41,7 +41,9 @@ class MyAppState extends State<MyApp> {
 
   Future<void> checkThemeColor() async {
     final prefs = await SharedPreferences.getInstance();
-    pickedThemeColor = Color(prefs.getInt('themeColor') ?? 0xFF000000);
+    pickedThemeColor = Color(prefs.getInt('themeColor') ?? 0xFF6A1B9A);
+    setState(() {
+    });
   }
 
   void changeTheme(ThemeMode themeMode) {
@@ -83,7 +85,7 @@ class MyAppState extends State<MyApp> {
           brightness: Brightness.dark,
           colorSchemeSeed: pickedThemeColor),
       themeMode: _themeMode,
-      home: const SplashScreen(),
+      home: SplashScreen(themeColor: pickedThemeColor),
     );
   }
 }

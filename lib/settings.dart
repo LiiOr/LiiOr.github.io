@@ -15,9 +15,8 @@ class _SettingScreenState extends State<SettingScreen> {
   Color themeColor = pickedThemeColor;
 
   bool dkSwitchVal = isDark;
-  String dkSwitchText = isDark ? 'Activé' : 'Désactivé';
-  Icon darkIcon =
-      isDark ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode);
+  String dkSwitchText = isDark ? 'Enabled' : 'Disabled';
+  Icon darkIcon = isDark ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode);
 
   Future<void> setThemeMode(value) async {
     final prefs = await SharedPreferences.getInstance();
@@ -35,7 +34,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Future<void> setThemeColor(Color color) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.setInt('themeColor', color.hashCode);
+      prefs.setInt('themeColor', color.value);
       themeColor = color;
       MyApp.of(context).changeThemeColor(color);
     });
@@ -52,126 +51,95 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: ListView(
                     children: <Widget>[
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.pink),
+                        leading: Container(width: 20, height: 20, color: Colors.pink),
                         title: const Text('Pink'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.pink;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.blue),
+                        leading: Container(width: 20, height: 20, color: Colors.blue),
                         title: const Text('Blue'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.blue;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
                         title: const Text('Green'),
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.green),
+                        leading: Container(width: 20, height: 20, color: Colors.green),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.green;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.yellow),
+                        leading: Container(width: 20, height: 20, color: Colors.yellow),
                         title: const Text('Yellow'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.yellow;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading:
-                            Container(width: 20, height: 20, color: Colors.red),
+                        leading: Container(width: 20, height: 20, color: Colors.red),
                         title: const Text('Red'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.red;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.purple),
+                        leading: Container(width: 20, height: 20, color: Colors.purple),
                         title: const Text('Purple'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.purple;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.orange),
+                        leading: Container(width: 20, height: 20, color: Colors.orange),
                         title: const Text('Orange'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.orange;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.brown),
+                        leading: Container(width: 20, height: 20, color: Colors.brown),
                         title: const Text('Brown'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.brown;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
                       ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.grey),
+                        leading: Container(width: 20, height: 20, color: Colors.grey),
                         title: const Text('Grey'),
                         onTap: () {
                           setState(() {
                             themeColor = Colors.grey;
+                            setThemeColor(themeColor);
                           });
-                          setThemeColor(themeColor);
                         },
                       ),
-                      /*ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.black),
-                        title: const Text('Black'),
-                        onTap: () {
-                          setState(() {
-                            themeColor = Colors.black;
-                          });
-                          setThemeColor(themeColor);
-                        },
-                      ),
-                      ListTile(
-                        leading: Container(
-                            width: 20, height: 20, color: Colors.white),
-                        title: const Text('White'),
-                        onTap: () {
-                          setState(() {
-                            themeColor = Colors.white;
-                          });
-                          setThemeColor(themeColor);
-                        },
-                      ),*/
                     ],
                   )),
               actions: <Widget>[
@@ -183,16 +151,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ],
             ));
-    /*return ColorPicker(
-      color: themeColor,
-      onColorChanged: (Color color) {
-        setState(() {
-          themeColor = color;
-        });
-      },
-      width: 100,
-      height: 100,
-    ).showPicker(context);*/
   }
 
   @override
@@ -224,10 +182,10 @@ class _SettingScreenState extends State<SettingScreen> {
                       dkSwitchVal = value;
                       setThemeMode(value);
                       if (value == true) {
-                        dkSwitchText = 'Activé';
+                        dkSwitchText = 'Enabled';
                         darkIcon = const Icon(Icons.dark_mode);
                       } else {
-                        dkSwitchText = 'Désactivé';
+                        dkSwitchText = 'Disabled';
                         darkIcon = const Icon(Icons.light_mode);
                       }
                     });
@@ -238,7 +196,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ListTile(
                     leading: const Icon(Icons.color_lens),
                     title: const Text('Theme Color'),
-                    subtitle: Text(themeColor.toString(), style: TextStyle(color: themeColor)),
+                    subtitle: Text('Selected', style: TextStyle(color: themeColor)),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       showColorPicker();
@@ -313,9 +271,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ],
             ),
             const SizedBox(height: 30),
-            Center(
-                child: Text('Version $numVersion',
-                    style: const TextStyle(fontSize: 12)))
+            Center(child: Text('Version $numVersion', style: const TextStyle(fontSize: 12)))
           ],
         ),
       ),
