@@ -71,7 +71,7 @@ class _FlappyGameState extends State<FlappyGame> {
   }
 
   bool isDead() {
-    if (characterY > 1) {
+    if (characterY > 1 || characterY < -1) {
       return true;
     }
     for (int i = 0; i < barrierX.length; i++) {
@@ -99,7 +99,8 @@ class _FlappyGameState extends State<FlappyGame> {
       },
     );
     Timer.periodic(const Duration(milliseconds: 10), (timer) async {
-      height = -4.9 * time * time + 2.0 * time;
+      height = -2.5 * time * time + 1.5 * time;
+      //height = -4.9 * time * time + 2.0 * time;
       setState(() {
         characterY = initialPos - height;
       });

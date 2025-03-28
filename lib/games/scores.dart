@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mylabs/globals.dart';
@@ -11,10 +13,15 @@ class ScoreBoardScreen extends StatefulWidget {
 }
 
 class ScoreBoardScreenState extends State<ScoreBoardScreen> {
-
   Future<List<Map<String, dynamic>>> getScoresFromLocalStorage() async {
-    final List<Map<String, dynamic>> scores = (localStorage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
-    return scores;
+    await initLocalStorage();
+
+    final String? scoresString = localStorage.getItem('scores') as String?;
+    if (scoresString != null) {
+      return List<Map<String, dynamic>>.from(jsonDecode(scoresString));
+    }
+
+    return [];
   }
 
   @override
@@ -28,16 +35,11 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                  child:
-                      CircularProgressIndicator(color: pickedThemeColor)); // Affichez un indicateur de chargement en attendant les données.
+                  child: CircularProgressIndicator(color: pickedThemeColor)); // Affichez un indicateur de chargement en attendant les données.
             } else if (snapshot.hasError) {
-              return Center(
-                  child: Text(
-                      'Erreur au chargement des scores : ${snapshot.error}'));
+              return Center(child: Text('Erreur au chargement des scores : ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(
-                  child: Text(
-                      'Aucun score n\'a été trouvé.')); // Ajustez le message en conséquence.
+              return const Center(child: Text('Aucun score n\'a été trouvé.')); // Ajustez le message en conséquence.
             } else {
               final List<Map<String, dynamic>> scores = snapshot.data!;
               return SingleChildScrollView(
@@ -61,10 +63,7 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
                       ],
                       rows: scores.map((score) {
                         return DataRow(
-                          cells: <DataCell>[
-                            DataCell(Text(score['game'])),
-                            DataCell(Text(score['best'].toString()))
-                          ],
+                          cells: <DataCell>[DataCell(Text(score['game'])), DataCell(Text(score['best'].toString()))],
                         );
                       }).toList(),
                     ),
@@ -78,41 +77,48 @@ class ScoreBoardScreenState extends State<ScoreBoardScreen> {
 }
 
 class GameScore extends StatelessWidget {
-  GameScore(
-      {super.key,
-      required this.game,
-      required this.score,
-      required this.highScore});
+  GameScore({super.key, required this.game, required this.score, required this.highScore});
   final String game;
   final int score;
   final int highScore;
 
-  setScore() async {
-    final List<Map<String, dynamic>> currentScores =
-        (localStorage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ??
-            [];
-    final index =
-        currentScores.indexWhere((element) => element['game'] == game);
+  Future<void> setScore() async {
+    await initLocalStorage();
+    // Retrieve existing scores
+    final String? scoresString = localStorage.getItem('scores') as String?;
+    final List<Map<String, dynamic>> currentScores = scoresString != null ? List<Map<String, dynamic>>.from(jsonDecode(scoresString)) : [];
+
+    // Find the game in the list
+    final int index = currentScores.indexWhere((element) => element['game'] == game);
+
     if (index != -1) {
-      if (highScore > currentScores[index]['best']) {
-        currentScores[index]['best'] = highScore;
+      // Update the score if the new score is higher
+      if (score > currentScores[index]['best']) {
+        currentScores[index]['best'] = score;
       }
     } else {
-      currentScores.add({'game': game, 'best': highScore});
+      // Add a new entry for the game
+      currentScores.add({'game': game, 'best': score});
     }
-    localStorage.setItem('scores', currentScores as String);
+
+    // Save the updated list back to localStorage
+    localStorage.setItem('scores', jsonEncode(currentScores));
   }
 
   Future<int> getBestScore() async {
-    final List<Map<String, dynamic>> currentScores = (localStorage.getItem('scores') as List?)?.cast<Map<String, dynamic>>() ?? [];
-
-    final index = currentScores.indexWhere((element) => element['game'] == game);
-
-    if (index != -1) {
-      return int.parse(currentScores[index]['best'].toString());
-    } else {
-      return 0; // Default value if no score is found
+    await initLocalStorage();
+    // Retrieve existing scores
+    final String? scoresString = localStorage.getItem('scores');
+    if (scoresString != null) {
+      final List<Map<String, dynamic>> currentScores = List<Map<String, dynamic>>.from(jsonDecode(scoresString));
+      // Find the game in the list
+      final int index = currentScores.indexWhere((element) => element['game'] == game);
+      if (index != -1) {
+        return currentScores[index]['best'] as int;
+      }
     }
+
+    return 0; // Return 0 if no score is found
   }
 
   @override
@@ -126,14 +132,11 @@ class GameScore extends StatelessWidget {
           future: getBestScore(),
           builder: (context, snapshot) {
             final bestScore = snapshot.data ?? 0;
-
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('S C O R E : ${score.toString()}',
-                    textAlign: TextAlign.center, style: scoreStyle),
-                Text('B E S T : ${bestScore.toString()}',
-                    textAlign: TextAlign.center, style: scoreStyle),
+                Text('S C O R E : ${score.toString()}', textAlign: TextAlign.center, style: scoreStyle),
+                Text('B E S T : ${bestScore.toString()}', textAlign: TextAlign.center, style: scoreStyle),
               ],
             );
           },

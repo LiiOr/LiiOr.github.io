@@ -39,12 +39,9 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void dispose() {
-    var scoreboard =
-        GameScore(game: 'SNAKE', score: score, highScore: highScore);
-    scoreboard.setScore();
+    setScores();
     _focusNode.dispose();
-    gameLoopTimer
-        ?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
+    gameLoopTimer?.cancel(); // Annuler la minuterie avant que le widget soit supprimé
     super.dispose();
   }
 
@@ -68,12 +65,7 @@ class _SnakeGameState extends State<SnakeGame> {
         snake.removeLast();
       } else {
         score++;
-        if (score > highScore) {
-          highScore = score;
-          var scoreboard =
-              GameScore(game: 'SNAKE', score: score, highScore: highScore);
-          scoreboard.setScore();
-        }
+        setScores();
         generateFood();
       }
     });
@@ -81,8 +73,7 @@ class _SnakeGameState extends State<SnakeGame> {
 
   void generateFood() {
     double appBarHeight = AppBar().preferredSize.height;
-    double bottomBarHeight =
-        kBottomNavigationBarHeight; // Default bottom bar height
+    double bottomBarHeight = kBottomNavigationBarHeight; // Default bottom bar height
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
@@ -106,25 +97,28 @@ class _SnakeGameState extends State<SnakeGame> {
         snake.sublist(1).contains(snake.first)) {
       setState(() {
         snake = [const Offset(100, 100)];
-        //if (highScore < score) highScore = score;
+
         score = 0;
+        setScores();
       });
     }
   }
 
+  void setScores() {
+    if (highScore < score) highScore = score;
+    var scoreboard = GameScore(game: 'SNAKE', score: score, highScore: highScore);
+    scoreboard.setScore();
+  }
+
   void _handleKeyEvent(KeyEvent event) {
     if (event.runtimeType.toString() == 'RawKeyDownEvent') {
-      if (event.logicalKey == LogicalKeyboardKey.arrowUp &&
-          direction != Direction.down) {
+      if (event.logicalKey == LogicalKeyboardKey.arrowUp && direction != Direction.down) {
         direction = Direction.up;
-      } else if (event.logicalKey == LogicalKeyboardKey.arrowDown &&
-          direction != Direction.up) {
+      } else if (event.logicalKey == LogicalKeyboardKey.arrowDown && direction != Direction.up) {
         direction = Direction.down;
-      } else if (event.logicalKey == LogicalKeyboardKey.arrowLeft &&
-          direction != Direction.right) {
+      } else if (event.logicalKey == LogicalKeyboardKey.arrowLeft && direction != Direction.right) {
         direction = Direction.left;
-      } else if (event.logicalKey == LogicalKeyboardKey.arrowRight &&
-          direction != Direction.left) {
+      } else if (event.logicalKey == LogicalKeyboardKey.arrowRight && direction != Direction.left) {
         direction = Direction.right;
       }
     }
@@ -136,7 +130,7 @@ class _SnakeGameState extends State<SnakeGame> {
       appBar: AppBar(
         title: const Text('S N A K E'),
       ),
-      body: KeyboardListener (
+      body: KeyboardListener(
         focusNode: _focusNode,
         onKeyEvent: _handleKeyEvent,
         autofocus: true,
@@ -151,16 +145,14 @@ class _SnakeGameState extends State<SnakeGame> {
                     onVerticalDragUpdate: (details) {
                       if (direction != Direction.up && details.delta.dy > 0) {
                         direction = Direction.down;
-                      } else if (direction != Direction.down &&
-                          details.delta.dy < 0) {
+                      } else if (direction != Direction.down && details.delta.dy < 0) {
                         direction = Direction.up;
                       }
                     },
                     onHorizontalDragUpdate: (details) {
                       if (direction != Direction.left && details.delta.dx > 0) {
                         direction = Direction.right;
-                      } else if (direction != Direction.right &&
-                          details.delta.dx < 0) {
+                      } else if (direction != Direction.right && details.delta.dx < 0) {
                         direction = Direction.left;
                       }
                     },
