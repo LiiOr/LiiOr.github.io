@@ -14,7 +14,7 @@ class _PlantScreenState extends State<PlantScreen> {
   String _result = '';
   List<String> _similarImages = [];
 
-  String apiKey = const String.fromEnvironment('PLANT_ID_API_KEY');
+  String apiKey = 'RO1XBtOyZlF1Z81pXPBOaQJwaLFrqs10rhS02ZHl4vPaTaH8qu'; //const String.fromEnvironment('PLANT_ID_API_KEY');
   String apiUrl = 'https://plant.id/api/v3/identification';
 
   Future<void> identifyPlant(String base64Image) async {
@@ -27,8 +27,8 @@ class _PlantScreenState extends State<PlantScreen> {
         },
         body: jsonEncode({
           'images': [base64Image],
-          'similar_images': false,
-          'language':'fr'
+          'similar_images': true,
+          'health': 'auto'
         }),
       );
 
@@ -44,13 +44,12 @@ class _PlantScreenState extends State<PlantScreen> {
 
       final result = data['result']['classification']['suggestions'][0];
       setState(() {
-        _result = 'Common Name: ${result['details']['common_names']}\nName: ${result['name']}\nConfidence: ${(result['probability'] * 100).toStringAsFixed(2)}%';
-        _similarImages = (result['image'] as List).map((img) => img['value'] as String).toList();
+        _result = 'Name: ${result['name']}\nProbability: ${(result['probability'] * 100).toStringAsFixed(2)}%';
+        _similarImages = (result['similar_images'] as List).map((img) => img['url'] as String).toList();
       });
     } catch (error) {
-      //print('API Error: $error');
       setState(() {
-        _result = 'Failed to identify plant';
+        _result = 'Failed to identify plant : $error';
         _similarImages = [];
       });
     }
