@@ -43,8 +43,9 @@ class _PlantScreenState extends State<PlantScreen> {
       }
 
       final result = data['result']['classification']['suggestions'][0];
+      final health = data['result']['disease']['suggestions'][0]['name'];
       setState(() {
-        _result = 'Name: ${result['name']}\nProbability: ${(result['probability'] * 100).toStringAsFixed(2)}%';
+        _result = 'Name: ${result['name']}\nProbability: ${(result['probability'] * 100).toStringAsFixed(2)}%\n\nDisease: $health';
         _similarImages = (result['similar_images'] as List).map((img) => img['url'] as String).toList();
       });
     } catch (error) {
