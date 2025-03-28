@@ -14,7 +14,7 @@ class _PlantScreenState extends State<PlantScreen> {
   String _result = '';
   List<String> _similarImages = [];
 
-  String apiKey = 'RO1XBtOyZlF1Z81pXPBOaQJwaLFrqs10rhS02ZHl4vPaTaH8qu'; //const String.fromEnvironment('PLANT_ID_API_KEY');
+  String apiKey = const String.fromEnvironment('PLANT_ID_API_KEY');
   String apiUrl = 'https://plant.id/api/v3/identification';
 
   Future<void> identifyPlant(String base64Image) async {
