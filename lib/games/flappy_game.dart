@@ -77,7 +77,7 @@ class _FlappyGameState extends State<FlappyGame> {
     for (int i = 0; i < barrierX.length; i++) {
       if (barrierX[i] <= characterWidth &&
           barrierX[i] + barrierWidth >= -characterWidth &&
-          (characterY <= -1 + barrierHeight[i][0] ||
+           (characterY <= -1 + barrierHeight[i][0] ||
               characterY + characterHeight >= 1 - barrierHeight[i][1])) {
         return true;
       }
@@ -100,7 +100,6 @@ class _FlappyGameState extends State<FlappyGame> {
     );
     Timer.periodic(const Duration(milliseconds: 10), (timer) async {
       height = -2.5 * time * time + 1.5 * time;
-      //height = -4.9 * time * time + 2.0 * time;
       setState(() {
         characterY = initialPos - height;
       });

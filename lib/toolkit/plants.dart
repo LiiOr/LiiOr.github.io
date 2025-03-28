@@ -27,7 +27,8 @@ class _PlantScreenState extends State<PlantScreen> {
         },
         body: jsonEncode({
           'images': [base64Image],
-          'similar_images': true,
+          'similar_images': false,
+          'language':'fr'
         }),
       );
 
@@ -43,11 +44,11 @@ class _PlantScreenState extends State<PlantScreen> {
 
       final result = data['result']['classification']['suggestions'][0];
       setState(() {
-        _result = 'Name: ${result['name']}\nConfidence: ${(result['probability'] * 100).toStringAsFixed(2)}%';
-        _similarImages = (result['similar_images'] as List).map((img) => img['url'] as String).toList();
+        _result = 'Common Name: ${result['details']['common_names']}\nName: ${result['name']}\nConfidence: ${(result['probability'] * 100).toStringAsFixed(2)}%';
+        _similarImages = (result['image'] as List).map((img) => img['value'] as String).toList();
       });
     } catch (error) {
-      print('API Error: $error');
+      //print('API Error: $error');
       setState(() {
         _result = 'Failed to identify plant';
         _similarImages = [];
@@ -69,28 +70,29 @@ class _PlantScreenState extends State<PlantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PLANT RECOGNITION'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: pickPlantImage,
-              child: const Text('Identify a Plant'),
-            ),
-            const SizedBox(height: 20),
-            Text(_result, style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 20),
-            _similarImages.isNotEmpty
-                ? Column(
-                    children: _similarImages.map((url) => Image.network(url)).toList(),
-                  )
-                : Container(),
-          ],
+        appBar: AppBar(
+          title: const Text('PLANT RECOGNITION'),
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+            child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: pickPlantImage,
+                child: const Text('Identify a Plant'),
+              ),
+              const SizedBox(height: 20),
+              Text(_result, style: const TextStyle(fontSize: 18)),
+              const SizedBox(height: 20),
+              _similarImages.isNotEmpty
+                  ? Column(
+                    mainAxisSize: MainAxisSize.min,
+                      children: _similarImages.map((url) => Image.network(url)).toList(),
+                    )
+                  : Container(),
+            ],
+          ),
+        )));
   }
 }
