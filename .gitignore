@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+dist-ssr/
+*.local
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log*
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# macos
+.DS_Store
+
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+
+# PWA
+dev-dist/
+sw.js
+workbox-*.js
