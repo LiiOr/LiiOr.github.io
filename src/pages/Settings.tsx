@@ -5,20 +5,20 @@ export default function Settings() {
   const { isDark, toggleTheme } = useTheme();
 
   const clearAllData = () => {
-    if (!window.confirm('This will remove all vegetables from your collection. This action cannot be undone.')) {
+    if (!window.confirm('Cela va supprimer tous les éléments enregistrés dans votre collection. Êtes-vous sûr ?')) {
       return;
     }
     try {
       localStorage.removeItem('collection');
-      alert('All data has been cleared');
+      alert('Toutes les données ont été supprimées');
     } catch (error) {
-      alert('Failed to clear data');
+      alert('Échec de la suppression des données');
     }
   };
 
   return (
     <div className={`min-h-full ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="px-4 pt-12 pb-20">
+      <div className="px-4 pt-10 pb-20">
         <div className="flex items-center mb-6">
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />
@@ -146,8 +146,7 @@ export default function Settings() {
                       isDark ? 'text-gray-400' : 'text-gray-600'
                     }`}
                   >
-                    Un compagnon pour les jardiniers. Recherchez,
-                    identifiez et gérez votre jardin potager en toute simplicité.
+                    L'appli des jardiniers en herbe.
                   </p>
                 </div>
               </div>
@@ -179,7 +178,7 @@ export default function Settings() {
               isDark ? 'text-primary-400' : 'text-primary-700'
             }`}
           >
-            Growing Tips
+            Conseils de jardinage
           </h2>
           <div className="mb-3">
             <div className="flex mb-2">
@@ -195,7 +194,7 @@ export default function Settings() {
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
-                Water your plants early in the morning for best results
+                Arrosez vos plantes tôt le matin pour de meilleurs résultats
               </p>
             </div>
             <div className="flex mb-2">
@@ -211,7 +210,7 @@ export default function Settings() {
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
-                Companion planting can improve growth and deter pests
+                Les plantes compagnes peuvent améliorer la croissance et éloigner les nuisibles
               </p>
             </div>
             <div className="flex">
@@ -227,7 +226,7 @@ export default function Settings() {
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
-                Regular harvesting encourages more production
+                Une récolte régulière encourage davantage de production
               </p>
             </div>
           </div>

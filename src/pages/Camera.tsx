@@ -15,7 +15,7 @@ export default function Camera() {
 
   return (
     <div className={`min-h-full ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="px-4 pt-12 pb-4">
+      <div className="px-4 pt-10 pb-4">
         <div className="flex items-center mb-2">
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />

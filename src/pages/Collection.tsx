@@ -88,7 +88,7 @@ export default function Collection() {
   };
 
   const deleteProfile = (id: string) => {
-    if (!window.confirm('Are you sure you want to remove this vegetable from your collection?')) {
+    if (!window.confirm('Êtes-vous sûr de vouloir supprimer cet élément de votre collection ?')) {
       return;
     }
 
@@ -140,7 +140,7 @@ export default function Collection() {
 
   return (
     <div className={`min-h-full ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="px-4 pt-12 pb-12">
+      <div className="px-4 pt-10 pb-10">
         <div className="flex items-center">
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />

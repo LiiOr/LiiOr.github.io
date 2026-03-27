@@ -27,11 +27,6 @@ export default function Home() {
     return matchesSearch && matchesDifficulty && matchesSeason;
   });
 
-  const clearFilters = () => {
-    setSelectedDifficulty('all');
-    setSelectedSeason('all');
-  };
-
   const addToCollection = () => {
     if (!selectedVegetable) return;
 
@@ -64,7 +59,7 @@ export default function Home() {
 
   return (
     <div className={`min-h-full ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="px-4 pt-12 pb-4">
+      <div className="px-4 pt-10 pb-4">
         <div className="flex items-center mb-6">
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />
@@ -168,17 +163,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Clear Filters Button */}
-              {(selectedDifficulty !== 'all' || selectedSeason !== 'all') && (
-                <button
-                  onClick={clearFilters}
-                  className={`w-full py-2 rounded-lg text-sm font-medium ${
-                    isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
-                  }`}
-                >
-                  Réinitialiser les filtres
-                </button>
-              )}
             </div>
           )}
         </div>
@@ -384,6 +368,13 @@ export default function Home() {
                 </div>
               </div>
 
+              {showSuccess && (
+                <div className="bg-green-100 py-2 px-2 rounded-xl mb-4">
+                  <p className="text-center font-medium">
+                    Elément ajouté !
+                  </p>
+                </div>
+              )}
               <button
                 onClick={addToCollection}
                 className="w-full bg-primary-600 py-4 rounded-xl flex items-center justify-center shadow-lg mb-4"
@@ -394,13 +385,6 @@ export default function Home() {
                 </span>
               </button>
 
-              {showSuccess && (
-                <div className="bg-green-500 py-3 px-4 rounded-xl">
-                  <p className="text-white text-center font-medium">
-                    Ajouté à votre collection !
-                  </p>
-                </div>
-              )}
             </div>
           </div>
         </div>
