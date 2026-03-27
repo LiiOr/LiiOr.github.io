@@ -1,9 +1,19 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { BookOpen, Search, Settings, Sprout } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 export default function Layout() {
   const { isDark } = useTheme();
+  const mainRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll the main container to top when route changes
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  }, [location.pathname]);
 
   const navItems = [
     { to: '/', icon: Sprout, label: 'Collection' },
@@ -15,7 +25,7 @@ export default function Layout() {
 
   return (
     <div className={`flex flex-col h-screen ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <main className="flex-1 overflow-auto">
+      <main ref={mainRef} className="flex-1 overflow-auto">
         <Outlet />
       </main>
 
