@@ -242,4 +242,161 @@ export const vegetables: Vegetable[] = [
     companionPlants: ['tomates', 'poivrons', 'basilic'],
     spacing: '45-60 cm d\'espacement',
     soilType: 'Sol riche et bien drainé avec pH 5.5-6.5'
-}];
+  },
+  {
+    id: '11',
+    name: 'Panais',
+    scientificName: 'Pastinaca sativa',
+    description:
+      'Un légume-racine au goût sucré et légèrement épicé. Excellent après les premières gelées qui améliorent sa saveur.',
+    plantingSeason: ['printemps', 'début été'],
+    harvestTime: '105-130 jours',
+    wateringFrequency: 'Arrosage régulier et constant',
+    sunlightRequirement: 'Plein soleil',
+    difficulty: 'moyen',
+    imageUrl: 'https://www.rustica.fr/images/panais-1355737899-l790-h526.jpg.webp',
+    careInstructions: [
+      'Semer directement en terre au printemps',
+      'Éclaircir à 8-10 cm d\'espacement',
+      'Récolter après les premières gelées pour plus de douceur',
+      'Nécessite un sol profond et bien travaillé',
+    ],
+    companionPlants: ['pommes de terre', 'pois', 'haricots'],
+    spacing: '8-10 cm d\'espacement',
+    soilType: 'Sol profond, meuble et sans pierres'
+  },
+  {
+    id: '12',
+    name: 'Oignon',
+    scientificName: 'Allium cepa',
+    description:
+      'Un légume-bulbe indispensable en cuisine. Facile à cultiver et se conserve longtemps après récolte.',
+    plantingSeason: ['printemps', 'automne'],
+    harvestTime: '90-120 jours',
+    wateringFrequency: 'Modéré, réduire avant la récolte',
+    sunlightRequirement: 'Plein soleil',
+    difficulty: 'facile',
+    imageUrl: 'https://www.entretiendejardin.com/wp-content/uploads/2024/10/planter-des-oignons-1.webp',
+    careInstructions: [
+      'Planter les bulbilles ou semis au printemps',
+      'Butter légèrement pour favoriser la formation du bulbe',
+      'Arrêter l\'arrosage quand les feuilles commencent à jaunir',
+      'Laisser sécher au soleil après récolte',
+    ],
+    companionPlants: ['carottes', 'tomates', 'laitue'],
+    spacing: '10-15 cm d\'espacement',
+    soilType: 'Sol léger, bien drainé et riche en matière organique'
+  },
+  {
+    id: '13',
+    name: 'Persil',
+    scientificName: 'Petroselinum crispum',
+    description:
+      'Une herbe aromatique bisannuelle très utilisée en cuisine. Riche en vitamines et facile à cultiver.',
+    plantingSeason: ['printemps', 'été'],
+    harvestTime: '70-90 jours',
+    wateringFrequency: 'Régulier, garder le sol frais',
+    sunlightRequirement: 'Mi-ombre à plein soleil',
+    difficulty: 'facile',
+    imageUrl: 'https://images.ctfassets.net/b85ozb2q358o/fbe3a36769b4e2cb213ef0030861895b250cc55aa61d0de8b4513aa429d9eb67/798110727dd30c4d66cd478ac9dd3ecf/image.png',
+    careInstructions: [
+      'Faire tremper les graines 24h avant semis',
+      'Éclaircir à 15-20 cm d\'espacement',
+      'Récolter régulièrement pour stimuler la croissance',
+      'Protéger du soleil intense en été',
+    ],
+    companionPlants: ['tomates', 'asperges', 'carottes'],
+    spacing: '15-20 cm d\'espacement',
+    soilType: 'Sol frais, léger et bien drainé'
+  },
+  {
+    id: '14',
+    name: 'Ciboulette',
+    scientificName: 'Allium schoenoprasum',
+    description:
+      'Une plante aromatique vivace de la famille des alliacées. Parfaite pour agrémenter salades et plats.',
+    plantingSeason: ['printemps', 'automne'],
+    harvestTime: '60-90 jours',
+    wateringFrequency: 'Régulier, maintenir le sol humide',
+    sunlightRequirement: 'Plein soleil à mi-ombre',
+    difficulty: 'facile',
+    imageUrl: 'https://img-3.journaldesfemmes.fr/ik0nhU9zEfpOh1bPPjWdHoUU2xQ=/1500x/smart/c812666a8f6d4308bf222eb52aa057c6/ccmcms-jdf/16146529.jpg',
+    careInstructions: [
+      'Diviser les touffes tous les 3-4 ans',
+      'Couper régulièrement pour encourager la repousse',
+      'Enlever les fleurs pour favoriser les feuilles',
+      'Résiste bien au froid',
+    ],
+    companionPlants: ['carottes', 'tomates', 'rosiers'],
+    spacing: '15-20 cm d\'espacement',
+    soilType: 'Sol riche et bien drainé'
+  },
+  {
+    id: '15',
+    name: 'Fraise',
+    scientificName: 'Fragaria × ananassa',
+    description:
+      'Un fruit délicieux et populaire, facile à cultiver. Les fraisiers produisent des stolons et peuvent se multiplier rapidement.',
+    plantingSeason: ['printemps', 'fin été'],
+    harvestTime: '4-6 semaines après floraison',
+    wateringFrequency: 'Régulier, surtout pendant la fructification',
+    sunlightRequirement: 'Plein soleil (6-8 heures)',
+    difficulty: 'facile',
+    imageUrl: 'https://www.rustica.fr/images/fraise-belle-rubi-fm100608-214.jpg',
+    careInstructions: [
+      'Planter dans un sol bien drainé et enrichi',
+      'Pailler pour garder les fruits propres',
+      'Enlever les stolons pour plus de fruits',
+      'Renouveler les plants tous les 3-4 ans',
+    ],
+    companionPlants: ['ail', 'oignons', 'laitue'],
+    spacing: '30-40 cm d\'espacement',
+    soilType: 'Sol riche, légèrement acide (pH 5.5-6.5)'
+  },
+  {
+    id: '16',
+    name: 'Framboise',
+    scientificName: 'Rubus idaeus',
+    description:
+      'Un arbuste fruitier vivace produisant des baies savoureuses. Demande de l\'espace mais offre une récolte généreuse.',
+    plantingSeason: ['automne', 'début printemps'],
+    harvestTime: 'Juin-septembre selon variété',
+    wateringFrequency: 'Régulier, sol toujours frais',
+    sunlightRequirement: 'Plein soleil à mi-ombre',
+    difficulty: 'moyen',
+    imageUrl: 'https://i.notretemps.com/2000x1125/smart/2022/03/18/framboises.jpeg',
+    careInstructions: [
+      'Tuteurer les tiges pour un bon support',
+      'Tailler les cannes après la récolte',
+      'Pailler pour conserver l\'humidité',
+      'Fertiliser au printemps',
+    ],
+    companionPlants: ['ail', 'rue', 'tanaisie'],
+    spacing: '45-60 cm d\'espacement',
+    soilType: 'Sol riche, frais et bien drainé'
+  },
+  {
+    id: '17',
+    name: 'Menthe',
+    scientificName: 'Mentha',
+    description:
+      'Une plante aromatique vivace très vigoureuse. Attention, elle peut devenir envahissante si elle n\'est pas contenue.',
+    plantingSeason: ['printemps', 'automne'],
+    harvestTime: '90 jours (permanente)',
+    wateringFrequency: 'Fréquent, aime l\'humidité',
+    sunlightRequirement: 'Mi-ombre à plein soleil',
+    difficulty: 'facile',
+    imageUrl: 'https://images.ctfassets.net/b85ozb2q358o/5QzovZPXWbp1RdhDgJeYIY/e1a4da1f19ac3b7f6f153b478d107d71/menthe_AdobeStock_1876181318.jpg',
+    careInstructions: [
+      'Planter en pot pour contrôler l\'expansion',
+      'Couper régulièrement pour stimuler la croissance',
+      'Diviser les touffes tous les 2-3 ans',
+      'Protéger en hiver dans les régions froides',
+    ],
+    companionPlants: ['choux', 'tomates', 'pois'],
+    spacing: '30-45 cm d\'espacement (ou en pot)',
+    soilType: 'Sol riche et humide'
+  },
+  
+].sort((a, b) => a.name.localeCompare(b.name));
+
