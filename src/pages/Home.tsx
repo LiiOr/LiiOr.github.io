@@ -90,7 +90,7 @@ export default function Home() {
               className={`flex-1 ml-3 text-base bg-transparent outline-none ${
                 isDark ? 'text-white placeholder-gray-400' : 'text-gray-900 placeholder-gray-600'
               }`}
-              placeholder="Rechercher des légumes..."
+              placeholder="Rechercher..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -184,7 +184,7 @@ export default function Home() {
         </div>
 
         <div className={`mt-4 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          {filteredVegetables.length} légume{filteredVegetables.length !== 1 ? 's' : ''} trouvé{filteredVegetables.length !== 1 ? 's' : ''}
+          {filteredVegetables.length} élément{filteredVegetables.length !== 1 ? 's' : ''} trouvé{filteredVegetables.length !== 1 ? 's' : ''}
         </div>
       </div>
 

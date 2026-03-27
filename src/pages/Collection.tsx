@@ -206,7 +206,7 @@ export default function Collection() {
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}
                   >
-                    My Notes
+                    Mes Notes
                   </h3>
                   {!isEditing && (
                     <button onClick={() => setIsEditing(true)}>
@@ -223,7 +223,7 @@ export default function Collection() {
                           ? 'bg-gray-700 text-white'
                           : 'bg-gray-100 text-gray-900'
                       }`}
-                      placeholder="Add your notes here..."
+                      placeholder="Ajoutez vos notes ici..."
                       value={editedNotes}
                       onChange={(e) => setEditedNotes(e.target.value)}
                       rows={4}
@@ -234,28 +234,21 @@ export default function Collection() {
                         isDark ? 'text-white' : 'text-gray-900'
                       }`}
                     >
-                      Planted Date
+                      Planté le
                     </label>
                     <input
-                      type="text"
+                      type="date"
                       className={`w-full p-4 rounded-xl mb-4 text-base ${
                         isDark
                           ? 'bg-gray-700 text-white placeholder-gray-400'
                           : 'bg-gray-100 text-gray-900 placeholder-gray-600'
                       }`}
-                      placeholder="MM/DD/YYYY"
+                      placeholder="DD/MM/YYYY"
                       value={plantedDate}
                       onChange={(e) => setPlantedDate(e.target.value)}
                     />
 
                     <div className="flex gap-3">
-                      <button
-                        onClick={saveEdits}
-                        className="flex-1 bg-primary-600 py-3 rounded-xl flex items-center justify-center"
-                      >
-                        <Save size={18} color="#fff" />
-                        <span className="text-white font-semibold ml-2">Save</span>
-                      </button>
                       <button
                         onClick={() => setIsEditing(false)}
                         className={`flex-1 py-3 rounded-xl ${
@@ -267,8 +260,15 @@ export default function Collection() {
                             isDark ? 'text-white' : 'text-gray-900'
                           }`}
                         >
-                          Cancel
+                          Annuler
                         </span>
+                      </button>
+                      <button
+                        onClick={saveEdits}
+                        className="flex-1 bg-primary-600 py-3 rounded-xl flex items-center justify-center"
+                      >
+                        <Save size={18} color="#fff" />
+                        <span className="text-white font-semibold ml-2">Sauvegarder</span>
                       </button>
                     </div>
                   </>
@@ -288,7 +288,7 @@ export default function Collection() {
                           isDark ? 'text-gray-500' : 'text-gray-500'
                         }`}
                       >
-                        No notes yet. Tap the edit icon to add notes.
+                        Pas encore de notes. Appuyez sur l'icône d'édition pour en ajouter.
                       </p>
                     )}
 
@@ -299,7 +299,7 @@ export default function Collection() {
                             isDark ? 'text-gray-400' : 'text-gray-600'
                           }`}
                         >
-                          Planted on: {selectedProfile.plantedDate}
+                          Planté le: {selectedProfile.plantedDate}
                         </p>
                       </div>
                     )}
@@ -313,7 +313,7 @@ export default function Collection() {
                     isDark ? 'text-white' : 'text-gray-900'
                   }`}
                 >
-                  Care Instructions
+                  Instructions
                 </h3>
                 {selectedProfile.careInstructions.map((instruction, idx) => (
                   <div key={idx} className="flex mb-2">
@@ -341,7 +341,7 @@ export default function Collection() {
               >
                 <Trash2 size={20} color="#fff" />
                 <span className="text-white font-semibold text-base ml-2">
-                  Remove from Collection
+                  Retirer de ma Collection
                 </span>
               </button>
             </div>
