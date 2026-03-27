@@ -25,7 +25,7 @@ export default function Settings() {
           </div>
           <div>
             <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Paramètres
+              Mes Paramètres
             </h1>
             <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Gérez vos préférences

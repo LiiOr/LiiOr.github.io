@@ -71,10 +71,10 @@ export default function Home() {
           </div>
           <div>
             <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Main Verte
+            Mes Recherches
             </h1>
             <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              L'appli des jardiniers en herbe
+              Jardiner avec l'appli Main Verte ♡ 
             </p>
           </div>
         </div>

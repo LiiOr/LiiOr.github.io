@@ -140,8 +140,8 @@ export default function Collection() {
 
   return (
     <div className={`min-h-full ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="px-4 pt-12 pb-20">
-        <div className="flex items-center mb-6">
+      <div className="px-4 pt-12 pb-12">
+        <div className="flex items-center">
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />
           </div>
@@ -150,7 +150,7 @@ export default function Collection() {
             Ma Collection
           </h1>
         <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          {collection.length} légume{collection.length !== 1 ? 's' : ''} dans votre jardin
+          {collection.length} élément{collection.length !== 1 ? 's' : ''} enregistré{collection.length !== 1 ? 's' : ''}
         </p>
         </div>
         </div>
@@ -161,10 +161,10 @@ export default function Collection() {
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
               <p className={`text-lg mb-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                Your collection is empty
+                Votre collection est encore vide.
               </p>
               <p className={`text-base ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-                Search for vegetables and add them to start building your garden
+                Recherchez des éléments et ajoutez-les pour commencer à construire votre potager.
               </p>
             </div>
           </div>
