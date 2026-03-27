@@ -10,8 +10,20 @@ export default function Home() {
   const [selectedVegetable, setSelectedVegetable] = useState<Vegetable | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
-  const [selectedSeason, setSelectedSeason] = useState<string>('all');
+  const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([]);
+  const [selectedSeasons, setSelectedSeasons] = useState<string[]>([]);
+
+  const toggleDifficulty = (diff: string) => {
+    setSelectedDifficulties(prev =>
+      prev.includes(diff) ? prev.filter(d => d !== diff) : [...prev, diff]
+    );
+  };
+
+  const toggleSeason = (season: string) => {
+    setSelectedSeasons(prev =>
+      prev.includes(season) ? prev.filter(s => s !== season) : [...prev, season]
+    );
+  };
 
   const filteredVegetables = vegetables.filter((veg) => {
     const matchesSearch =
@@ -19,10 +31,11 @@ export default function Home() {
       veg.scientificName.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesDifficulty =
-      selectedDifficulty === 'all' || veg.difficulty === selectedDifficulty;
+      selectedDifficulties.length === 0 || selectedDifficulties.includes(veg.difficulty);
     
     const matchesSeason =
-      selectedSeason === 'all' || veg.plantingSeason.includes(selectedSeason);
+      selectedSeasons.length === 0 || 
+      veg.plantingSeason.some(season => selectedSeasons.includes(season));
     
     return matchesSearch && matchesDifficulty && matchesSeason;
   });
@@ -103,9 +116,9 @@ export default function Home() {
             }`}
           >
             <Filter size={20} color={isDark ? '#9ca3af' : '#6b7280'} />
-            {(selectedDifficulty !== 'all' || selectedSeason !== 'all') && (
+            {(selectedDifficulties.length > 0 || selectedSeasons.length > 0) && (
               <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                {[selectedDifficulty !== 'all' ? 1 : 0, selectedSeason !== 'all' ? 1 : 0].reduce((a, b) => a + b)}
+                {selectedDifficulties.length + selectedSeasons.length}
               </span>
             )}
           </button>
@@ -121,43 +134,43 @@ export default function Home() {
                   Difficulté
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {['all', 'facile', 'moyen', 'difficile'].map((diff) => (
+                  {['facile', 'moyen', 'difficile'].map((diff) => (
                     <button
                       key={diff}
-                      onClick={() => setSelectedDifficulty(diff)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        selectedDifficulty === diff
+                      onClick={() => toggleDifficulty(diff)}
+                      className={`px-2 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        selectedDifficulties.includes(diff)
                           ? 'bg-primary-600 text-white'
                           : isDark
                           ? 'bg-gray-700 text-gray-300'
                           : 'bg-white text-gray-700'
                       }`}
                     >
-                      {diff === 'all' ? 'Tous' : diff.charAt(0).toUpperCase() + diff.slice(1)}
+                      {diff.charAt(0).toUpperCase() + diff.slice(1)}
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Season Filter */}
-              <div className="mb-4">
+              <div>
                 <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                   Saison de plantation
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {['all', 'printemps', 'été', 'automne', 'début été', 'fin printemps', 'fin été'].map((season) => (
+                  {['printemps', 'été', 'automne', 'hiver'].map((season) => (
                     <button
                       key={season}
-                      onClick={() => setSelectedSeason(season)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        selectedSeason === season
+                      onClick={() => toggleSeason(season)}
+                      className={`px-2 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        selectedSeasons.includes(season)
                           ? 'bg-primary-600 text-white'
                           : isDark
                           ? 'bg-gray-700 text-gray-300'
                           : 'bg-white text-gray-700'
                       }`}
                     >
-                      {season === 'all' ? 'Toutes' : season.charAt(0).toUpperCase() + season.slice(1)}
+                      {season.charAt(0).toUpperCase() + season.slice(1)}
                     </button>
                   ))}
                 </div>
@@ -184,24 +197,17 @@ export default function Home() {
             <img
               src={vegetable.imageUrl}
               alt={vegetable.name}
-              className="w-full h-48 object-cover"
+              className="w-full h-40 object-cover"
             />
             <div className="p-4 text-left">
-              <h2
-                className={`text-xl font-semibold mb-1 ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                {vegetable.name}
-              </h2>
-              <p
-                className={`text-sm mb-2 italic ${
-                  isDark ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                {vegetable.scientificName}
-              </p>
-              <div className="flex items-center">
+              <div className="flex items-center justify-between mb-1">
+                <h2
+                  className={`text-xl font-semibold ${
+                    isDark ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  {vegetable.name}
+                </h2>
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-medium ${
                     vegetable.difficulty === 'facile'
@@ -213,12 +219,13 @@ export default function Home() {
                 >
                   {vegetable.difficulty.toUpperCase()}
                 </span>
+              </div>
+        
+              <div className="flex items-center">
                 <span
-                  className={`ml-3 text-sm ${
-                    isDark ? 'text-gray-400' : 'text-gray-600'
-                  }`}
+                  className={`text-xs font-medium text-gray-500`}
                 >
-                  {vegetable.harvestTime}
+                  Temps de récolte : {vegetable.harvestTime}
                 </span>
               </div>
             </div>
