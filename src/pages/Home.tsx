@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, X, Plus, Leaf } from 'lucide-react';
+import { Search, X, Plus, Leaf, Filter } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { vegetables } from '@/data/vegetables';
 import { Vegetable } from '@/types/vegetable';
@@ -9,12 +9,28 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVegetable, setSelectedVegetable] = useState<Vegetable | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
+  const [selectedSeason, setSelectedSeason] = useState<string>('all');
 
-  const filteredVegetables = vegetables.filter(
-    (veg) =>
+  const filteredVegetables = vegetables.filter((veg) => {
+    const matchesSearch =
       veg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      veg.scientificName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      veg.scientificName.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesDifficulty =
+      selectedDifficulty === 'all' || veg.difficulty === selectedDifficulty;
+    
+    const matchesSeason =
+      selectedSeason === 'all' || veg.plantingSeason.includes(selectedSeason);
+    
+    return matchesSearch && matchesDifficulty && matchesSeason;
+  });
+
+  const clearFilters = () => {
+    setSelectedDifficulty('all');
+    setSelectedSeason('all');
+  };
 
   const addToCollection = () => {
     if (!selectedVegetable) return;
@@ -63,25 +79,112 @@ export default function Home() {
           </div>
         </div>
 
-        <div
-          className={`flex items-center px-4 py-3 rounded-xl ${
-            isDark ? 'bg-gray-800' : 'bg-gray-100'
-          }`}
-        >
-          <Search size={20} color={isDark ? '#9ca3af' : '#6b7280'} />
-          <input
-            className={`flex-1 ml-3 text-base bg-transparent outline-none ${
-              isDark ? 'text-white placeholder-gray-400' : 'text-gray-900 placeholder-gray-600'
+        <div className="flex gap-2">
+          <div
+            className={`flex-1 flex items-center px-4 py-3 rounded-xl ${
+              isDark ? 'bg-gray-800' : 'bg-gray-100'
             }`}
-            placeholder="Rechercher des légumes..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          {searchQuery.length > 0 && (
-            <button onClick={() => setSearchQuery('')} className="cursor-pointer">
-              <X size={20} color={isDark ? '#9ca3af' : '#6b7280'} />
-            </button>
+          >
+            <Search size={20} color={isDark ? '#9ca3af' : '#6b7280'} />
+            <input
+              className={`flex-1 ml-3 text-base bg-transparent outline-none ${
+                isDark ? 'text-white placeholder-gray-400' : 'text-gray-900 placeholder-gray-600'
+              }`}
+              placeholder="Rechercher des légumes..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {searchQuery.length > 0 && (
+              <button onClick={() => setSearchQuery('')} className="cursor-pointer">
+                <X size={20} color={isDark ? '#9ca3af' : '#6b7280'} />
+              </button>
+            )}
+          </div>
+
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className={`relative px-4 py-3 rounded-xl ${
+              isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'
+            }`}
+          >
+            <Filter size={20} color={isDark ? '#9ca3af' : '#6b7280'} />
+            {(selectedDifficulty !== 'all' || selectedSeason !== 'all') && (
+              <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {[selectedDifficulty !== 'all' ? 1 : 0, selectedSeason !== 'all' ? 1 : 0].reduce((a, b) => a + b)}
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* Filters Panel */}
+        <div className="mt-4">
+          {showFilters && (
+            <div className={`mt-3 p-4 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-gray-100'}`}>
+              {/* Difficulty Filter */}
+              <div className="mb-4">
+                <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  Difficulté
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {['all', 'facile', 'moyen', 'difficile'].map((diff) => (
+                    <button
+                      key={diff}
+                      onClick={() => setSelectedDifficulty(diff)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        selectedDifficulty === diff
+                          ? 'bg-primary-600 text-white'
+                          : isDark
+                          ? 'bg-gray-700 text-gray-300'
+                          : 'bg-white text-gray-700'
+                      }`}
+                    >
+                      {diff === 'all' ? 'Tous' : diff.charAt(0).toUpperCase() + diff.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Season Filter */}
+              <div className="mb-4">
+                <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  Saison de plantation
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {['all', 'printemps', 'été', 'automne', 'début été', 'fin printemps', 'fin été'].map((season) => (
+                    <button
+                      key={season}
+                      onClick={() => setSelectedSeason(season)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        selectedSeason === season
+                          ? 'bg-primary-600 text-white'
+                          : isDark
+                          ? 'bg-gray-700 text-gray-300'
+                          : 'bg-white text-gray-700'
+                      }`}
+                    >
+                      {season === 'all' ? 'Toutes' : season.charAt(0).toUpperCase() + season.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Clear Filters Button */}
+              {(selectedDifficulty !== 'all' || selectedSeason !== 'all') && (
+                <button
+                  onClick={clearFilters}
+                  className={`w-full py-2 rounded-lg text-sm font-medium ${
+                    isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
+                  }`}
+                >
+                  Réinitialiser les filtres
+                </button>
+              )}
+            </div>
           )}
+        </div>
+
+        <div className={`mt-4 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+          {filteredVegetables.length} légume{filteredVegetables.length !== 1 ? 's' : ''} trouvé{filteredVegetables.length !== 1 ? 's' : ''}
         </div>
       </div>
 

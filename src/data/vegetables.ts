@@ -1,6 +1,6 @@
 import { Vegetable } from '@/types/vegetable';
 
-export const vegetables: Vegetable[] = [
+export const vegetables = [
   {
     id: '1',
     name: 'Tomate',
@@ -244,7 +244,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol riche et bien drainé avec pH 5.5-6.5'
   },
   {
-    id: '11',
+    id: '12',
     name: 'Panais',
     scientificName: 'Pastinaca sativa',
     description:
@@ -266,7 +266,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol profond, meuble et sans pierres'
   },
   {
-    id: '12',
+    id: '13',
     name: 'Oignon',
     scientificName: 'Allium cepa',
     description:
@@ -288,7 +288,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol léger, bien drainé et riche en matière organique'
   },
   {
-    id: '13',
+    id: '14',
     name: 'Persil',
     scientificName: 'Petroselinum crispum',
     description:
@@ -310,7 +310,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol frais, léger et bien drainé'
   },
   {
-    id: '14',
+    id: '15',
     name: 'Ciboulette',
     scientificName: 'Allium schoenoprasum',
     description:
@@ -332,7 +332,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol riche et bien drainé'
   },
   {
-    id: '15',
+    id: '16',
     name: 'Fraise',
     scientificName: 'Fragaria × ananassa',
     description:
@@ -354,7 +354,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol riche, légèrement acide (pH 5.5-6.5)'
   },
   {
-    id: '16',
+    id: '17',
     name: 'Framboise',
     scientificName: 'Rubus idaeus',
     description:
@@ -376,7 +376,7 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol riche, frais et bien drainé'
   },
   {
-    id: '17',
+    id: '18',
     name: 'Menthe',
     scientificName: 'Mentha',
     description:
@@ -398,5 +398,5 @@ export const vegetables: Vegetable[] = [
     soilType: 'Sol riche et humide'
   },
   
-].sort((a, b) => a.name.localeCompare(b.name));
+].sort((a, b) => a.name.localeCompare(b.name)) as unknown as Vegetable[];
 
