@@ -3,6 +3,66 @@ import { Trash2, Edit2, X, Save, Leaf } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { UserVegetableProfile } from '@/types/vegetable';
 
+// Helper function to calculate estimated harvest date
+const calculateHarvestDate = (plantedDate: string, harvestTime: string): string | undefined => {
+  if (!plantedDate) return undefined;
+
+  try {
+    let planted: Date;
+    
+    // Check if date is in YYYY-MM-DD format (from date input) or DD/MM/YYYY format
+    if (plantedDate.includes('-')) {
+      // YYYY-MM-DD format from date input
+      planted = new Date(plantedDate);
+    } else {
+      // DD/MM/YYYY format
+      const [day, month, year] = plantedDate.split('/').map(Number);
+      if (!day || !month || !year) return undefined;
+      planted = new Date(year, month - 1, day);
+    }
+    
+    // Extract days from harvestTime (e.g., "60-85 jours" -> use the max value)
+    const daysMatch = harvestTime.match(/(\d+)(?:-(\d+))?\s*jours?/i);
+    if (!daysMatch) return undefined;
+
+    // Use the maximum days if range is given, otherwise use the single value
+    const days = daysMatch[2] ? parseInt(daysMatch[2]) : parseInt(daysMatch[1]);
+    
+    // Calculate harvest date
+    const harvestDate = new Date(planted);
+    harvestDate.setDate(harvestDate.getDate() + days);
+    
+    // Format as DD/MM/YYYY for display
+    const harvestDay = String(harvestDate.getDate()).padStart(2, '0');
+    const harvestMonth = String(harvestDate.getMonth() + 1).padStart(2, '0');
+    const harvestYear = harvestDate.getFullYear();
+    
+    return `${harvestDay}/${harvestMonth}/${harvestYear}`;
+  } catch (error) {
+    console.error('Error calculating harvest date:', error);
+    return undefined;
+  }
+};
+
+// Helper function to convert date to display format
+const formatDateForDisplay = (date: string): string => {
+  if (!date) return '';
+  
+  // If it's already in DD/MM/YYYY format, return as is
+  if (date.includes('/')) return date;
+  
+  // Convert from YYYY-MM-DD to DD/MM/YYYY
+  try {
+    const dateObj = new Date(date);
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const year = dateObj.getFullYear();
+    return `${day}/${month}/${year}`;
+  } catch {
+    return date;
+  }
+};
+
 export default function Collection() {
   const { isDark } = useTheme();
   const [collection, setCollection] = useState<UserVegetableProfile[]>([]);
@@ -46,10 +106,16 @@ export default function Collection() {
     if (!selectedProfile) return;
 
     try {
+      // Calculate expected harvest date if planted date is provided
+      const expectedHarvest = plantedDate 
+        ? calculateHarvestDate(plantedDate, selectedProfile.harvestTime)
+        : undefined;
+
       const updatedProfile = {
         ...selectedProfile,
         notes: editedNotes,
         plantedDate: plantedDate || selectedProfile.plantedDate,
+        expectedHarvest: expectedHarvest || selectedProfile.expectedHarvest,
       };
 
       const updatedCollection = collection.map((item) =>
@@ -124,18 +190,29 @@ export default function Collection() {
                 >
                   {profile.name}
                 </h2>
-                <p
-                  className={`text-sm mb-2 ${
-                    isDark ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Added{' '}
-                  {new Date(profile.dateAdded).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
-                </p>
+                {profile.plantedDate ? (
+                  <div className={`text-sm mb-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p>🌱 Planté le : {formatDateForDisplay(profile.plantedDate)}</p>
+                    {profile.expectedHarvest && (
+                      <p className={`${isDark ? 'text-primary-400' : 'text-primary-600'}`}>
+                        Récolte estimée dès le : {profile.expectedHarvest}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <p
+                    className={`text-sm mb-2 ${
+                      isDark ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    Ajouté le{' '}
+                    {new Date(profile.dateAdded).toLocaleDateString('fr-FR', {
+                      day: 'numeric',
+                      month: 'short',
+                      year: 'numeric',
+                    })}
+                  </p>
+                )}
                 {profile.notes && (
                   <p
                     className={`text-sm line-clamp-2 ${
@@ -299,8 +376,17 @@ export default function Collection() {
                             isDark ? 'text-gray-400' : 'text-gray-600'
                           }`}
                         >
-                          Planté le: {selectedProfile.plantedDate}
+                          🌱 Planté le: {formatDateForDisplay(selectedProfile.plantedDate)}
                         </p>
+                        {selectedProfile.expectedHarvest && (
+                          <p
+                            className={`text-sm font-medium mt-2 ${
+                              isDark ? 'text-primary-400' : 'text-primary-600'
+                            }`}
+                          >
+                            Récolte estimée dès le : {selectedProfile.expectedHarvest}
+                          </p>
+                        )}
                       </div>
                     )}
                   </>
