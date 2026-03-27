@@ -221,4 +221,25 @@ export const vegetables: Vegetable[] = [
     spacing: '10-15 cm d\'espacement',
     soilType: 'Sol bien drainé avec fertilité modérée',
   },
-];
+  {
+    id: '11',
+    name: 'Aubergine',
+    scientificName: 'Solanum melongena',
+    description:
+      'Un légume de saison chaude qui produit des fruits charnus et savoureux. Nécessite des températures chaudes et un sol riche.',
+    plantingSeason: ['printemps', 'début été'],
+    harvestTime: '70-85 jours',
+    wateringFrequency: 'Arrosage régulier et profond',
+    sunlightRequirement: 'Plein soleil (6-8 heures)',
+    difficulty: 'moyen',
+    imageUrl: 'https://i.notretemps.com/1200x0/smart/2020/07/30/dietetique-les-bienfaits-de-laubergine.jpeg',
+    careInstructions: [
+      'Planter après les dernières gelées',
+      'Fournir un support pour les variétés grimpantes',
+      'Récolter régulièrement pour encourager la production',
+      'Surveiller les maladies fongiques',
+    ],
+    companionPlants: ['tomates', 'poivrons', 'basilic'],
+    spacing: '45-60 cm d\'espacement',
+    soilType: 'Sol riche et bien drainé avec pH 5.5-6.5'
+}];
