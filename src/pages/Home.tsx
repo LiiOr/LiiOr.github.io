@@ -53,13 +53,13 @@ export default function Home() {
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />
           </div>
-          <div> 
-          <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Appli du Potager
-          </h1>
-          <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            Le compagnon des jardiniers
-          </p>
+          <div>
+            <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Main Verte
+            </h1>
+            <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              L'appli des jardiniers en herbe
+            </p>
           </div>
         </div>
 

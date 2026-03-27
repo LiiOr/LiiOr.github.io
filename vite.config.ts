@@ -4,14 +4,15 @@ import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 
 export default defineConfig({
+  base: '/',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'icon.png'],
       manifest: {
-        name: 'Vegetable Garden',
-        short_name: 'VegGarden',
+        name: 'Main Verte',
+        short_name: 'Main Verte',
         description: 'A comprehensive gardening companion for vegetable enthusiasts',
         theme_color: '#16a34a',
         background_color: '#ffffff',

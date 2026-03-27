@@ -139,7 +139,7 @@ export default function Settings() {
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}
                   >
-                    Vegetable Garden App
+                    Main Verte
                   </p>
                   <p
                     className={`text-sm leading-5 ${
