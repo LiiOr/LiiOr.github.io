@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/Layout';
 import SplashScreen from './components/SplashScreen';
-import Home from './pages/Home';
+import Home from './pages/Search';
 //import Camera from './pages/Camera';
 import Tips from './pages/Tips';
 import Collection from './pages/Collection';
