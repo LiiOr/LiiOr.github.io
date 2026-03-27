@@ -79,10 +79,10 @@ export default function Home() {
           </div>
           <div>
             <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Mes Recherches
+            Recherche
             </h1>
             <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Jardiner avec l'appli Main Verte ♡ 
+              Trouvez vos futures plantations 
             </p>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="px-4 pb-20">
+      <div className="px-4 pb-10">
         {filteredVegetables.map((vegetable) => (
           <button
             key={vegetable.id}

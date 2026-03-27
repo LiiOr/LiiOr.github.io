@@ -1,14 +1,15 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { BookOpen, Camera, Search, Settings } from 'lucide-react';
+import { BookOpen, Search, Settings, Sprout } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 export default function Layout() {
   const { isDark } = useTheme();
 
   const navItems = [
-    { to: '/', icon: BookOpen, label: 'Collection' },
+    { to: '/', icon: Sprout, label: 'Collection' },
     { to: '/search', icon: Search, label: 'Recherche' },
-    { to: '/camera', icon: Camera, label: 'Caméra' },
+    /*{ to: '/camera', icon: Camera, label: 'Caméra' },*/
+    { to: '/tips', icon: BookOpen, label: 'Conseils' },
     { to: '/settings', icon: Settings, label: 'Paramètres' },
   ];
 

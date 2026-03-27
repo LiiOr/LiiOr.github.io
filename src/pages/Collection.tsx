@@ -147,7 +147,7 @@ export default function Collection() {
           </div>
           <div>
           <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Ma Collection
+            Collection
           </h1>
         <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
           {collection.length} élément{collection.length !== 1 ? 's' : ''} enregistré{collection.length !== 1 ? 's' : ''}
@@ -156,7 +156,7 @@ export default function Collection() {
         </div>
       </div>
 
-      <div className="px-4 pb-20">
+      <div className="px-4 pb-10">
         {collection.length === 0 ? (
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
@@ -166,7 +166,14 @@ export default function Collection() {
               <p className={`text-base ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
                 Recherchez des éléments et ajoutez-les pour commencer à construire votre potager.
               </p>
+              <button
+                onClick={() => window.location.href = '/search'}
+                className="mt-6 bg-primary-600 py-2 px-6 rounded-xl text-white font-semibold"
+              >
+                Rechercher
+              </button>
             </div>
+            
           </div>
         ) : (
           collection.map((profile) => (

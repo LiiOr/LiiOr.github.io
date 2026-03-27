@@ -18,14 +18,14 @@ export default function Settings() {
 
   return (
     <div className={`min-h-full ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="px-4 pt-10 pb-20">
+      <div className="px-4 pt-10 pb-10">
         <div className="flex items-center mb-6">
           <div className="bg-primary-600 p-3 rounded-full mr-3">
             <Leaf size={28} color="#fff" />
           </div>
           <div>
             <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Mes Paramètres
+              Paramètres
             </h1>
             <p className={`text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Gérez vos préférences
@@ -48,7 +48,7 @@ export default function Settings() {
                 {isDark ? (
                   <Moon size={24} color="#4ade80" />
                 ) : (
-                  <Sun size={24} color="#f59e0b" />
+                  <Sun size={24} color="#d4b425ff" />
                 )}
                 <div className="ml-4 flex-1">
                   <p
@@ -98,7 +98,7 @@ export default function Settings() {
               className="w-full flex items-center justify-between p-4 text-left"
             >
               <div className="flex items-center flex-1">
-                <Trash2 size={24} color="#ef4444" />
+                <Trash2 size={24} color="#929292ff" />
                 <div className="ml-4 flex-1">
                   <p
                     className={`text-base font-semibold ${
@@ -132,7 +132,7 @@ export default function Settings() {
           >
             <div className="p-4">
               <div className="flex items-start mb-4">
-                <Info size={24} color={isDark ? '#4ade80' : '#16a34a'} className="mt-1" />
+                <Info size={24} color='#929292ff' className="mt-1" />
                 <div className="ml-4 flex-1">
                   <p
                     className={`text-base font-semibold mb-1 ${
@@ -147,6 +147,7 @@ export default function Settings() {
                     }`}
                   >
                     L'appli des jardiniers en herbe.
+                    Aucune donnée n'est collectée ou partagée. Tout est stocké localement sur votre appareil.
                   </p>
                 </div>
               </div>
@@ -164,70 +165,6 @@ export default function Settings() {
                   Version 1.0.0
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`rounded-xl p-6 ${
-            isDark ? 'bg-primary-900/20' : 'bg-primary-50'
-          }`}
-        >
-          <h2
-            className={`text-lg font-semibold mb-2 ${
-              isDark ? 'text-primary-400' : 'text-primary-700'
-            }`}
-          >
-            Conseils de jardinage
-          </h2>
-          <div className="mb-3">
-            <div className="flex mb-2">
-              <span
-                className={`mr-2 ${
-                  isDark ? 'text-primary-400' : 'text-primary-600'
-                }`}
-              >
-                •
-              </span>
-              <p
-                className={`flex-1 text-sm ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}
-              >
-                Arrosez vos plantes tôt le matin pour de meilleurs résultats
-              </p>
-            </div>
-            <div className="flex mb-2">
-              <span
-                className={`mr-2 ${
-                  isDark ? 'text-primary-400' : 'text-primary-600'
-                }`}
-              >
-                •
-              </span>
-              <p
-                className={`flex-1 text-sm ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}
-              >
-                Les plantes compagnes peuvent améliorer la croissance et éloigner les nuisibles
-              </p>
-            </div>
-            <div className="flex">
-              <span
-                className={`mr-2 ${
-                  isDark ? 'text-primary-400' : 'text-primary-600'
-                }`}
-              >
-                •
-              </span>
-              <p
-                className={`flex-1 text-sm ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}
-              >
-                Une récolte régulière encourage davantage de production
-              </p>
             </div>
           </div>
         </div>

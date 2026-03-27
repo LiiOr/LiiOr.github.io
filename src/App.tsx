@@ -4,7 +4,8 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/Layout';
 import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
-import Camera from './pages/Camera';
+//import Camera from './pages/Camera';
+import Tips from './pages/Tips';
 import Collection from './pages/Collection';
 import Settings from './pages/Settings';
 
@@ -34,7 +35,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Collection />} />
           <Route path="search" element={<Home />} />
-          <Route path="camera" element={<Camera />} />
+         {/*<Route path="camera" element={<Camera />} />*/}
+          <Route path="tips" element={<Tips />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
