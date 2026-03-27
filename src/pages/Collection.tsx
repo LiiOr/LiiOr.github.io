@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Trash2, Edit2, X, Save, Leaf } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { UserVegetableProfile } from '@/types/vegetable';
@@ -65,6 +66,7 @@ const formatDateForDisplay = (date: string): string => {
 
 export default function Collection() {
   const { isDark } = useTheme();
+  const navigate = useNavigate();
   const [collection, setCollection] = useState<UserVegetableProfile[]>([]);
   const [selectedProfile, setSelectedProfile] = useState<UserVegetableProfile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -167,7 +169,7 @@ export default function Collection() {
                 Recherchez des éléments et ajoutez-les pour commencer à construire votre potager.
               </p>
               <button
-                onClick={() => window.location.href = '/search'}
+                onClick={() => navigate('/search')}
                 className="mt-6 bg-primary-600 py-2 px-6 rounded-xl text-white font-semibold"
               >
                 Rechercher

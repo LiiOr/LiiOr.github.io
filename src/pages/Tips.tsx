@@ -11,10 +11,23 @@ export default function Tips() {
   };
 
   const tips = [
+      {
+        icon: Sprout,
+        title: 'Plantation et semis',
+        color: isDark ? '#4ade80' : '#16a34a',
+        imageUrl: '',
+        tips: [
+          'Respectez les distances de plantation pour une bonne circulation d\'air',
+          'Plantez en quinconce pour optimiser l\'espace',
+          'Durcissez vos semis avant la transplantation',
+          'Semez en succession pour une récolte continue'
+        ]
+      },
     {
       icon: Droplets,
       title: 'Arrosage optimal',
       color: isDark ? '#4ade80' : '#16a34a',
+      imageUrl: 'https://www.entretiendejardin.com/wp-content/uploads/2021/08/Tarif-arrosage-manuel-de-jardin-tuyau-arrosage.jpg',
       tips: [
         'Arrosez tôt le matin pour réduire l\'évaporation',
         'Visez le sol, pas les feuilles, pour éviter les maladies',
@@ -26,6 +39,7 @@ export default function Tips() {
       icon: Sun,
       title: 'Ensoleillement',
       color: isDark ? '#4ade80' : '#16a34a',
+      imageUrl: '',
       tips: [
         'La plupart des légumes ont besoin de 6-8 heures de soleil direct',
         'Les légumes-feuilles tolèrent mieux l\'ombre partielle',
@@ -34,20 +48,10 @@ export default function Tips() {
       ]
     },
     {
-      icon: Sprout,
-      title: 'Plantation et semis',
-      color: isDark ? '#4ade80' : '#16a34a',
-      tips: [
-        'Respectez les distances de plantation pour une bonne circulation d\'air',
-        'Plantez en quinconce pour optimiser l\'espace',
-        'Durcissez vos semis avant la transplantation',
-        'Semez en succession pour une récolte continue'
-      ]
-    },
-    {
       icon: Bug,
       title: 'Protection naturelle',
       color: isDark ? '#4ade80' : '#16a34a',
+      imageUrl: 'https://positivr.fr/wp-content/uploads/2024/04/4-astuces-pour-garantir-un-bon-ensoleillement-dans-son-potager.png',
       tips: [
         'Pratiquez la rotation des cultures pour prévenir les maladies',
         'Utilisez les plantes compagnes pour repousser les nuisibles',
@@ -59,6 +63,7 @@ export default function Tips() {
       icon: Calendar,
       title: 'Calendrier de jardinage',
       color: isDark ? '#4ade80' : '#16a34a',
+      imageUrl: '',
       tips: [
         'Consultez le calendrier lunaire pour les semis',
         'Notez vos dates de plantation et de récolte',
@@ -67,20 +72,10 @@ export default function Tips() {
       ]
     },
     {
-      icon: ThermometerSun,
-      title: 'Gestion du climat',
-      color: isDark ? '#4ade80' : '#16a34a',
-      tips: [
-        'Protégez vos plants lors des gelées tardives',
-        'Utilisez des cloches ou voiles pour prolonger la saison',
-        'Paillez pour réguler la température du sol',
-        'Aérez les serres par temps chaud'
-      ]
-    },
-    {
       icon: Wind,
       title: 'Sol et compost',
       color: isDark ? '#4ade80' : '#16a34a',
+      imageUrl: '/paillis.png',
       tips: [
         'Enrichissez votre sol avec du compost maison',
         'Testez le pH de votre sol régulièrement',
@@ -89,15 +84,28 @@ export default function Tips() {
       ]
     },
     {
-      icon: Lightbulb,
-      title: 'Astuces générales',
+      icon: ThermometerSun,
+      title: 'Gestion du climat',
       color: isDark ? '#4ade80' : '#16a34a',
+      imageUrl: '',
       tips: [
-        'Une récolte régulière stimule la production',
-        'Pincez les fleurs des herbes pour prolonger la récolte',
-        'Récupérez l\'eau de pluie pour l\'arrosage',
-        'Observez vos plantes quotidiennement pour détecter les problèmes tôt'
+        'Protégez vos plants lors des gelées tardives',
+        'Utilisez des cloches ou voiles pour prolonger la saison',
+        'Paillez pour réguler la température du sol',
+        'Aérez les serres par temps chaud'
       ]
+    },
+    {
+        icon: Lightbulb,
+        title: 'Astuces générales',
+        color: isDark ? '#4ade80' : '#16a34a',
+        imageUrl: '',
+        tips: [
+            'Une récolte régulière stimule la production',
+            'Pincez les fleurs des herbes pour prolonger la récolte',
+            'Récupérez l\'eau de pluie pour l\'arrosage',
+            'Observez vos plantes quotidiennement pour détecter les problèmes tôt'
+        ]
     }
   ];
 
@@ -157,23 +165,33 @@ export default function Tips() {
                 </button>
                 
                 {isExpanded && (
-                  <div className="p-4 border-t" style={{ borderColor: category.color + '30' }}>
-                    {category.tips.map((tip, tipIdx) => (
-                      <div key={tipIdx} className="flex mb-3 last:mb-0">
-                        <span
-                          className="mr-3 flex-shrink-0"
-                          style={{ color: category.color }}
-                        >                          •
-                        </span>
-                        <p
-                          className={`text-sm leading-relaxed ${
-                            isDark ? 'text-gray-300' : 'text-gray-700'
-                          }`}
-                        >
-                          {tip}
-                        </p>
-                      </div>
-                    ))}
+                  <div>
+                    {category.imageUrl && (
+                      <img
+                        src={category.imageUrl}
+                        alt={category.title}
+                        className="w-full h-48 object-cover"
+                      />
+                    )}
+                    <div className="p-4 border-t" style={{ borderColor: category.color + '30' }}>
+                      {category.tips.map((tip, tipIdx) => (
+                        <div key={tipIdx} className="flex mb-3 last:mb-0">
+                          <span
+                            className="mr-3 flex-shrink-0"
+                            style={{ color: category.color }}
+                          >
+                            •
+                          </span>
+                          <p
+                            className={`text-sm leading-relaxed ${
+                              isDark ? 'text-gray-300' : 'text-gray-700'
+                            }`}
+                          >
+                            {tip}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

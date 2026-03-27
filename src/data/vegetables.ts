@@ -397,6 +397,95 @@ export const vegetables = [
     spacing: '30-45 cm d\'espacement (ou en pot)',
     soilType: 'Sol riche et humide'
   },
+  {
+    id: '19',
+    name: 'Tomate cerise',
+    scientificName: 'Solanum lycopersicum var. cerasiforme',
+    description:
+      'Petites tomates sucrées et savoureuses, parfaites pour les salades et les apéritifs. Plus faciles à cultiver que les tomates classiques.',
+    plantingSeason: ['printemps', 'début été'],
+    harvestTime: '55-65 jours',
+    wateringFrequency: 'Quotidien par temps chaud',
+    sunlightRequirement: 'Plein soleil (6-8 heures)',
+    difficulty: 'facile',
+    imageUrl: 'https://images.ctfassets.net/b85ozb2q358o/b3ce8848f1193d5ad7ccabf3304ed54706286ca1aced95ed825c6422fecae9ad/81696cb92df43af919c93b89a82dae10/image.png',
+    careInstructions: [
+      'Planter après les dernières gelées',
+      'Tuteurer pour supporter le poids des fruits',
+      'Pincer les gourmands pour une meilleure production',
+      'Arroser régulièrement à la base',
+    ],
+    companionPlants: ['basilic', 'persil', 'carottes'],
+    spacing: '50-60 cm d\'espacement',
+    soilType: 'Sol riche et bien drainé avec pH 6.0-6.8'
+  },
+  {
+    id: '20',
+    name: 'Poireau',
+    scientificName: 'Allium porrum',
+    description:
+      'Légume d\'hiver au goût doux, idéal pour les soupes et gratins. Très résistant au froid et facile à cultiver.',
+    plantingSeason: ['printemps', 'été'],
+    harvestTime: '120-150 jours',
+    wateringFrequency: 'Régulier, maintenir le sol humide',
+    sunlightRequirement: 'Plein soleil',
+    difficulty: 'moyen',
+    imageUrl: 'https://www.silencecapousse-chezvous.fr/media/images/27793/rectangle/w900/1694180589/planter_poireaux.jpg',
+    careInstructions: [
+      'Butter régulièrement pour blanchir le fût',
+      'Repiquer les plants à 15 cm de profondeur',
+      'Biner régulièrement entre les rangs',
+      'Récolter selon les besoins tout l\'hiver',
+    ],
+    companionPlants: ['carottes', 'céleri', 'tomates'],
+    spacing: '15 cm d\'espacement',
+    soilType: 'Sol profond, riche et bien drainé'
+  },
+  {
+    id: '21',
+    name: 'Navet',
+    scientificName: 'Brassica rapa',
+    description:
+      'Légume racine à croissance rapide, tendre et légèrement sucré. Excellent cru ou cuit, idéal pour les jardiniers débutants.',
+    plantingSeason: ['printemps', 'automne'],
+    harvestTime: '40-60 jours',
+    wateringFrequency: 'Régulier pour éviter qu\'il devienne fibreux',
+    sunlightRequirement: 'Plein soleil à mi-ombre',
+    difficulty: 'facile',
+    imageUrl: 'https://www.jardiner-malin.fr/wp-content/uploads/2020/05/Navet.jpg',
+    careInstructions: [
+      'Semer directement en place',
+      'Éclaircir à 10 cm pour permettre le développement',
+      'Arroser régulièrement pour une croissance rapide',
+      'Récolter jeune pour plus de tendreté',
+    ],
+    companionPlants: ['pois', 'laitue', 'épinards'],
+    spacing: '10-15 cm d\'espacement',
+    soilType: 'Sol léger, frais et riche en humus'
+  },
+  {
+    id: '22',
+    name: 'Pomme de terre',
+    scientificName: 'Solanum tuberosum',
+    description:
+      'Tubercule polyvalent et productif, base de nombreux plats. Culture facile qui enrichit le sol en le travaillant.',
+    plantingSeason: ['printemps'],
+    harvestTime: '70-120 jours selon variété',
+    wateringFrequency: 'Régulier, surtout pendant la tubérisation',
+    sunlightRequirement: 'Plein soleil',
+    difficulty: 'facile',
+    imageUrl: 'https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg',
+    careInstructions: [
+      'Planter des tubercules germés à 10 cm de profondeur',
+      'Butter les plants régulièrement pour protéger les tubercules',
+      'Couper le feuillage 2 semaines avant la récolte',
+      'Récolter par temps sec pour une meilleure conservation',
+    ],
+    companionPlants: ['haricots', 'maïs', 'choux'],
+    spacing: '30-40 cm d\'espacement',
+    soilType: 'Sol meuble, profond et légèrement acide'
+  },
+  
   
 ].sort((a, b) => a.name.localeCompare(b.name)) as unknown as Vegetable[];
 
