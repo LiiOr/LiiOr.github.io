@@ -201,12 +201,12 @@ export default function Collection() {
                 </h2>
                 {profile.plantedDate ? (
                   <div className={`text-sm mb-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                    <p>🌱 Planté le : {formatDateForDisplay(profile.plantedDate)}</p>
                     {profile.expectedHarvest && (
                       <p className={`${isDark ? 'text-primary-400' : 'text-primary-600'}`}>
-                        Récolte estimée dès le : {profile.expectedHarvest}
+                        🌱 Récolte estimée dès le : {profile.expectedHarvest}
                       </p>
                     )}
+                    <p>Planté le : {formatDateForDisplay(profile.plantedDate)}</p>
                   </div>
                 ) : (
                   <p
@@ -228,7 +228,7 @@ export default function Collection() {
                       isDark ? 'text-gray-300' : 'text-gray-700'
                     }`}
                   >
-                    {profile.notes}
+                    Note: {profile.notes}
                   </p>
                 )}
               </div>
@@ -380,22 +380,22 @@ export default function Collection() {
 
                     {selectedProfile.plantedDate && (
                       <div className="mt-4">
-                        <p
-                          className={`text-sm font-medium ${
-                            isDark ? 'text-gray-400' : 'text-gray-600'
-                          }`}
-                        >
-                          🌱 Planté le: {formatDateForDisplay(selectedProfile.plantedDate)}
-                        </p>
                         {selectedProfile.expectedHarvest && (
                           <p
                             className={`text-sm font-medium mt-2 ${
                               isDark ? 'text-primary-400' : 'text-primary-600'
                             }`}
                           >
-                            Récolte estimée dès le : {selectedProfile.expectedHarvest}
+                            🌱 Récolte estimée dès le : {selectedProfile.expectedHarvest}
                           </p>
                         )}
+                        <p
+                          className={`text-sm font-medium ${
+                            isDark ? 'text-gray-400' : 'text-gray-600'
+                          }`}
+                        >
+                          Planté le: {formatDateForDisplay(selectedProfile.plantedDate)}
+                        </p>
                       </div>
                     )}
                   </>

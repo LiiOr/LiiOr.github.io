@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-import path from 'path';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   base: '/',
@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', '192.png', '512.png'],
+      includeAssets: ['favicon.svg', '192-white-green.png', '512-white-green.png'],
       manifest: {
         id: '/',
         name: 'Main Verte',
@@ -22,25 +22,25 @@ export default defineConfig({
         scope: '/',
         icons: [
           {
-            src: '/192.png',
+            src: '/192-white-green.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/512.png',
+            src: '/512-white-green.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/192.png',
+            src: '/192-white-green.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable'
           },
           {
-            src: '/512.png',
+            src: '/512-white-green.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -70,7 +70,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
 });
